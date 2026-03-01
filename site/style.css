@@ -1,0 +1,345 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ── Reset & Base ──────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --parchment:  #faf6ed;
+  --cream:      #f5f0e3;
+  --gold:       #b8860b;
+  --gold-light: #d4a843;
+  --gold-faint: #e8d5a0;
+  --ink:        #2c1810;
+  --ink-light:  #5a3e2b;
+  --ink-faint:  #8b7355;
+  --wine:       #722f37;
+  --wine-dark:  #4a1c23;
+  --white:      #fffdf7;
+  --shadow:     rgba(44, 24, 16, .08);
+}
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Libre Baskerville', 'Georgia', 'Times New Roman', serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Decorative page border ────────────────────────────────────────────── */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 8px;
+  border: 2px solid var(--gold-faint);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Top ornament bar ──────────────────────────────────────────────────── */
+
+.top-ornament {
+  text-align: center;
+  padding: 1.4rem 1rem 0.6rem;
+  color: var(--gold);
+  font-size: 1.3rem;
+  letter-spacing: .6em;
+  user-select: none;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+
+header {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+header h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--wine-dark);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .2rem;
+}
+
+header .subtitle {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  letter-spacing: .08em;
+}
+
+.ornament {
+  display: block;
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: .5em;
+  margin: .8rem 0;
+  user-select: none;
+}
+
+/* ── Navigation breadcrumb ─────────────────────────────────────────────── */
+
+.breadcrumb {
+  text-align: center;
+  padding: .5rem 1rem;
+  font-size: .78rem;
+  color: var(--ink-faint);
+  letter-spacing: .04em;
+}
+.breadcrumb a {
+  color: var(--wine);
+  text-decoration: none;
+  transition: color .2s;
+}
+.breadcrumb a:hover {
+  color: var(--gold);
+}
+.breadcrumb .sep {
+  margin: 0 .4em;
+  color: var(--gold-faint);
+}
+
+/* ── Main content wrapper ──────────────────────────────────────────────── */
+
+main {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+/* ── Testament sections (index page) ───────────────────────────────────── */
+
+.testament-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--wine);
+  text-align: center;
+  margin: 2.5rem 0 1.2rem;
+  position: relative;
+}
+.testament-title::before,
+.testament-title::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 25%;
+  height: 1px;
+  background: linear-gradient(to var(--dir, right), var(--gold-faint), transparent);
+}
+.testament-title::before { left: 0; --dir: right; }
+.testament-title::after  { right: 0; --dir: left; }
+
+/* ── Book grid ─────────────────────────────────────────────────────────── */
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.book-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--gold-faint);
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.book-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .3s ease;
+}
+.book-card:hover {
+  border-color: var(--gold-light);
+  box-shadow: 0 4px 16px var(--shadow);
+  transform: translateY(-2px);
+}
+.book-card:hover::after {
+  transform: scaleX(1);
+}
+.book-card .book-name {
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--wine-dark);
+  margin-bottom: .2rem;
+}
+.book-card .book-meta {
+  font-size: .72rem;
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ── Chapter grid (book page) ──────────────────────────────────────────── */
+
+.book-heading {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.book-heading h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--wine-dark);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.book-heading .chapter-count {
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  margin-top: .2rem;
+}
+
+.chapter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.chapter-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--gold-faint);
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .85rem;
+  transition: all .2s ease;
+}
+.chapter-link:hover {
+  background: var(--wine);
+  color: var(--white);
+  border-color: var(--wine);
+  transform: scale(1.1);
+}
+
+/* ── Chapter reading page ──────────────────────────────────────────────── */
+
+.chapter-heading {
+  text-align: center;
+  margin: 1rem 0 2rem;
+}
+.chapter-heading h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--wine-dark);
+  letter-spacing: .08em;
+}
+.chapter-heading .ch-label {
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: .3rem;
+}
+
+.verse-text {
+  max-width: 38rem;
+  margin: 0 auto;
+  text-align: justify;
+  hyphens: auto;
+}
+.verse-text p {
+  margin-bottom: .2rem;
+  text-indent: 1.5em;
+}
+.verse-text p:first-child {
+  text-indent: 0;
+}
+.verse-num {
+  font-size: .65em;
+  font-weight: 700;
+  color: var(--wine);
+  vertical-align: super;
+  margin-right: .15em;
+  line-height: 0;
+}
+
+/* ── Chapter navigation ────────────────────────────────────────────────── */
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 38rem;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gold-faint);
+  font-size: .82rem;
+}
+.chapter-nav a {
+  color: var(--wine);
+  text-decoration: none;
+  letter-spacing: .04em;
+  transition: color .2s;
+}
+.chapter-nav a:hover {
+  color: var(--gold);
+}
+.chapter-nav .placeholder {
+  width: 8rem;
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  font-size: .72rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  letter-spacing: .03em;
+}
+
+/* ── Drop cap for chapter start ────────────────────────────────────────── */
+
+.drop-cap {
+  float: left;
+  font-size: 3.8em;
+  line-height: .75;
+  padding-right: .08em;
+  padding-top: .06em;
+  color: var(--wine);
+  font-weight: 700;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  html { font-size: 16px; }
+  header h1 { font-size: 1.6rem; }
+  main { padding: 0 1rem 3rem; }
+  .book-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  body::before { inset: 4px; }
+  .verse-text { text-align: left; }
+}
