@@ -1,0 +1,213 @@
+
+/* ── Masonic Theme Overrides ───────────────────────────────────────────── */
+
+.masonic-theme {
+  --parchment:  #0a1628;
+  --cream:      #0f1d33;
+  --sidebar-bg: #060e1c;
+  --sidebar-fg: #b8c4d8;
+  --sidebar-hi: #c9a84c;
+  --gold:       #c9a84c;
+  --gold-light: #dbbe5e;
+  --gold-faint: rgba(201, 168, 76, .35);
+  --ink:        #d4dae6;
+  --ink-light:  #a0aec0;
+  --ink-faint:  #6b7a90;
+  --wine:       #c9a84c;
+  --wine-dark:  #dbbe5e;
+  --white:      #111e34;
+  --shadow:     rgba(0, 0, 0, .3);
+
+  background: #0a1628;
+  color: #d4dae6;
+}
+
+/* Decorative border */
+.masonic-theme .content::before {
+  border-color: rgba(201, 168, 76, .3);
+}
+
+/* Sidebar */
+.masonic-theme .sidebar {
+  background: linear-gradient(180deg, #060e1c 0%, #0a1628 100%);
+  border-right-color: var(--gold);
+}
+.masonic-theme .sidebar::-webkit-scrollbar-thumb { background: #2a3a56; }
+.masonic-theme .sidebar::-webkit-scrollbar-track { background: #060e1c; }
+
+.masonic-theme .sb-book-link:hover {
+  background: rgba(201, 168, 76, .08);
+}
+.masonic-theme .sb-book-link.active {
+  background: rgba(201, 168, 76, .12);
+}
+.masonic-theme .sb-ch-link:hover {
+  background: var(--gold);
+  color: #0a1628;
+  border-color: var(--gold);
+}
+.masonic-theme .sb-chapters {
+  background: rgba(0, 0, 0, .3);
+}
+
+/* Version select */
+.masonic-theme .version-select {
+  background: rgba(201, 168, 76, .06);
+  border-color: rgba(201, 168, 76, .25);
+}
+.masonic-theme .version-select option {
+  background: #060e1c;
+}
+
+/* Cards */
+.masonic-theme .book-card,
+.masonic-theme .version-card {
+  background: #111e34;
+  border-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .book-card:hover,
+.masonic-theme .version-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, .15);
+}
+.masonic-theme .book-card::after,
+.masonic-theme .version-card::after {
+  background: var(--gold);
+}
+.masonic-theme .book-card .book-name {
+  color: var(--gold);
+}
+
+/* Chapter links */
+.masonic-theme .chapter-link {
+  background: #111e34;
+  border-color: rgba(201, 168, 76, .2);
+  color: #d4dae6;
+}
+.masonic-theme .chapter-link:hover {
+  background: var(--gold);
+  color: #0a1628;
+  border-color: var(--gold);
+}
+
+/* Reading text */
+.masonic-theme .verse-num {
+  color: var(--gold);
+}
+.masonic-theme .drop-cap {
+  color: var(--gold);
+}
+
+/* Chapter nav */
+.masonic-theme .chapter-nav {
+  border-top-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .chapter-nav a {
+  color: var(--gold);
+}
+.masonic-theme .chapter-nav a:hover {
+  color: #dbbe5e;
+}
+
+/* Footer */
+.masonic-theme footer {
+  color: #6b7a90;
+}
+
+/* Testament titles */
+.masonic-theme .testament-title {
+  color: var(--gold);
+}
+.masonic-theme .testament-title::before,
+.masonic-theme .testament-title::after {
+  background: linear-gradient(to var(--dir, right), rgba(201, 168, 76, .3), transparent);
+}
+
+/* ── Masonic symbols ───────────────────────────────────────────────────── */
+
+.masonic-symbol {
+  display: block;
+  margin: 0 auto;
+  color: var(--gold, #c9a84c);
+}
+.masonic-hero-symbol {
+  width: 120px;
+  height: 120px;
+  margin: 1.5rem auto;
+}
+.masonic-header-symbol {
+  width: 50px;
+  height: 50px;
+  margin: .5rem auto;
+}
+.masonic-chapter-symbol {
+  width: 60px;
+  height: 60px;
+  margin: .8rem auto .3rem;
+}
+.masonic-divider {
+  display: block;
+  width: 260px;
+  height: 24px;
+  margin: .8rem auto;
+  color: var(--gold, #c9a84c);
+}
+.masonic-pillars {
+  width: 220px;
+  height: 120px;
+}
+.masonic-footer-symbol {
+  width: 40px;
+  height: 40px;
+  margin: .5rem auto;
+  opacity: .4;
+}
+
+/* Masonic sidebar header emblem */
+.masonic-theme .sidebar-header {
+  padding-bottom: .6rem;
+}
+.masonic-sidebar-emblem {
+  width: 42px;
+  height: 42px;
+  margin: .4rem auto 0;
+  opacity: .7;
+}
+
+/* Masonic mobile toggle */
+.masonic-theme .sidebar-toggle {
+  background: #060e1c;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Responsive fixes for masonic theme */
+@media (max-width: 700px) {
+  .masonic-theme .content::before {
+    border-color: rgba(201, 168, 76, .2);
+  }
+}
+
+/* ── Masonic home card (on landing page) ───────────────────────────────── */
+
+.masonic-home-card {
+  background: #0f1d33;
+  border-color: rgba(201, 168, 76, .4);
+  color: #d4dae6;
+}
+.masonic-home-card .vc-abbr {
+  color: #c9a84c;
+}
+.masonic-home-card .vc-name {
+  color: #a0aec0;
+}
+.masonic-home-card .vc-year {
+  color: #6b7a90;
+}
+.masonic-home-card:hover {
+  border-color: #c9a84c;
+  box-shadow: 0 6px 24px rgba(201, 168, 76, .2);
+}
+.masonic-home-card::after {
+  background: #c9a84c;
+}

@@ -32,6 +32,7 @@ VERSIONS = [
     {"id": "webster", "file": "data/webster.json",  "name": "Webster Bible",                 "abbr": "Webster", "year": "1833", "fmt": "scrollmapper"},
     {"id": "bbe",     "file": "data/bbe.json",      "name": "Bible in Basic English",        "abbr": "BBE",     "year": "1965", "fmt": "scrollmapper"},
     {"id": "drc",     "file": "data/drc.json",      "name": "Douay-Rheims Challoner",        "abbr": "DRC",     "year": "1752", "fmt": "scrollmapper"},
+    {"id": "masonic", "file": "data/kjv.json",      "name": "Masonic Edition (KJV)",         "abbr": "Masonic", "year": "1769", "fmt": "aruljohn", "theme": "masonic"},
 ]
 
 DEFAULT_VERSION = "kjv"
@@ -739,6 +740,295 @@ footer {
 """
 
 # ---------------------------------------------------------------------------
+# Masonic SVG symbols (inline, no external files)
+# ---------------------------------------------------------------------------
+
+SVG_SQUARE_COMPASSES = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="masonic-symbol">
+  <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Compasses -->
+    <line x1="100" y1="30" x2="55" y2="170"/>
+    <line x1="100" y1="30" x2="145" y2="170"/>
+    <!-- Square -->
+    <polyline points="60,90 100,140 140,90"/>
+    <!-- G -->
+    <circle cx="100" cy="105" r="16" stroke-width="2"/>
+    <text x="100" y="112" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="22" font-weight="700" fill="currentColor" stroke="none">G</text>
+  </g>
+</svg>'''
+
+SVG_ALL_SEEING_EYE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" class="masonic-symbol">
+  <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Triangle / radiance -->
+    <polygon points="100,10 30,120 170,120" stroke-width="2"/>
+    <!-- Rays -->
+    <line x1="100" y1="5" x2="100" y2="-8" stroke-width="1.5"/>
+    <line x1="75" y1="12" x2="65" y2="0" stroke-width="1.5"/>
+    <line x1="125" y1="12" x2="135" y2="0" stroke-width="1.5"/>
+    <line x1="55" y1="30" x2="40" y2="20" stroke-width="1.5"/>
+    <line x1="145" y1="30" x2="160" y2="20" stroke-width="1.5"/>
+    <!-- Eye -->
+    <ellipse cx="100" cy="72" rx="30" ry="18"/>
+    <circle cx="100" cy="72" r="9" fill="currentColor"/>
+    <circle cx="100" cy="72" r="4" fill="none" stroke="#0a1628" stroke-width="1.5"/>
+  </g>
+</svg>'''
+
+SVG_PILLARS = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 160" class="masonic-symbol masonic-pillars">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <!-- Left pillar (Jachin) -->
+    <rect x="40" y="30" width="30" height="100" rx="2"/>
+    <rect x="35" y="22" width="40" height="10" rx="2"/>
+    <rect x="35" y="128" width="40" height="10" rx="2"/>
+    <circle cx="55" cy="16" r="8"/>
+    <text x="55" y="152" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="11" fill="currentColor" stroke="none" font-style="italic">Jachin</text>
+    <!-- Right pillar (Boaz) -->
+    <rect x="230" y="30" width="30" height="100" rx="2"/>
+    <rect x="225" y="22" width="40" height="10" rx="2"/>
+    <rect x="225" y="128" width="40" height="10" rx="2"/>
+    <circle cx="245" cy="16" r="8"/>
+    <text x="245" y="152" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="11" fill="currentColor" stroke="none" font-style="italic">Boaz</text>
+    <!-- Arch -->
+    <path d="M 75 26 Q 150 -20 225 26" stroke-width="2.5"/>
+    <!-- All-seeing eye in arch center -->
+    <polygon points="150,10 140,30 160,30" stroke-width="1.5"/>
+    <circle cx="150" cy="22" r="4" fill="currentColor"/>
+  </g>
+</svg>'''
+
+SVG_DIVIDER = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 30" class="masonic-divider">
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <line x1="10" y1="15" x2="130" y2="15" opacity=".4"/>
+    <line x1="270" y1="15" x2="390" y2="15" opacity=".4"/>
+    <!-- Small square & compasses -->
+    <line x1="200" y1="4" x2="185" y2="26"/>
+    <line x1="200" y1="4" x2="215" y2="26"/>
+    <polyline points="188,16 200,24 212,16"/>
+    <!-- Stars -->
+    <text x="150" y="20" font-size="10" fill="currentColor" stroke="none">&#x2736;</text>
+    <text x="244" y="20" font-size="10" fill="currentColor" stroke="none">&#x2736;</text>
+  </g>
+</svg>'''
+
+# ---------------------------------------------------------------------------
+# Masonic CSS theme (overrides for .masonic-theme)
+# ---------------------------------------------------------------------------
+
+MASONIC_CSS = r"""
+/* ── Masonic Theme Overrides ───────────────────────────────────────────── */
+
+.masonic-theme {
+  --parchment:  #0a1628;
+  --cream:      #0f1d33;
+  --sidebar-bg: #060e1c;
+  --sidebar-fg: #b8c4d8;
+  --sidebar-hi: #c9a84c;
+  --gold:       #c9a84c;
+  --gold-light: #dbbe5e;
+  --gold-faint: rgba(201, 168, 76, .35);
+  --ink:        #d4dae6;
+  --ink-light:  #a0aec0;
+  --ink-faint:  #6b7a90;
+  --wine:       #c9a84c;
+  --wine-dark:  #dbbe5e;
+  --white:      #111e34;
+  --shadow:     rgba(0, 0, 0, .3);
+
+  background: #0a1628;
+  color: #d4dae6;
+}
+
+/* Decorative border */
+.masonic-theme .content::before {
+  border-color: rgba(201, 168, 76, .3);
+}
+
+/* Sidebar */
+.masonic-theme .sidebar {
+  background: linear-gradient(180deg, #060e1c 0%, #0a1628 100%);
+  border-right-color: var(--gold);
+}
+.masonic-theme .sidebar::-webkit-scrollbar-thumb { background: #2a3a56; }
+.masonic-theme .sidebar::-webkit-scrollbar-track { background: #060e1c; }
+
+.masonic-theme .sb-book-link:hover {
+  background: rgba(201, 168, 76, .08);
+}
+.masonic-theme .sb-book-link.active {
+  background: rgba(201, 168, 76, .12);
+}
+.masonic-theme .sb-ch-link:hover {
+  background: var(--gold);
+  color: #0a1628;
+  border-color: var(--gold);
+}
+.masonic-theme .sb-chapters {
+  background: rgba(0, 0, 0, .3);
+}
+
+/* Version select */
+.masonic-theme .version-select {
+  background: rgba(201, 168, 76, .06);
+  border-color: rgba(201, 168, 76, .25);
+}
+.masonic-theme .version-select option {
+  background: #060e1c;
+}
+
+/* Cards */
+.masonic-theme .book-card,
+.masonic-theme .version-card {
+  background: #111e34;
+  border-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .book-card:hover,
+.masonic-theme .version-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(201, 168, 76, .15);
+}
+.masonic-theme .book-card::after,
+.masonic-theme .version-card::after {
+  background: var(--gold);
+}
+.masonic-theme .book-card .book-name {
+  color: var(--gold);
+}
+
+/* Chapter links */
+.masonic-theme .chapter-link {
+  background: #111e34;
+  border-color: rgba(201, 168, 76, .2);
+  color: #d4dae6;
+}
+.masonic-theme .chapter-link:hover {
+  background: var(--gold);
+  color: #0a1628;
+  border-color: var(--gold);
+}
+
+/* Reading text */
+.masonic-theme .verse-num {
+  color: var(--gold);
+}
+.masonic-theme .drop-cap {
+  color: var(--gold);
+}
+
+/* Chapter nav */
+.masonic-theme .chapter-nav {
+  border-top-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .chapter-nav a {
+  color: var(--gold);
+}
+.masonic-theme .chapter-nav a:hover {
+  color: #dbbe5e;
+}
+
+/* Footer */
+.masonic-theme footer {
+  color: #6b7a90;
+}
+
+/* Testament titles */
+.masonic-theme .testament-title {
+  color: var(--gold);
+}
+.masonic-theme .testament-title::before,
+.masonic-theme .testament-title::after {
+  background: linear-gradient(to var(--dir, right), rgba(201, 168, 76, .3), transparent);
+}
+
+/* ── Masonic symbols ───────────────────────────────────────────────────── */
+
+.masonic-symbol {
+  display: block;
+  margin: 0 auto;
+  color: var(--gold, #c9a84c);
+}
+.masonic-hero-symbol {
+  width: 120px;
+  height: 120px;
+  margin: 1.5rem auto;
+}
+.masonic-header-symbol {
+  width: 50px;
+  height: 50px;
+  margin: .5rem auto;
+}
+.masonic-chapter-symbol {
+  width: 60px;
+  height: 60px;
+  margin: .8rem auto .3rem;
+}
+.masonic-divider {
+  display: block;
+  width: 260px;
+  height: 24px;
+  margin: .8rem auto;
+  color: var(--gold, #c9a84c);
+}
+.masonic-pillars {
+  width: 220px;
+  height: 120px;
+}
+.masonic-footer-symbol {
+  width: 40px;
+  height: 40px;
+  margin: .5rem auto;
+  opacity: .4;
+}
+
+/* Masonic sidebar header emblem */
+.masonic-theme .sidebar-header {
+  padding-bottom: .6rem;
+}
+.masonic-sidebar-emblem {
+  width: 42px;
+  height: 42px;
+  margin: .4rem auto 0;
+  opacity: .7;
+}
+
+/* Masonic mobile toggle */
+.masonic-theme .sidebar-toggle {
+  background: #060e1c;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* Responsive fixes for masonic theme */
+@media (max-width: 700px) {
+  .masonic-theme .content::before {
+    border-color: rgba(201, 168, 76, .2);
+  }
+}
+
+/* ── Masonic home card (on landing page) ───────────────────────────────── */
+
+.masonic-home-card {
+  background: #0f1d33;
+  border-color: rgba(201, 168, 76, .4);
+  color: #d4dae6;
+}
+.masonic-home-card .vc-abbr {
+  color: #c9a84c;
+}
+.masonic-home-card .vc-name {
+  color: #a0aec0;
+}
+.masonic-home-card .vc-year {
+  color: #6b7a90;
+}
+.masonic-home-card:hover {
+  border-color: #c9a84c;
+  box-shadow: 0 6px 24px rgba(201, 168, 76, .2);
+}
+.masonic-home-card::after {
+  background: #c9a84c;
+}
+"""
+
+# ---------------------------------------------------------------------------
 # Sidebar JS (for mobile toggle + version switcher)
 # ---------------------------------------------------------------------------
 
@@ -767,20 +1057,32 @@ document.addEventListener('DOMContentLoaded', function() {
 # HTML helpers
 # ---------------------------------------------------------------------------
 
-def sidebar_html(ver_id, versions, books, active_book=None, active_chapter=None, depth=0):
+def get_theme(ver):
+    """Return the theme name for a version config, or None."""
+    return ver.get("theme") if isinstance(ver, dict) else None
+
+def is_masonic(ver):
+    return get_theme(ver) == "masonic"
+
+def sidebar_html(ver_cfg, versions, books, active_book=None, active_chapter=None, depth=0):
     """Build the sidebar HTML with book list + chapter sub-nav."""
+    ver_id = ver_cfg["id"] if isinstance(ver_cfg, dict) else ver_cfg
     prefix = "../" * depth
+    masonic = is_masonic(ver_cfg)
 
     # Version select – build the <option> list with URLs pointing to the equivalent page
+    # depth=0 means we are at {ver}/index.html, so sibling versions are ../{other}/index.html
+    # depth=1 means we are at {ver}/{book}/index.html or {ver}/{book}/{ch}.html
     ver_options = ""
     for v in versions:
         selected = ' selected' if v["id"] == ver_id else ''
         if active_book and active_chapter:
-            href = f"{prefix}../{v['id']}/{slug(active_book)}/{active_chapter}.html"
+            href = f"../../{v['id']}/{slug(active_book)}/{active_chapter}.html"
         elif active_book:
-            href = f"{prefix}../{v['id']}/{slug(active_book)}/index.html"
+            href = f"../../{v['id']}/{slug(active_book)}/index.html"
         else:
-            href = f"{prefix}{v['id']}/index.html" if depth == 0 else f"{prefix}../{v['id']}/index.html"
+            # depth 0: at {ver}/index.html -> ../{other}/index.html
+            href = f"../{v['id']}/index.html"
         ver_options += f'      <option value="{href}"{selected}>{v["abbr"]} &mdash; {v["name"]}</option>\n'
 
     # Book list
@@ -796,13 +1098,10 @@ def sidebar_html(ver_id, versions, books, active_book=None, active_chapter=None,
         active_cls = ' active' if bname == active_book else ''
 
         if depth == 0:
-            # We're at version index level: {ver}/index.html
             book_href = f"{slug(bname)}/index.html"
         elif active_chapter:
-            # We're at chapter level: {ver}/{book}/{ch}.html
             book_href = f"../{slug(bname)}/index.html"
         else:
-            # We're at book level: {ver}/{book}/index.html
             book_href = f"../{slug(bname)}/index.html"
 
         book_list_html += f'<li class="sb-book-item">\n'
@@ -810,39 +1109,42 @@ def sidebar_html(ver_id, versions, books, active_book=None, active_chapter=None,
         book_list_html += f'<span class="abbr">{esc(BOOK_ABBR.get(bname, bname))}</span>'
         book_list_html += f'<span class="count">{n_ch}</span></a>\n'
 
-        # Show chapter sub-nav when this book is active
         if bname == active_book:
             book_list_html += '  <div class="sb-chapters">\n'
             for ch in books[bname]["chapters"]:
                 ch_num = ch["chapter"]
                 ch_active = ' active' if str(ch_num) == str(active_chapter) else ''
-                if active_chapter:
-                    ch_href = f"{ch_num}.html"
-                else:
-                    ch_href = f"{ch_num}.html"
+                ch_href = f"{ch_num}.html"
                 book_list_html += f'    <a class="sb-ch-link{ch_active}" href="{ch_href}">{ch_num}</a>\n'
             book_list_html += '  </div>\n'
 
         book_list_html += '</li>\n'
     book_list_html += '</ul>\n'
 
-    # Home link
+    # Home link: version index is at {ver}/index.html, so home = ../index.html
+    # Book page is at {ver}/{book}/index.html, so home = ../../index.html
+    # Chapter page is at {ver}/{book}/{ch}.html, so home = ../../index.html
     if depth == 0:
-        home_href = "index.html"
-    elif active_chapter:
-        home_href = "../../index.html"
+        home_href = "../index.html"
     else:
         home_href = "../../index.html"
 
-    ver_home_href = "index.html" if depth == 0 else ("../index.html" if not active_chapter else "../index.html")
+    # Masonic sidebar emblem
+    emblem = ""
+    if masonic:
+        emblem = f'<div class="masonic-sidebar-emblem">{SVG_ALL_SEEING_EYE}</div>'
+
+    sidebar_title = "Masonic Bible" if masonic else "The Holy Bible"
+    sidebar_orn = '&#x25B3; &#x2726; &#x25B3;' if masonic else '&mdash; &#x2726; &#x271D; &#x2726; &mdash;'
 
     return f"""<button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
   <button class="sidebar-close" aria-label="Close navigation">&times;</button>
   <div class="sidebar-header">
     <a href="{home_href}">
-      <div class="sidebar-title">The Holy Bible</div>
-      <div class="sidebar-ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>
+      <div class="sidebar-title">{sidebar_title}</div>
+      <div class="sidebar-ornament">{sidebar_orn}</div>
+      {emblem}
     </a>
   </div>
   <div class="version-select-wrap">
@@ -854,28 +1156,38 @@ def sidebar_html(ver_id, versions, books, active_book=None, active_chapter=None,
 </aside>"""
 
 
-def page_shell(title, body_content, sidebar, depth=0):
+def page_shell(title, body_content, sidebar, depth=0, theme=None):
     prefix = "../" * depth
-    # Depth for CSS/JS: pages at version root are depth 1 from site root,
-    # book index pages depth 2, chapter pages depth 2
+    body_cls = ' class="masonic-theme"' if theme == "masonic" else ''
+    extra_css = f'\n  <link rel="stylesheet" href="{prefix}masonic.css">' if theme == "masonic" else ''
+    masonic_footer = ""
+    if theme == "masonic":
+        masonic_footer = f"""<footer>
+  <div class="masonic-footer-symbol">{SVG_SQUARE_COMPASSES}</div>
+  The Holy Bible &middot; Masonic Edition &middot; Public Domain<br>
+  &ldquo;So mote it be.&rdquo;
+</footer>"""
+    else:
+        masonic_footer = """<footer>
+  The Holy Bible &middot; Public Domain<br>
+  &ldquo;Thy word is a lamp unto my feet, and a light unto my path.&rdquo; &mdash; Psalm 119:105
+</footer>"""
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
-  <link rel="stylesheet" href="{prefix}style.css">
+  <link rel="stylesheet" href="{prefix}style.css">{extra_css}
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
-<body>
+<body{body_cls}>
 <div class="page-wrap">
 {sidebar}
 <div class="content">
 {body_content}
-<footer>
-  The Holy Bible &middot; Public Domain<br>
-  &ldquo;Thy word is a lamp unto my feet, and a light unto my path.&rdquo; &mdash; Psalm 119:105
-</footer>
+{masonic_footer}
 </div>
 </div>
 <script>{SIDEBAR_JS}</script>
@@ -891,7 +1203,15 @@ def generate_home():
     """Landing page: pick a translation."""
     cards = ""
     for v in VERSIONS:
-        cards += f"""
+        if is_masonic(v):
+            cards += f"""
+    <a class="version-card masonic-home-card" href="{v['id']}/index.html">
+      <div class="vc-abbr">{esc(v['abbr'])}</div>
+      <div class="vc-name">{esc(v['name'])}</div>
+      <div class="vc-year">{esc(v['year'])}</div>
+    </a>"""
+        else:
+            cards += f"""
     <a class="version-card" href="{v['id']}/index.html">
       <div class="vc-abbr">{esc(v['abbr'])}</div>
       <div class="vc-name">{esc(v['name'])}</div>
@@ -918,6 +1238,7 @@ def generate_home():
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Holy Bible</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="masonic.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
@@ -928,6 +1249,8 @@ def generate_home():
 
 def generate_version_index(ver, books):
     """Version home page: OT/NT book grid with sidebar."""
+    masonic = is_masonic(ver)
+
     ot_cards = ""
     for name in OT_BOOKS:
         if name not in books:
@@ -952,14 +1275,27 @@ def generate_version_index(ver, books):
         <div class="book-meta">{n_ch} {w}</div>
       </a>"""
 
-    sb = sidebar_html(ver["id"], VERSIONS, books, depth=0)
+    sb = sidebar_html(ver, VERSIONS, books, depth=0)
+
+    if masonic:
+        hero_symbol = f'<div class="masonic-hero-symbol">{SVG_SQUARE_COMPASSES}</div>'
+        divider = f'<div>{SVG_DIVIDER}</div>'
+        pillars = f'<div class="masonic-pillars" style="margin:1rem auto;text-align:center">{SVG_PILLARS}</div>'
+        title_text = "The Masonic Bible"
+    else:
+        hero_symbol = ""
+        divider = '<div class="ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>'
+        pillars = ""
+        title_text = "The Holy Bible"
 
     body = f"""
   <div class="content-header">
-    <h1>The Holy Bible</h1>
+    {hero_symbol}
+    <h1>{title_text}</h1>
     <p class="subtitle">{esc(ver['name'])}</p>
   </div>
-  <div class="ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>
+  {divider}
+  {pillars}
   <main>
     <div class="testament-title">The Old Testament</div>
     <div class="book-grid">{ot_cards}
@@ -969,10 +1305,12 @@ def generate_version_index(ver, books):
     </div>
   </main>"""
 
-    return page_shell(f"The Holy Bible &mdash; {ver['abbr']}", body, sb, depth=1)
+    return page_shell(f"The Holy Bible - {ver['abbr']}", body, sb, depth=1,
+                      theme=get_theme(ver))
 
 
 def generate_book_page(ver, books, book_name):
+    masonic = is_masonic(ver)
     chapters = books[book_name]["chapters"]
     n_ch = len(chapters)
     w = "chapter" if n_ch == 1 else "chapters"
@@ -981,14 +1319,18 @@ def generate_book_page(ver, books, book_name):
     for ch in chapters:
         links += f'      <a class="chapter-link" href="{ch["chapter"]}.html">{ch["chapter"]}</a>\n'
 
-    sb = sidebar_html(ver["id"], VERSIONS, books, active_book=book_name, depth=1)
+    sb = sidebar_html(ver, VERSIONS, books, active_book=book_name, depth=1)
+
+    header_sym = f'<div class="masonic-header-symbol">{SVG_ALL_SEEING_EYE}</div>' if masonic else ''
+    divider = f'<div>{SVG_DIVIDER}</div>' if masonic else '<div class="ornament">&mdash; &#x2726; &mdash;</div>'
 
     body = f"""
   <div class="content-header">
+    {header_sym}
     <h1>{esc(book_name)}</h1>
     <p class="subtitle">{esc(ver['name'])}</p>
   </div>
-  <div class="ornament">&mdash; &#x2726; &mdash;</div>
+  {divider}
   <main>
     <div class="book-heading">
       <h2>{esc(book_name)}</h2>
@@ -998,10 +1340,12 @@ def generate_book_page(ver, books, book_name):
 {links}    </div>
   </main>"""
 
-    return page_shell(f"{book_name} &mdash; {ver['abbr']}", body, sb, depth=2)
+    return page_shell(f"{book_name} - {ver['abbr']}", body, sb, depth=2,
+                      theme=get_theme(ver))
 
 
 def generate_chapter_page(ver, books, book_name, chapter_index):
+    masonic = is_masonic(ver)
     book = books[book_name]
     chapters = book["chapters"]
     ch = chapters[chapter_index]
@@ -1040,17 +1384,21 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
         if next_book in books:
             next_link = f'<a href="../{slug(next_book)}/1.html">{esc(next_book)} 1 &rarr;</a>'
 
-    sb = sidebar_html(ver["id"], VERSIONS, books,
+    sb = sidebar_html(ver, VERSIONS, books,
                       active_book=book_name, active_chapter=ch_num, depth=1)
+
+    chapter_sym = f'<div class="masonic-chapter-symbol">{SVG_ALL_SEEING_EYE}</div>' if masonic else ''
+    divider = f'<div>{SVG_DIVIDER}</div>' if masonic else '<div class="ornament">&mdash; &#x2726; &mdash;</div>'
 
     body = f"""
   <div class="content-header">
     <h1>{esc(book_name)}</h1>
     <p class="subtitle">{esc(ver['name'])}</p>
   </div>
-  <div class="ornament">&mdash; &#x2726; &mdash;</div>
+  {divider}
   <main>
     <div class="chapter-heading">
+      {chapter_sym}
       <div class="ch-label">Chapter {ch_num}</div>
       <h2>{esc(book_name)}</h2>
     </div>
@@ -1064,7 +1412,8 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
     </nav>
   </main>"""
 
-    return page_shell(f"{book_name} {ch_num} &mdash; {ver['abbr']}", body, sb, depth=2)
+    return page_shell(f"{book_name} {ch_num} - {ver['abbr']}", body, sb, depth=2,
+                      theme=get_theme(ver))
 
 
 # ---------------------------------------------------------------------------
@@ -1082,6 +1431,11 @@ def main():
     with open(os.path.join(OUTPUT_DIR, "style.css"), "w") as f:
         f.write(CSS)
     print("  style.css")
+
+    # Write Masonic CSS
+    with open(os.path.join(OUTPUT_DIR, "masonic.css"), "w") as f:
+        f.write(MASONIC_CSS)
+    print("  masonic.css")
 
     # Generate landing page
     with open(os.path.join(OUTPUT_DIR, "index.html"), "w") as f:
