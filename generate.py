@@ -745,12 +745,9 @@ footer {
 
 SVG_SQUARE_COMPASSES = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="masonic-symbol">
   <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Compasses -->
     <line x1="100" y1="30" x2="55" y2="170"/>
     <line x1="100" y1="30" x2="145" y2="170"/>
-    <!-- Square -->
     <polyline points="60,90 100,140 140,90"/>
-    <!-- G -->
     <circle cx="100" cy="105" r="16" stroke-width="2"/>
     <text x="100" y="112" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="22" font-weight="700" fill="currentColor" stroke="none">G</text>
   </g>
@@ -758,15 +755,12 @@ SVG_SQUARE_COMPASSES = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2
 
 SVG_ALL_SEEING_EYE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" class="masonic-symbol">
   <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Triangle / radiance -->
     <polygon points="100,10 30,120 170,120" stroke-width="2"/>
-    <!-- Rays -->
     <line x1="100" y1="5" x2="100" y2="-8" stroke-width="1.5"/>
     <line x1="75" y1="12" x2="65" y2="0" stroke-width="1.5"/>
     <line x1="125" y1="12" x2="135" y2="0" stroke-width="1.5"/>
     <line x1="55" y1="30" x2="40" y2="20" stroke-width="1.5"/>
     <line x1="145" y1="30" x2="160" y2="20" stroke-width="1.5"/>
-    <!-- Eye -->
     <ellipse cx="100" cy="72" rx="30" ry="18"/>
     <circle cx="100" cy="72" r="9" fill="currentColor"/>
     <circle cx="100" cy="72" r="4" fill="none" stroke="#0a1628" stroke-width="1.5"/>
@@ -775,21 +769,17 @@ SVG_ALL_SEEING_EYE = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200
 
 SVG_PILLARS = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 160" class="masonic-symbol masonic-pillars">
   <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <!-- Left pillar (Jachin) -->
     <rect x="40" y="30" width="30" height="100" rx="2"/>
     <rect x="35" y="22" width="40" height="10" rx="2"/>
     <rect x="35" y="128" width="40" height="10" rx="2"/>
     <circle cx="55" cy="16" r="8"/>
     <text x="55" y="152" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="11" fill="currentColor" stroke="none" font-style="italic">Jachin</text>
-    <!-- Right pillar (Boaz) -->
     <rect x="230" y="30" width="30" height="100" rx="2"/>
     <rect x="225" y="22" width="40" height="10" rx="2"/>
     <rect x="225" y="128" width="40" height="10" rx="2"/>
     <circle cx="245" cy="16" r="8"/>
     <text x="245" y="152" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="11" fill="currentColor" stroke="none" font-style="italic">Boaz</text>
-    <!-- Arch -->
     <path d="M 75 26 Q 150 -20 225 26" stroke-width="2.5"/>
-    <!-- All-seeing eye in arch center -->
     <polygon points="150,10 140,30 160,30" stroke-width="1.5"/>
     <circle cx="150" cy="22" r="4" fill="currentColor"/>
   </g>
@@ -799,15 +789,223 @@ SVG_DIVIDER = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 30" cl
   <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
     <line x1="10" y1="15" x2="130" y2="15" opacity=".4"/>
     <line x1="270" y1="15" x2="390" y2="15" opacity=".4"/>
-    <!-- Small square & compasses -->
     <line x1="200" y1="4" x2="185" y2="26"/>
     <line x1="200" y1="4" x2="215" y2="26"/>
     <polyline points="188,16 200,24 212,16"/>
-    <!-- Stars -->
     <text x="150" y="20" font-size="10" fill="currentColor" stroke="none">&#x2736;</text>
     <text x="244" y="20" font-size="10" fill="currentColor" stroke="none">&#x2736;</text>
   </g>
 </svg>'''
+
+SVG_TROWEL = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" class="masonic-symbol masonic-inline-sym">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20,55 Q15,50 18,42 L40,15 Q42,12 45,15 L50,22 Q52,25 48,28 L25,52 Q22,56 20,55Z"/>
+    <line x1="48" y1="28" x2="62" y2="60"/>
+    <ellipse cx="64" cy="64" rx="6" ry="4" transform="rotate(-40 64 64)"/>
+  </g>
+</svg>'''
+
+SVG_LEVEL_PLUMB = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" class="masonic-symbol masonic-inline-sym">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15,65 60,15 105,65"/>
+    <line x1="60" y1="15" x2="60" y2="55"/>
+    <circle cx="60" cy="60" r="5" fill="currentColor"/>
+    <line x1="15" y1="65" x2="105" y2="65"/>
+  </g>
+</svg>'''
+
+SVG_HOURGLASS_SKULL = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" class="masonic-symbol masonic-inline-sym">
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="25" y="5" width="50" height="6" rx="2"/>
+    <rect x="25" y="69" width="50" height="6" rx="2"/>
+    <path d="M30,11 L30,28 Q50,50 50,40 Q50,50 70,28 L70,11"/>
+    <path d="M30,69 L30,52 Q50,30 50,40 Q50,30 70,52 L70,69"/>
+    <line x1="48" y1="36" x2="52" y2="44" stroke-width="1.5"/>
+    <circle cx="50" cy="97" r="12"/>
+    <circle cx="45" cy="94" r="2.5" fill="currentColor"/>
+    <circle cx="55" cy="94" r="2.5" fill="currentColor"/>
+    <path d="M44,102 Q50,106 56,102" stroke-width="1.5"/>
+  </g>
+</svg>'''
+
+SVG_ACACIA = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" class="masonic-symbol masonic-inline-sym">
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+    <line x1="20" y1="50" x2="80" y2="50" stroke-width="2"/>
+    <line x1="50" y1="50" x2="50" y2="20"/>
+    <ellipse cx="38" cy="22" rx="10" ry="6" fill="currentColor" opacity=".6" stroke="none"/>
+    <ellipse cx="62" cy="22" rx="10" ry="6" fill="currentColor" opacity=".6" stroke="none"/>
+    <ellipse cx="50" cy="14" rx="10" ry="6" fill="currentColor" opacity=".6" stroke="none"/>
+    <ellipse cx="30" cy="30" rx="8" ry="5" fill="currentColor" opacity=".4" stroke="none"/>
+    <ellipse cx="70" cy="30" rx="8" ry="5" fill="currentColor" opacity=".4" stroke="none"/>
+  </g>
+</svg>'''
+
+SVG_BLAZING_STAR = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="masonic-symbol masonic-inline-sym">
+  <g fill="currentColor" stroke="currentColor" stroke-width="1">
+    <polygon points="50,5 58,35 90,35 64,55 73,85 50,67 27,85 36,55 10,35 42,35" opacity=".8"/>
+    <circle cx="50" cy="48" r="10" fill="none" stroke-width="2"/>
+    <text x="50" y="54" text-anchor="middle" font-family="Libre Baskerville, serif" font-size="14" font-weight="700" stroke="none">G</text>
+  </g>
+</svg>'''
+
+# ---------------------------------------------------------------------------
+# Masonic ritual passage annotations
+# Key: (book_name, chapter_str) -> list of {verses, degree, symbol, title, note}
+# Verse ranges: "1-3" or "7" or "all"
+# ---------------------------------------------------------------------------
+
+MASONIC_PASSAGES = {
+    # ── First Degree: Entered Apprentice ───────────────────────────────────
+    ("Genesis", "1"): [
+        {"verses": "1-3", "degree": "Entered Apprentice",
+         "symbol": "light", "title": "Let There Be Light",
+         "note": "The candidate receives light &mdash; the central moment of initiation. From darkness to illumination, the first step on the path of the Craft."},
+    ],
+    ("Psalms", "133"): [
+        {"verses": "1-3", "degree": "Entered Apprentice",
+         "symbol": "unity", "title": "Behold, How Good",
+         "note": "The psalm of Brotherly Love, traditionally recited at the opening of the Lodge. Unity is the first tenet of Freemasonry."},
+    ],
+    ("Ruth", "4"): [
+        {"verses": "7-8", "degree": "Entered Apprentice",
+         "symbol": "shoe", "title": "The Plucking Off of the Shoe",
+         "note": "An ancient mode of confirmation &mdash; a token of sincerity. The rite of discalceation recalls the candidate&rsquo;s preparation for initiation."},
+    ],
+    ("Matthew", "7"): [
+        {"verses": "7-8", "degree": "Entered Apprentice",
+         "symbol": "ask", "title": "Ask, and It Shall Be Given",
+         "note": "The candidate must seek knowledge of his own volition. None are compelled &mdash; the door opens only to him who knocks."},
+    ],
+    ("Amos", "7"): [
+        {"verses": "7-8", "degree": "Entered Apprentice",
+         "symbol": "plumb", "title": "The Plumb Line",
+         "note": "The working tool of the Entered Apprentice. The Lord sets a plumb line in the midst of His people &mdash; a symbol of moral rectitude and upright conduct."},
+    ],
+
+    # ── Second Degree: Fellow Craft ────────────────────────────────────────
+    ("Judges", "12"): [
+        {"verses": "1-6", "degree": "Fellow Craft",
+         "symbol": "word", "title": "Shibboleth",
+         "note": "The password of the Second Degree. The Ephraimites could not frame to pronounce it right &mdash; a token of recognition among the initiated."},
+    ],
+    ("1 Kings", "6"): [
+        {"verses": "1-8", "degree": "Fellow Craft",
+         "symbol": "temple", "title": "The Building of the Temple",
+         "note": "The Fellow Craft ascends the winding staircase of Solomon&rsquo;s Temple. These chapters are the heart of Craft Masonry &mdash; the sacred architecture of the soul."},
+    ],
+    ("1 Kings", "7"): [
+        {"verses": "13-22", "degree": "Fellow Craft",
+         "symbol": "pillars", "title": "The Two Great Pillars",
+         "note": "Jachin and Boaz &mdash; &ldquo;He shall establish&rdquo; and &ldquo;In it is strength.&rdquo; The twin pillars at the porch of the Temple, through which the Fellow Craft symbolically passes."},
+    ],
+    ("2 Chronicles", "3"): [
+        {"verses": "15-17", "degree": "Fellow Craft",
+         "symbol": "pillars", "title": "Pillars of the Porch",
+         "note": "The parallel account of the pillars, with their chapiters of lilies, pomegranates, and network &mdash; symbols of peace, plenty, and the interconnection of all Brethren."},
+    ],
+    ("Ecclesiastes", "12"): [
+        {"verses": "1-7", "degree": "Fellow Craft",
+         "symbol": "mortality", "title": "Remember Thy Creator",
+         "note": "A meditation on mortality read in the Second Degree. The silver cord, the golden bowl, the pitcher at the fountain &mdash; all allegories of the frailty of life."},
+    ],
+
+    # ── Third Degree: Master Mason ─────────────────────────────────────────
+    ("1 Kings", "5"): [
+        {"verses": "1-18", "degree": "Master Mason",
+         "symbol": "craft", "title": "The Preparation of Materials",
+         "note": "Solomon&rsquo;s covenant with Hiram of Tyre. The cedar, the stone, the levy of workers &mdash; the great labour begins. In the Third Degree, the legend of the Master Builder unfolds."},
+    ],
+    ("Genesis", "4"): [
+        {"verses": "22", "degree": "Master Mason",
+         "symbol": "craft", "title": "Tubal-Cain",
+         "note": "The first artificer in brass and iron &mdash; an instructor of every craftsman. Tubal-Cain is the pass-grip word of the Master Mason degree."},
+    ],
+    ("2 Chronicles", "2"): [
+        {"verses": "1-16", "degree": "Master Mason",
+         "symbol": "temple", "title": "Solomon Prepares to Build",
+         "note": "The census of the workers, the request for a cunning man &mdash; the Temple as the supreme symbol of the Master&rsquo;s work, ordered from chaos."},
+    ],
+    ("Ecclesiastes", "3"): [
+        {"verses": "1-8", "degree": "Master Mason",
+         "symbol": "time", "title": "To Every Thing a Season",
+         "note": "A time to be born and a time to die, a time to build up &mdash; the great allegory of cycles. The Master Mason contemplates the hourglass."},
+    ],
+    ("John", "1"): [
+        {"verses": "1-5", "degree": "Master Mason",
+         "symbol": "light", "title": "In the Beginning Was the Word",
+         "note": "The Logos &mdash; the sacred Word, lost and sought. The light shineth in darkness, and the darkness comprehended it not. The central mystery of the Third Degree."},
+    ],
+
+    # ── General Masonic significance ───────────────────────────────────────
+    ("Proverbs", "2"): [
+        {"verses": "1-9", "degree": "General",
+         "symbol": "wisdom", "title": "The Search for Wisdom",
+         "note": "Seek her as silver, search for her as hid treasures &mdash; the Craft is a system of morality, veiled in allegory and illustrated by symbols."},
+    ],
+    ("Genesis", "28"): [
+        {"verses": "10-22", "degree": "General",
+         "symbol": "ladder", "title": "Jacob's Ladder",
+         "note": "The ladder reaching to heaven, with angels ascending and descending. In Masonic symbolism: Faith, Hope, and Charity &mdash; the three principal rounds."},
+    ],
+    ("Exodus", "3"): [
+        {"verses": "1-6", "degree": "General",
+         "symbol": "fire", "title": "The Burning Bush",
+         "note": "Holy ground &mdash; put off thy shoes. The sacred fire that burns but does not consume, a symbol of the Divine presence in the Lodge."},
+    ],
+    ("Psalms", "24"): [
+        {"verses": "3-5", "degree": "General",
+         "symbol": "purity", "title": "Who Shall Ascend",
+         "note": "He that hath clean hands, and a pure heart &mdash; the qualifications for admission to the holy hill, and to the Lodge."},
+    ],
+    ("Isaiah", "28"): [
+        {"verses": "16-17", "degree": "General",
+         "symbol": "cornerstone", "title": "The Cornerstone",
+         "note": "A tried stone, a precious cornerstone, a sure foundation &mdash; judgment laid to the line, and righteousness to the plummet. The working tools made divine."},
+    ],
+    ("Proverbs", "3"): [
+        {"verses": "13-20", "degree": "General",
+         "symbol": "wisdom", "title": "Happy Is the Man That Findeth Wisdom",
+         "note": "She is more precious than rubies. By wisdom hath the Lord founded the earth &mdash; the Great Architect of the Universe, the supreme Masonic conception of the Divine."},
+    ],
+    ("Psalms", "127"): [
+        {"verses": "1", "degree": "General",
+         "symbol": "temple", "title": "Except the Lord Build the House",
+         "note": "The builders labour in vain without the Grand Architect. The eternal lesson of the Craft: all labour must be consecrated."},
+    ],
+    ("Genesis", "22"): [
+        {"verses": "1-14", "degree": "General",
+         "symbol": "faith", "title": "The Sacrifice of Isaac on Mount Moriah",
+         "note": "Mount Moriah &mdash; the same ground upon which Solomon would raise the Temple. The supreme trial of faith, the foundation stone of the sacred hill."},
+    ],
+}
+
+# Map symbol keys to inline SVG snippets for margin annotations
+SYMBOL_SVGS = {
+    "light":       SVG_ALL_SEEING_EYE,
+    "unity":       SVG_SQUARE_COMPASSES,
+    "pillars":     SVG_PILLARS,
+    "temple":      SVG_PILLARS,
+    "craft":       SVG_TROWEL,
+    "plumb":       SVG_LEVEL_PLUMB,
+    "mortality":   SVG_HOURGLASS_SKULL,
+    "time":        SVG_HOURGLASS_SKULL,
+    "word":        SVG_BLAZING_STAR,
+    "wisdom":      SVG_BLAZING_STAR,
+    "ask":         SVG_BLAZING_STAR,
+    "shoe":        SVG_SQUARE_COMPASSES,
+    "ladder":      SVG_LEVEL_PLUMB,
+    "fire":        SVG_ALL_SEEING_EYE,
+    "purity":      SVG_LEVEL_PLUMB,
+    "cornerstone": SVG_TROWEL,
+    "faith":       SVG_ALL_SEEING_EYE,
+}
+
+DEGREE_LABELS = {
+    "Entered Apprentice": "I\u00b0",
+    "Fellow Craft":       "II\u00b0",
+    "Master Mason":       "III\u00b0",
+    "General":            "\u25b3",
+}
 
 # ---------------------------------------------------------------------------
 # Masonic CSS theme (overrides for .masonic-theme)
@@ -996,10 +1194,207 @@ MASONIC_CSS = r"""
   border-color: var(--gold);
 }
 
+/* ── Starfield background ──────────────────────────────────────────────── */
+
+.masonic-theme .content {
+  background:
+    radial-gradient(1px 1px at 10% 15%, rgba(201,168,76,.3), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(201,168,76,.2), transparent),
+    radial-gradient(1px 1px at 40% 8%, rgba(201,168,76,.25), transparent),
+    radial-gradient(1px 1px at 55% 42%, rgba(201,168,76,.15), transparent),
+    radial-gradient(1px 1px at 70% 20%, rgba(201,168,76,.3), transparent),
+    radial-gradient(1px 1px at 85% 55%, rgba(201,168,76,.2), transparent),
+    radial-gradient(1px 1px at 15% 65%, rgba(201,168,76,.15), transparent),
+    radial-gradient(1px 1px at 50% 80%, rgba(201,168,76,.2), transparent),
+    radial-gradient(1px 1px at 92% 12%, rgba(201,168,76,.25), transparent),
+    radial-gradient(1px 1px at 78% 72%, rgba(201,168,76,.15), transparent),
+    radial-gradient(1px 1px at 33% 90%, rgba(201,168,76,.2), transparent),
+    radial-gradient(1px 1px at 62% 58%, rgba(201,168,76,.12), transparent);
+  background-color: #0a1628;
+}
+
+/* ── Checkered floor (chapter pages) ───────────────────────────────────── */
+
+.masonic-theme .chapter-nav {
+  background:
+    repeating-conic-gradient(
+      rgba(201,168,76,.06) 0% 25%,
+      transparent 0% 50%
+    )
+    0 0 / 24px 24px;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid rgba(201,168,76,.2);
+  margin-top: 2.5rem;
+}
+
+/* ── Ritual verse annotations ──────────────────────────────────────────── */
+
+.masonic-annotation {
+  position: relative;
+  background: rgba(201, 168, 76, .04);
+  border-left: 3px solid rgba(201, 168, 76, .5);
+  padding: .6rem .8rem .6rem 1rem;
+  margin: 1.2rem 0;
+  border-radius: 0 4px 4px 0;
+}
+.masonic-annotation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(201,168,76,.06), transparent 60%);
+  pointer-events: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.masonic-ann-header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .4rem;
+}
+.masonic-ann-degree {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  background: rgba(201,168,76,.12);
+  padding: .15rem .5rem;
+  border: 1px solid rgba(201,168,76,.25);
+}
+.masonic-ann-title {
+  font-size: .78rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #dbbe5e;
+  letter-spacing: .04em;
+}
+.masonic-ann-note {
+  font-size: .72rem;
+  color: #a0aec0;
+  line-height: 1.6;
+  font-style: italic;
+}
+.masonic-ann-symbol {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: rgba(201,168,76,.6);
+}
+.masonic-ann-symbol .masonic-symbol,
+.masonic-ann-symbol .masonic-inline-sym {
+  width: 100%;
+  height: 100%;
+}
+
+/* Highlighted verse (within annotated passage) */
+.masonic-verse-hl {
+  background: rgba(201, 168, 76, .06);
+  border-left: 2px solid rgba(201, 168, 76, .3);
+  padding-left: .6em;
+  margin-left: -.6em;
+}
+
+/* ── Lodge Reference page ──────────────────────────────────────────────── */
+
+.lodge-ref-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  font-style: italic;
+  color: #a0aec0;
+  font-size: .85rem;
+  line-height: 1.8;
+}
+
+.degree-section {
+  margin: 2rem 0;
+}
+.degree-heading {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(201,168,76,.2);
+}
+.degree-heading h3 {
+  font-size: 1.1rem;
+  color: #dbbe5e;
+  letter-spacing: .08em;
+}
+.degree-heading .degree-num {
+  font-size: .75rem;
+  font-weight: 700;
+  color: #0a1628;
+  background: #c9a84c;
+  padding: .2rem .6rem;
+  letter-spacing: .1em;
+}
+.degree-heading .degree-sym {
+  width: 36px;
+  height: 36px;
+  color: #c9a84c;
+}
+.degree-heading .degree-sym .masonic-symbol,
+.degree-heading .degree-sym .masonic-inline-sym {
+  width: 100%;
+  height: 100%;
+}
+
+.ref-card {
+  display: block;
+  background: #111e34;
+  border: 1px solid rgba(201,168,76,.15);
+  padding: 1rem 1.2rem;
+  margin-bottom: .8rem;
+  text-decoration: none;
+  color: #d4dae6;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.ref-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: #c9a84c;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .3s;
+}
+.ref-card:hover {
+  border-color: #c9a84c;
+  box-shadow: 0 4px 16px rgba(201,168,76,.12);
+}
+.ref-card:hover::after { transform: scaleX(1); }
+.ref-card .ref-title {
+  font-size: .88rem;
+  font-weight: 700;
+  color: #dbbe5e;
+  margin-bottom: .2rem;
+}
+.ref-card .ref-cite {
+  font-size: .72rem;
+  color: #c9a84c;
+  font-style: italic;
+  margin-bottom: .3rem;
+}
+.ref-card .ref-note {
+  font-size: .72rem;
+  color: #8899b0;
+  line-height: 1.5;
+}
+
 /* Responsive fixes for masonic theme */
 @media (max-width: 700px) {
   .masonic-theme .content::before {
     border-color: rgba(201, 168, 76, .2);
+  }
+  .masonic-annotation {
+    margin-left: -.5rem;
+    margin-right: -.5rem;
   }
 }
 
@@ -1282,11 +1677,20 @@ def generate_version_index(ver, books):
         divider = f'<div>{SVG_DIVIDER}</div>'
         pillars = f'<div class="masonic-pillars" style="margin:1rem auto;text-align:center">{SVG_PILLARS}</div>'
         title_text = "The Masonic Bible"
+        lodge_ref = f"""
+    <div style="text-align:center;margin:2rem 0 1rem">
+      <a class="ref-card" href="lodge-reference.html" style="display:inline-block;max-width:28rem;text-align:center">
+        <div class="ref-title" style="font-size:1rem">&#x25B3; Lodge Reference &#x25B3;</div>
+        <div class="ref-note" style="margin-top:.3rem">Key passages for Masonic ritual and study, arranged by degree</div>
+      </a>
+    </div>
+    <div>{SVG_DIVIDER}</div>"""
     else:
         hero_symbol = ""
         divider = '<div class="ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>'
         pillars = ""
         title_text = "The Holy Bible"
+        lodge_ref = ""
 
     body = f"""
   <div class="content-header">
@@ -1296,6 +1700,7 @@ def generate_version_index(ver, books):
   </div>
   {divider}
   {pillars}
+  {lodge_ref}
   <main>
     <div class="testament-title">The Old Testament</div>
     <div class="book-grid">{ot_cards}
@@ -1344,6 +1749,16 @@ def generate_book_page(ver, books, book_name):
                       theme=get_theme(ver))
 
 
+def _parse_verse_range(rng_str):
+    """Parse '1-3' or '7' or 'all' into a set of verse number strings."""
+    if rng_str == "all":
+        return None  # means all
+    parts = rng_str.split("-")
+    if len(parts) == 2:
+        return {str(v) for v in range(int(parts[0]), int(parts[1]) + 1)}
+    return {parts[0]}
+
+
 def generate_chapter_page(ver, books, book_name, chapter_index):
     masonic = is_masonic(ver)
     book = books[book_name]
@@ -1351,16 +1766,57 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
     ch = chapters[chapter_index]
     ch_num = ch["chapter"]
 
+    # Get Masonic annotations for this chapter
+    annotations = MASONIC_PASSAGES.get((book_name, str(ch_num)), []) if masonic else []
+
+    # Build a map of verse_num -> list of annotations that include it
+    verse_ann_map = {}  # verse_str -> [ann, ...]
+    ann_start_verses = {}  # ann index -> first verse in range (to insert annotation box before)
+    for ai, ann in enumerate(annotations):
+        vset = _parse_verse_range(ann["verses"])
+        if vset is None:
+            for v in ch["verses"]:
+                verse_ann_map.setdefault(v["verse"], []).append(ai)
+            ann_start_verses[ai] = ch["verses"][0]["verse"] if ch["verses"] else "1"
+        else:
+            first = min(vset, key=lambda x: int(x))
+            ann_start_verses[ai] = first
+            for vs in vset:
+                verse_ann_map.setdefault(vs, []).append(ai)
+
+    # Track which annotations we've already inserted
+    inserted_anns = set()
+
     verses_html = ""
     for i, v in enumerate(ch["verses"]):
         text = esc(v["text"])
         vn = v["verse"]
+
+        # Insert annotation box before the first highlighted verse
+        if masonic:
+            for ai, ann in enumerate(annotations):
+                if ai not in inserted_anns and ann_start_verses.get(ai) == vn:
+                    inserted_anns.add(ai)
+                    sym_svg = SYMBOL_SVGS.get(ann.get("symbol", ""), SVG_BLAZING_STAR)
+                    deg_label = DEGREE_LABELS.get(ann["degree"], "")
+                    verses_html += f'''<div class="masonic-annotation">
+  <div class="masonic-ann-header">
+    <span class="masonic-ann-degree">{deg_label} {esc(ann["degree"])}</span>
+    <span class="masonic-ann-title">{ann["title"]}</span>
+    <span class="masonic-ann-symbol">{sym_svg}</span>
+  </div>
+  <div class="masonic-ann-note">{ann["note"]}</div>
+</div>\n'''
+
+        is_hl = vn in verse_ann_map
+        hl_cls = ' class="masonic-verse-hl"' if is_hl else ''
+
         if i == 0 and text:
             first_letter = text[0]
             rest = text[1:]
-            verses_html += f'<p><span class="verse-num">{vn}</span><span class="drop-cap">{first_letter}</span>{rest}</p>\n'
+            verses_html += f'<p{hl_cls}><span class="verse-num">{vn}</span><span class="drop-cap">{first_letter}</span>{rest}</p>\n'
         else:
-            verses_html += f'<p><span class="verse-num">{vn}</span>{text}</p>\n'
+            verses_html += f'<p{hl_cls}><span class="verse-num">{vn}</span>{text}</p>\n'
 
     # Prev/next navigation (within version)
     book_index = CANONICAL_ORDER.index(book_name)
@@ -1416,6 +1872,80 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
                       theme=get_theme(ver))
 
 
+def generate_lodge_reference(ver, books):
+    """Generate the Masonic Lodge Reference page with passages grouped by degree."""
+    sb = sidebar_html(ver, VERSIONS, books, depth=0)
+
+    # Group passages by degree
+    degree_order = ["Entered Apprentice", "Fellow Craft", "Master Mason", "General"]
+    degree_syms = {
+        "Entered Apprentice": SVG_LEVEL_PLUMB,
+        "Fellow Craft":       SVG_PILLARS,
+        "Master Mason":       SVG_HOURGLASS_SKULL,
+        "General":            SVG_BLAZING_STAR,
+    }
+    degree_subtitles = {
+        "Entered Apprentice": "The First Degree &mdash; From Darkness to Light",
+        "Fellow Craft":       "The Second Degree &mdash; The Winding Staircase",
+        "Master Mason":       "The Third Degree &mdash; The Legend of the Master Builder",
+        "General":            "Passages of Universal Masonic Significance",
+    }
+
+    grouped = {d: [] for d in degree_order}
+    for (bk, ch), anns in sorted(MASONIC_PASSAGES.items(), key=lambda x: (CANONICAL_ORDER.index(x[0][0]) if x[0][0] in CANONICAL_ORDER else 999, int(x[0][1]))):
+        for ann in anns:
+            grouped[ann["degree"]].append((bk, ch, ann))
+
+    sections_html = ""
+    for deg in degree_order:
+        entries = grouped[deg]
+        if not entries:
+            continue
+        deg_num = DEGREE_LABELS.get(deg, "")
+        sym = degree_syms.get(deg, SVG_BLAZING_STAR)
+        sub = degree_subtitles.get(deg, "")
+
+        cards_html = ""
+        for bk, ch, ann in entries:
+            verse_ref = f"{bk} {ch}:{ann['verses']}"
+            href = f"{slug(bk)}/{ch}.html"
+            cards_html += f'''<a class="ref-card" href="{href}">
+  <div class="ref-title">{ann["title"]}</div>
+  <div class="ref-cite">{esc(verse_ref)}</div>
+  <div class="ref-note">{ann["note"]}</div>
+</a>\n'''
+
+        sections_html += f'''<div class="degree-section">
+  <div class="degree-heading">
+    <span class="degree-num">{deg_num}</span>
+    <h3>{esc(deg)}</h3>
+    <span class="degree-sym">{sym}</span>
+  </div>
+  <p style="font-size:.78rem;color:#8899b0;font-style:italic;margin-bottom:1rem">{sub}</p>
+  {cards_html}
+</div>\n'''
+
+    body = f"""
+  <div class="content-header">
+    <div class="masonic-hero-symbol">{SVG_SQUARE_COMPASSES}</div>
+    <h1>Lodge Reference</h1>
+    <p class="subtitle">Key Passages for Masonic Ritual &amp; Study</p>
+  </div>
+  <div>{SVG_DIVIDER}</div>
+  <main>
+    <div class="lodge-ref-intro">
+      The Volume of the Sacred Law is one of the Three Great Lights of Freemasonry,
+      and lies open upon the altar of every regular Lodge. The following passages bear
+      special significance in the rituals, symbols, and teachings of the Craft &mdash;
+      arranged here by degree for the instruction of the Brethren.
+    </div>
+    {sections_html}
+  </main>"""
+
+    return page_shell("Lodge Reference - Masonic Bible", body, sb, depth=1,
+                      theme="masonic")
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -1455,6 +1985,12 @@ def main():
         # Version index
         with open(os.path.join(ver_dir, "index.html"), "w") as f:
             f.write(generate_version_index(ver, books))
+
+        # Lodge Reference page (Masonic edition only)
+        if is_masonic(ver):
+            with open(os.path.join(ver_dir, "lodge-reference.html"), "w") as f:
+                f.write(generate_lodge_reference(ver, books))
+            print(f"  [{ver['abbr']}] lodge-reference.html")
 
         total_ch = 0
         for bname in CANONICAL_ORDER:
