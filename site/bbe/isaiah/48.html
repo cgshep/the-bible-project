@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 48</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">G</span>ive ear to this, O family of Jacob, you who are named by the name of Israel, and have come out of the body of Judah; who take oaths by the name of the Lord, and make use of the name of the God of Israel, but not truly and not in good faith.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>G</span>ive ear to this, O family of Jacob, you who are named by the name of Israel, and have come out of the body of Judah; who take oaths by the name of the Lord, and make use of the name of the God of Israel, but not truly and not in good faith.</p>
 <p><span class="verse-num">2</span>For they say that they are of the holy town, and put their faith in the God of Israel: the Lord of armies is his name.</p>
 <p><span class="verse-num">3</span>I gave word in the past of the things which came about; they came from my mouth, and I made them clear: suddenly I did them, and they came about.</p>
 <p><span class="verse-num">4</span>Because I saw that your heart was hard, and that your neck was an iron cord, and your brow brass;</p>
@@ -356,6 +358,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -372,6 +375,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

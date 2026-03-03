@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>Zechariah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n that day there is a fountain opened To the house of David And to the inhabitants of Jerusalem, For sin and for impurity.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n that day there is a fountain opened To the house of David And to the inhabitants of Jerusalem, For sin and for impurity.</p>
 <p><span class="verse-num">2</span>And it hath come to pass, in that day, An affirmation of Jehovah of Hosts, I cut off the names of the idols from the land, And they are not remembered any more, And also the prophets and the spirit of uncleanness I cause to pass away from the land.</p>
 <p><span class="verse-num">3</span>And it hath been, when one prophesieth again, That said unto him have his father and his mother, his parents, `Thou dost not live, For falsehood thou hast spoken in the name of Jehovah,&#x27; And pierced him through have his father and his mother, his parents, in his prophesying.</p>
 <p><span class="verse-num">4</span>And it hath come to pass, in that day, Ashamed are the prophets, each of his vision, in his prophesying, And they put not on a hairy robe to deceive.</p>
@@ -291,6 +293,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -307,6 +310,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

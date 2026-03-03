@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 41</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow it came about in the seventh month that Ishmael, the son of Nethaniah, the son of Elishama, of the king&#x27;s seed, having with him ten men, came to Gedaliah, the son of Ahikam, in Mizpah; and they had a meal together in Mizpah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow it came about in the seventh month that Ishmael, the son of Nethaniah, the son of Elishama, of the king&#x27;s seed, having with him ten men, came to Gedaliah, the son of Ahikam, in Mizpah; and they had a meal together in Mizpah.</p>
 <p><span class="verse-num">2</span>Then Ishmael, the son of Nethaniah, and the ten men who were with him, got up, and attacking Gedaliah, the son of Ahikam, the son of Shaphan, with the sword, put to death him whom the king of Babylon had made ruler over the land.</p>
 <p><span class="verse-num">3</span>And Ishmael put to death all the Jews who were with him, even with Gedaliah, at Mizpah, and the Chaldaean men of war.</p>
 <p><span class="verse-num">4</span>Now on the second day after he had put Gedaliah to death, when no one had knowledge of it,</p>
@@ -338,6 +340,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -354,6 +357,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

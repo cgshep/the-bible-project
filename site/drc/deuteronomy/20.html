@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 20</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>f thou go out to war against thy enemies, and see horsemen and chariots, and the numbers of the enemy&#x27;s army greater than thine, thou shalt not fear them: because the Lord thy God is with thee, who brought thee out of the land of Egypt.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>f thou go out to war against thy enemies, and see horsemen and chariots, and the numbers of the enemy&#x27;s army greater than thine, thou shalt not fear them: because the Lord thy God is with thee, who brought thee out of the land of Egypt.</p>
 <p><span class="verse-num">2</span>And when the battle is now at hand, the priest shall stand before the army, and shall speak to the people in this manner:</p>
 <p><span class="verse-num">3</span>Hear, O Israel, you join battle this day against your enemies, let not your heart be dismayed, be not afraid, do not give back, fear ye them not:</p>
 <p><span class="verse-num">4</span>Because the Lord your God is in the midst of you, and will fight for you against your enemies, to deliver you from danger.</p>
@@ -322,6 +324,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -338,6 +341,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -282,8 +283,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>1 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd there standeth up an adversary against Israel, and persuadeth David to number Israel,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd there standeth up an adversary against Israel, and persuadeth David to number Israel,</p>
 <p><span class="verse-num">2</span>And David saith unto Joab, and unto the heads of the people, `Go, number Israel from Beer-Sheba even unto Dan, and bring unto me, and I know their number.&#x27;</p>
 <p><span class="verse-num">3</span>And Joab saith, `Jehovah doth add to His people as they are a hundred times; are they not, my lord, O king, all of them to my lord for servants? why doth my lord seek this? why is he for a cause of guilt to Israel?&#x27;</p>
 <p><span class="verse-num">4</span>And the word of the king &lt;FI&gt;is&lt;Fi&gt; severe against Joab, and Joab goeth out, and goeth up and down in all Israel, and cometh in to Jerusalem.</p>
@@ -327,6 +329,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -343,6 +346,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

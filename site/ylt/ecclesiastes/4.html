@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -265,8 +266,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>Ecclesiastes</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I have turned, and I see all the oppressions that are done under the sun, and lo, the tear of the oppressed, and they have no comforter; and at the hand of their oppressors &lt;FI&gt;is&lt;Fi&gt; power, and they have no comforter.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I have turned, and I see all the oppressions that are done under the sun, and lo, the tear of the oppressed, and they have no comforter; and at the hand of their oppressors &lt;FI&gt;is&lt;Fi&gt; power, and they have no comforter.</p>
 <p><span class="verse-num">2</span>And I am praising the dead who have already died above the living who are yet alive.</p>
 <p><span class="verse-num">3</span>And better than both of them &lt;FI&gt;is&lt;Fi&gt; he who hath not yet been, in that he hath not seen the evil work that hath been done under the sun.</p>
 <p><span class="verse-num">4</span>And I have seen all the labour, and all the benefit of the work, because for it a man is the envy of his neighbour. Even this &lt;FI&gt;is&lt;Fi&gt; vanity and vexation of spirit.</p>
@@ -296,6 +298,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -312,6 +315,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 45</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hus saith the Lord to my anointed Cyrus, whose right hand I have taken hold of, to subdue nations before his face, and to turn the backs of kings, and to open the doors before him, and the gates shall not be shut.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hus saith the Lord to my anointed Cyrus, whose right hand I have taken hold of, to subdue nations before his face, and to turn the backs of kings, and to open the doors before him, and the gates shall not be shut.</p>
 <p><span class="verse-num">2</span>I will go before thee, and will humble the great ones of the earth: I will break in pieces the gates of brass, and will burst the bars of iron.</p>
 <p><span class="verse-num">3</span>And I will give thee hidden treasures, and the concealed riches of secret places: that thou mayest know that I am the Lord who call thee by thy name, the God of Israel.</p>
 <p><span class="verse-num">4</span>For the sake of my servant Jacob, and Israel my elect, I have even called thee by thy name: I have made a likeness of thee, and thou hast not known me.</p>
@@ -360,6 +362,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -376,6 +379,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Isaiah</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Isaiah_%28Michelangelo%29.jpg/411px-Isaiah_%28Michelangelo%29.jpg" alt="The Prophet Isaiah by Michelangelo, Sistine Chapel" loading="lazy">
+        <div class="book-image-credit">Michelangelo, 1509</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The greatest of the prophets — visions of judgment, the Suffering Servant, and a new creation.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Isaiah" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he Visions of Isaiah son of Amoz, that he hath seen concerning Judah and Jerusalem, in the days of Uzziah, Jotham, Ahaz, Hezekiah, kings of Judah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he Visions of Isaiah son of Amoz, that he hath seen concerning Judah and Jerusalem, in the days of Uzziah, Jotham, Ahaz, Hezekiah, kings of Judah.</p>
 <p><span class="verse-num">2</span>Hear, O heavens, and give ear, O earth, For Jehovah hath spoken: Sons I have nourished and brought up, And they--they transgressed against Me.</p>
 <p><span class="verse-num">3</span>An ox hath known its owner, And an ass the crib of its master, Israel hath not known, My people hath not understood.</p>
 <p><span class="verse-num">4</span>Ah, sinning nation, a people heavy &lt;FI&gt;with&lt;Fi&gt; iniquity, A seed of evil doers, sons--corrupters! They have forsaken Jehovah, They have despised the Holy One of Israel, They have gone away backward.</p>
@@ -365,6 +371,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -381,6 +388,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

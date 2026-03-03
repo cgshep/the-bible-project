@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 36</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow it came about in the fourth year of Jehoiakim, the son of Josiah, king of Judah, that this word came to Jeremiah from the Lord, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow it came about in the fourth year of Jehoiakim, the son of Josiah, king of Judah, that this word came to Jeremiah from the Lord, saying,</p>
 <p><span class="verse-num">2</span>Take a book and put down in it all the words I have said to you against Israel and against Judah and against all the nations, from the day when my word came to you in the days of Josiah till this day.</p>
 <p><span class="verse-num">3</span>It may be that the people of Judah, hearing of all the evil which it is my purpose to do to them, will be turned, every man from his evil ways; so that they may have my forgiveness for their evil-doing and their sin.</p>
 <p><span class="verse-num">4</span>Then Jeremiah sent for Baruch, the son of Neriah; and Baruch took down from the mouth of Jeremiah all the words of the Lord which he had said to him, writing them in a book.</p>
@@ -352,6 +354,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -368,6 +371,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

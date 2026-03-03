@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 2</div>
       <h2>Romans</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>herefore, thou art inexcusable, O man--every one who is judging--for in that in which thou dost judge the other, thyself thou dost condemn, for the same things thou dost practise who art judging,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>herefore, thou art inexcusable, O man--every one who is judging--for in that in which thou dost judge the other, thyself thou dost condemn, for the same things thou dost practise who art judging,</p>
 <p><span class="verse-num">2</span>and we have known that the judgment of God is according to truth, upon those practising such things.</p>
 <p><span class="verse-num">3</span>And dost thou think this, O man, who art judging those who such things are practising, and art doing them, that thou shalt escape the judgment of God?</p>
 <p><span class="verse-num">4</span>or the riches of His goodness, and forbearance, and long-suffering, dost thou despise? --not knowing that the goodness of God doth lead thee to reformation!</p>
@@ -313,6 +315,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -329,6 +332,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

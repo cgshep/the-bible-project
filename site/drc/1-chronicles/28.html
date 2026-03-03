@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -282,8 +283,9 @@
       <div class="ch-label">Chapter 28</div>
       <h2>1 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd David assembled all the chief men of Israel, the princes of the tribes, and the captains of the companies, who waited on the king: and the captains over thousands, and over hundreds, and them who had the charge over the substance and possessions of the king, and his sons with the officers of the court, and the men of power, and all the bravest of the army at Jerusalem.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd David assembled all the chief men of Israel, the princes of the tribes, and the captains of the companies, who waited on the king: and the captains over thousands, and over hundreds, and them who had the charge over the substance and possessions of the king, and his sons with the officers of the court, and the men of power, and all the bravest of the army at Jerusalem.</p>
 <p><span class="verse-num">2</span>And the king rising up, and standing said: Hear me, my brethren and my people: I had a thought to have built a house, in which the ark of the Lord, and the footstool of our God might rest: and prepared all things for the building.</p>
 <p><span class="verse-num">3</span>And God said to me: Thou shalt not build a house to my name: because thou art a man of war, and hast shed blood.</p>
 <p><span class="verse-num">4</span>But the Lord God of Israel chose me of all the house of my father, to be king over Israel for ever: for of Juda he chose the princes: and of the house of Juda, my father&#x27;s house: and among the sons of my father, it pleased him to choose me king over all Israel.</p>
@@ -318,6 +320,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -334,6 +337,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -266,8 +267,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>2 Corinthians</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>ut there is no need for me to say anything in my letter about the giving to the saints:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>ut there is no need for me to say anything in my letter about the giving to the saints:</p>
 <p><span class="verse-num">2</span>For I have before made clear to those of Macedonia my pride in your ready mind, saying to them that Achaia has been ready for a year back; and a great number have been moved to do the same by your example.</p>
 <p><span class="verse-num">3</span>But I have sent the brothers, so that the good things we said about you may be seen to be true, and that, as I said, you may be ready:</p>
 <p><span class="verse-num">4</span>For fear that, if any from Macedonia come with me, and you are not ready, we (not to say, you) might be put to shame in this thing.</p>
@@ -296,6 +298,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -312,6 +315,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

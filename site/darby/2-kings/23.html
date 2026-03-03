@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the king sent, and they gathered to him all the elders of Judah and of Jerusalem.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the king sent, and they gathered to him all the elders of Judah and of Jerusalem.</p>
 <p><span class="verse-num">2</span>And the king went up into the house of Jehovah, and all the men of Judah and all the inhabitants of Jerusalem with him, and the priests and the prophets, and all the people, both small and great; and he read in their ears all the words of the book of the covenant which had been found in the house of Jehovah.</p>
 <p><span class="verse-num">3</span>And the king stood on the dais, and made a covenant before Jehovah, to walk after Jehovah, and to keep his commandments and his testimonies and his statutes with all [his] heart, and with all [his] soul, to establish the words of this covenant that are written in this book. And all the people stood to the covenant.</p>
 <p><span class="verse-num">4</span>And the king commanded Hilkijah the high priest, and the priests of the second order, and the doorkeepers, to bring forth out of the temple of Jehovah all the vessels that had been made for Baal, and for the Asherah, and for all the host of the heavens; and he burned them outside Jerusalem in the fields of Kidron, and carried the ashes of them to Bethel.</p>
@@ -330,6 +332,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -346,6 +349,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

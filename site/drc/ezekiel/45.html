@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 45</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd when you shall begin to divide the land by lot, separate ye firstfruits to the Lord, a portion of the land to be holy, in length twenty-five thousand and in breadth ten thousand: it shall be holy in all the borders thereof round about.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd when you shall begin to divide the land by lot, separate ye firstfruits to the Lord, a portion of the land to be holy, in length twenty-five thousand and in breadth ten thousand: it shall be holy in all the borders thereof round about.</p>
 <p><span class="verse-num">2</span>And there shall be for the sanctuary on every side five hundred by five hundred, foursquare round about: and fifty cubits for the suburbs thereof round about.</p>
 <p><span class="verse-num">3</span>And with this measure thou shalt measure the length of five and twenty thousand, and the breadth of ten thousand, and in it shall be the temple and the holy of holies.</p>
 <p><span class="verse-num">4</span>The holy portion of the land shall be for the priests the ministers of the sanctuary, who come near to the ministry of the Lord: and it shall be a place for their houses, and for the holy place of the sanctuary.</p>
@@ -341,6 +343,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -357,6 +360,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

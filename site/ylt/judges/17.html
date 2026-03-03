@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 17</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd there is a man of the hill-country of Ephraim, and his name &lt;FI&gt;is&lt;Fi&gt; Micah,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd there is a man of the hill-country of Ephraim, and his name &lt;FI&gt;is&lt;Fi&gt; Micah,</p>
 <p><span class="verse-num">2</span>and he saith to his mother, `The eleven hundred silverlings which have been taken of thine, and &lt;FI&gt;of which&lt;Fi&gt; thou hast sworn, and also spoken in mine ears; lo, the silver &lt;FI&gt;is&lt;Fi&gt; with me, I have taken it;&#x27; and his mother saith, `Blessed &lt;FI&gt;is&lt;Fi&gt; my son of Jehovah.&#x27;</p>
 <p><span class="verse-num">3</span>And he giveth back the eleven hundred silverlings to his mother, and his mother saith, `I had certainly sanctified the silver to Jehovah, from my hand, for my son, to make a graven image, and a molten image; and now, I give it back to thee.&#x27;</p>
 <p><span class="verse-num">4</span>And he giveth back the money to his mother, and his mother taketh two hundred silverlings, and giveth them to a refiner, and he maketh them a graven image, and a molten image, and it is in the house of Micah.</p>
@@ -302,6 +304,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -318,6 +321,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

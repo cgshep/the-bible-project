@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the word of Samuel is to all Israel, and Israel goeth out to meet the Philistines for battle, and they encamp by Eben-Ezer, and the Philistines have encamped in Aphek,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the word of Samuel is to all Israel, and Israel goeth out to meet the Philistines for battle, and they encamp by Eben-Ezer, and the Philistines have encamped in Aphek,</p>
 <p><span class="verse-num">2</span>and the Philistines set themselves in array to meet Israel, and the battle spreadeth itself, and Israel is smitten before the Philistines, and they smite among the ranks in the field about four thousand men.</p>
 <p><span class="verse-num">3</span>And the people cometh in unto the camp, and the elders of Israel say, `Why hath Jehovah smitten us to-day before the Philistines? we take unto us from Shiloh the ark of the covenant of Jehovah, and it cometh into our midst, and He doth save us out of the hand of our enemies.&#x27;</p>
 <p><span class="verse-num">4</span>And the people sendeth to Shiloh, and they take up thence the ark of the covenant of Jehovah of Hosts, inhabiting the cherubs, and there &lt;FI&gt;are&lt;Fi&gt; two sons of Eli, with the ark of the covenant of God, Hophni and Phinehas.</p>
@@ -321,6 +323,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

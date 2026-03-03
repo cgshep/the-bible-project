@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 5</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow when the news came to all the kings of the Amorites on the west side of Jordan, and all the kings of the Canaanites living by the sea, how the Lord had made the waters of Jordan dry before the children of Israel, till they had gone across, their hearts became like water, and there was no more spirit in them, because of the children of Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow when the news came to all the kings of the Amorites on the west side of Jordan, and all the kings of the Canaanites living by the sea, how the Lord had made the waters of Jordan dry before the children of Israel, till they had gone across, their hearts became like water, and there was no more spirit in them, because of the children of Israel.</p>
 <p><span class="verse-num">2</span>At that time the Lord said to Joshua, Make yourself stone knives and give the children of Israel circumcision a second time.</p>
 <p><span class="verse-num">3</span>So Joshua made stone knives and gave the children of Israel circumcision at Gibeath-ha-araloth.</p>
 <p><span class="verse-num">4</span>And this is the reason why Joshua did so: all the males of the people who came out of Egypt, all the fighting-men, had been overtaken by death in the waste land on the way, after they came out of Egypt.</p>
@@ -307,6 +309,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -323,6 +326,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

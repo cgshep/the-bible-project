@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -263,8 +264,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Ezra</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezra" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd in the first year of Cyrus king of Persia, at the completion of the word of Jehovah from the mouth of Jeremiah, hath Jehovah waked up the spirit of Cyrus king of Persia, and he causeth an intimation to pass over into all his kingdom, and also in writing, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd in the first year of Cyrus king of Persia, at the completion of the word of Jehovah from the mouth of Jeremiah, hath Jehovah waked up the spirit of Cyrus king of Persia, and he causeth an intimation to pass over into all his kingdom, and also in writing, saying,</p>
 <p><span class="verse-num">2</span>`Thus said Cyrus king of Persia, All kingdoms of the earth hath Jehovah, God of the heavens, given to me, and He hath laid a charge on me to build to Him a house in Jerusalem, that &lt;FI&gt;is&lt;Fi&gt; in Judah;</p>
 <p><span class="verse-num">3</span>who &lt;FI&gt;is&lt;Fi&gt; among you of all His people? His God is with him, and he doth go up to Jerusalem, that &lt;FI&gt;is&lt;Fi&gt; in Judah, and build the house of Jehovah, God of Israel--He &lt;FI&gt;is&lt;Fi&gt; God--that &lt;FI&gt;is&lt;Fi&gt; in Jerusalem.</p>
 <p><span class="verse-num">4</span>`And every one who is left, of any of the places where he &lt;FI&gt;is&lt;Fi&gt; a sojourner, assist him do the men of his place with silver, and with gold, and with goods, and with beasts, along with a free-will offering for the house of God, that &lt;FI&gt;is&lt;Fi&gt; in Jerusalem.&#x27;</p>
@@ -289,6 +291,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -305,6 +308,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

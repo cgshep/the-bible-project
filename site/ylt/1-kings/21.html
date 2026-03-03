@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>1 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it cometh to pass, after these things, a vineyard hath been to Naboth the Jezreelite, that &lt;FI&gt;is&lt;Fi&gt; in Jezreel, near the palace of Ahab king of Samaria,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it cometh to pass, after these things, a vineyard hath been to Naboth the Jezreelite, that &lt;FI&gt;is&lt;Fi&gt; in Jezreel, near the palace of Ahab king of Samaria,</p>
 <p><span class="verse-num">2</span>and Ahab speaketh unto Naboth, saying, `Give to me thy vineyard, and it is to me for a garden of green herbs, for it &lt;FI&gt;is&lt;Fi&gt; near by my house, and I give to thee in its stead a better vineyard than it; if good in thine eyes, I give to thee silver--its price.&#x27;</p>
 <p><span class="verse-num">3</span>And Naboth saith unto Ahab, `Far be it from me, by Jehovah, my giving the inheritance of my fathers to thee;&#x27;</p>
 <p><span class="verse-num">4</span>and Ahab cometh in unto his house, sulky and wroth, because of the word that Naboth the Jezreelite hath spoken unto him when he saith, `I do not give to thee the inheritance of my fathers,&#x27; and he lieth down on his bed, and turneth round his face, and hath not eaten bread.</p>
@@ -319,6 +321,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -335,6 +338,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

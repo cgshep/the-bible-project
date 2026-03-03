@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 8</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Jehovah saith unto me, `Take to thee a great tablet, and write upon it with a graving tool of man, To haste spoil, enjoy prey.&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Jehovah saith unto me, `Take to thee a great tablet, and write upon it with a graving tool of man, To haste spoil, enjoy prey.&#x27;</p>
 <p><span class="verse-num">2</span>And I cause faithful witnesses to testify to me, Uriah the priest, and Zechariah son of Jeberechiah.</p>
 <p><span class="verse-num">3</span>And I draw near unto the prophetess, and she conceiveth, and beareth a son; and Jehovah saith unto me, `Call his name Maher-shalal-hash-baz,</p>
 <p><span class="verse-num">4</span>for before the youth doth know to cry, My father, and My mother, one taketh away the wealth of Damascus and the spoil of Samaria, before the king of Asshur.&#x27;</p>
@@ -356,6 +358,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -372,6 +375,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

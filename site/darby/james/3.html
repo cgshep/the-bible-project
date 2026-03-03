@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -258,8 +259,9 @@
       <div class="ch-label">Chapter 3</div>
       <h2>James</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>e not many teachers, my brethren, knowing that we shall receive greater judgment.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>e not many teachers, my brethren, knowing that we shall receive greater judgment.</p>
 <p><span class="verse-num">2</span>For we all often offend. If any one offend not in word, he [is] a perfect man, able to bridle the whole body too.</p>
 <p><span class="verse-num">3</span>Behold, we put the bits in the mouths of the horses, that they may obey us, and we turn round their whole bodies.</p>
 <p><span class="verse-num">4</span>Behold also the ships, which are so great, and driven by violent winds, are turned about by a very small rudder, wherever the pleasure of the helmsman will.</p>
@@ -291,6 +293,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -307,6 +310,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

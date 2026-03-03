@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hen Jerubbaal, that is, Gideon, and all the people with him, got up early and put up their tents by the side of the water-spring of Harod; the tents of Midian were on the north side of him, under the hill of Moreh in the valley.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hen Jerubbaal, that is, Gideon, and all the people with him, got up early and put up their tents by the side of the water-spring of Harod; the tents of Midian were on the north side of him, under the hill of Moreh in the valley.</p>
 <p><span class="verse-num">2</span>And the Lord said to Gideon, So great is the number of your people, that if I give the Midianites into their hands they will be uplifted in pride over me and will say, I myself have been my saviour.</p>
 <p><span class="verse-num">3</span>So now, let it be given out to the people that anyone who is shaking with fear is to go back from Mount Galud. So twenty-two thousand of the people went back, but there were still ten thousand.</p>
 <p><span class="verse-num">4</span>Then the Lord said to Gideon, There are still more people than is necessary; take them down to the water so that I may put them to the test for you there; then whoever I say is to go with you will go, and whoever I say is not to go will not go.</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

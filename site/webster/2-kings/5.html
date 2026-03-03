@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 5</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow Naaman, captain of the army of the king of Syria, was a great man with his master, and honorable, because by him the LORD had given deliverance to Syria: he was also a mighty man in valor, [but he was] a leper.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow Naaman, captain of the army of the king of Syria, was a great man with his master, and honorable, because by him the LORD had given deliverance to Syria: he was also a mighty man in valor, [but he was] a leper.</p>
 <p><span class="verse-num">2</span>And the Syrians had gone out by companies, and had brought away captive out of the land of Israel a little maid; and she waited on Naaman&#x27;s wife.</p>
 <p><span class="verse-num">3</span>And she said to her mistress, I would that my lord [were] with the prophet that [is] in Samaria! for he would recover him of his leprosy.</p>
 <p><span class="verse-num">4</span>And [one] went in, and told his lord, saying, Thus and thus said the maid that [is] of the land of Israel.</p>
@@ -320,6 +322,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -336,6 +339,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

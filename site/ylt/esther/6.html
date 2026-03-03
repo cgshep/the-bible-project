@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -263,8 +264,9 @@
       <div class="ch-label">Chapter 6</div>
       <h2>Esther</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">O</span>n that night hath the sleep of the king fled away, and he saith to bring in the book of memorials of the Chronicles, and they are read before the king,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>O</span>n that night hath the sleep of the king fled away, and he saith to bring in the book of memorials of the Chronicles, and they are read before the king,</p>
 <p><span class="verse-num">2</span>and it is found written that Mordecai had declared concerning Bigthana and Teresh, two of the eunuchs of the king, of the keepers of the threshold, who sought to put forth a hand on king Ahasuerus.</p>
 <p><span class="verse-num">3</span>And the king saith, `What honour and greatness hath been done to Mordecai for this?&#x27; And the servants of the king, his ministers, say, `Nothing hath been done with him.&#x27;</p>
 <p><span class="verse-num">4</span>And the king saith, `Who &lt;FI&gt;is&lt;Fi&gt; in the court?&#x27; --and Haman hath come in to the outer court of the house of the king, to say to the king to hang Mordecai on the tree that he had prepared for him--</p>
@@ -292,6 +294,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -308,6 +311,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

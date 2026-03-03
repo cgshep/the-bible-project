@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Revelation</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg/456px-Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg" alt="The Apocalypse, Flemish illuminated manuscript" loading="lazy">
+        <div class="book-image-credit">Flemish manuscript, c. 1400</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Revelation" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">R</span>evelation of Jesus Christ, whichGod gave to him, to shew to his bondmen what must shortly take place; and he signified [it], sending by his angel, to his bondman John,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>R</span>evelation of Jesus Christ, whichGod gave to him, to shew to his bondmen what must shortly take place; and he signified [it], sending by his angel, to his bondman John,</p>
 <p><span class="verse-num">2</span>who testified the word ofGod, and the testimony of Jesus Christ, all things that he saw.</p>
 <p><span class="verse-num">3</span>Blessed [is] he that reads, and they that hear the words of the prophecy, and keep the things written in it; for the time [is] near.</p>
 <p><span class="verse-num">4</span>John to the seven assemblies which [are] in Asia: Grace to you and peace from [him] who is, and who was, and who is to come; and from the seven Spirits which [are] before his throne;</p>
@@ -310,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -326,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

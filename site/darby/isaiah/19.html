@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 19</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he burden of Egypt. Behold, Jehovah rideth upon a swift cloud, and cometh to Egypt; and the idols of Egypt are moved at his presence, and the heart of Egypt melteth in the midst of it.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he burden of Egypt. Behold, Jehovah rideth upon a swift cloud, and cometh to Egypt; and the idols of Egypt are moved at his presence, and the heart of Egypt melteth in the midst of it.</p>
 <p><span class="verse-num">2</span>And I will incite the Egyptians against the Egyptians; and they shall fight every one against his brother, and every one against his neighbour; city against city, kingdom against kingdom.</p>
 <p><span class="verse-num">3</span>And the spirit of Egypt shall fail in the midst of it, and I will destroy the counsel thereof; and they shall seek unto the idols and unto the conjurers, and unto the necromancers, and unto the soothsayers.</p>
 <p><span class="verse-num">4</span>And the Egyptians will I give over into the hand of a cruel lord, and a fierce king shall rule over them, saith the Lord, Jehovah of hosts.</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

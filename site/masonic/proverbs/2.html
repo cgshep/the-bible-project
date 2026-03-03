@@ -9,6 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body class="masonic-theme">
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,6 +320,7 @@
       <div class="ch-label">Chapter 2</div>
       <h2>Proverbs</h2>
     </div>
+    
     <div class="verse-text">
       <div class="masonic-annotation">
   <div class="masonic-ann-header">
@@ -334,7 +336,7 @@
   </div>
   <div class="masonic-ann-note">Seek her as silver, search for her as hid treasures &mdash; the Craft is a system of morality, veiled in allegory and illustrated by symbols.</div>
 </div>
-<p class="masonic-verse-hl"><span class="verse-num">1</span><span class="drop-cap">M</span>y son, if thou wilt receive my words, and hide my commandments with thee;</p>
+<p class="masonic-verse-hl"><span class="drop-cap"><span class="verse-num">1</span>M</span>y son, if thou wilt receive my words, and hide my commandments with thee;</p>
 <p class="masonic-verse-hl"><span class="verse-num">2</span>So that thou incline thine ear unto wisdom, and apply thine heart to understanding;</p>
 <p class="masonic-verse-hl"><span class="verse-num">3</span>Yea, if thou criest after knowledge, and liftest up thy voice for understanding;</p>
 <p class="masonic-verse-hl"><span class="verse-num">4</span>If thou seekest her as silver, and searchest for her as for hid treasures;</p>
@@ -379,6 +381,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -395,6 +398,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

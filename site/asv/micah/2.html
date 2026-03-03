@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -260,8 +261,9 @@
       <div class="ch-label">Chapter 2</div>
       <h2>Micah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>oe to them that devise iniquity and work evil upon their beds! when the morning is light, they practise it, because it is in the power of their hand.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>oe to them that devise iniquity and work evil upon their beds! when the morning is light, they practise it, because it is in the power of their hand.</p>
 <p><span class="verse-num">2</span>And they covet fields, and seize them; and houses, and take them away: and they oppress a man and his house, even a man and his heritage.</p>
 <p><span class="verse-num">3</span>Therefore thus saith Jehovah: Behold, against this family do I devise an evil, from which ye shall not remove your necks, neither shall ye walk haughtily; for it is an evil time.</p>
 <p><span class="verse-num">4</span>In that day shall they take up a parable against you, and lament with a doleful lamentation, and say, We are utterly ruined: he changeth the portion of my people: how doth he remove it from me! to the rebellious he divideth our fields.</p>
@@ -288,6 +290,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -304,6 +307,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

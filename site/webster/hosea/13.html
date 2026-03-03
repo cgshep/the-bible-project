@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>Hosea</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>hen Ephraim spoke trembling, he exalted himself in Israel; but when he offended in Baal, he died.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>hen Ephraim spoke trembling, he exalted himself in Israel; but when he offended in Baal, he died.</p>
 <p><span class="verse-num">2</span>And now they sin more and more, and have made them molten images of their silver, [and] idols according to their own understanding, all of it the work of artificers: they say of them, Let the men that sacrifice kiss the calves.</p>
 <p><span class="verse-num">3</span>Therefore they shall be as the morning cloud, and as the early dew that passeth away, as the chaff [that] is driven with the whirlwind from the floor, and as the smoke from the chimney.</p>
 <p><span class="verse-num">4</span>Yet I [am] the LORD thy God from the land of Egypt, and thou shalt know no God but me: for [there is] no savior besides me.</p>
@@ -298,6 +300,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -314,6 +317,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

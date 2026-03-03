@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -281,8 +282,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Matthew</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sermon_on_the_Mount_Fra_Angelico.jpg/640px-Sermon_on_the_Mount_Fra_Angelico.jpg" alt="Sermon on the Mount by Fra Angelico" loading="lazy">
+        <div class="book-image-credit">Fra Angelico, c. 1440</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The Gospel for the Jewish audience — Jesus as the promised Messiah, Son of David.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Gospel_of_Matthew" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he book of the generation of Jesus Christ, the son of David, the son of Abraham.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he book of the generation of Jesus Christ, the son of David, the son of Abraham.</p>
 <p><span class="verse-num">2</span>Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judah and his brethren;</p>
 <p><span class="verse-num">3</span>and Judah begat Perez and Zerah of Tamar; and Perez begat Hezron; and Hezron begat Ram;</p>
 <p><span class="verse-num">4</span>and Ram begat Amminadab; and Amminadab begat Nahshon; and Nahshon begat Salmon;</p>
@@ -321,6 +327,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +344,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow at that time the Philistines came together to make war against Israel, and the men of Israel went out to war against the Philistines and took up their position at the side of Eben-ezer: and the Philistines put their forces in position in Aphek.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow at that time the Philistines came together to make war against Israel, and the men of Israel went out to war against the Philistines and took up their position at the side of Eben-ezer: and the Philistines put their forces in position in Aphek.</p>
 <p><span class="verse-num">2</span>And the Philistines put their forces in order against Israel, and the fighting was hard, and Israel was overcome by the Philistines, who put to the sword about four thousand of their army in the field.</p>
 <p><span class="verse-num">3</span>And when the people came back to their tents, the responsible men of Israel said, Why has the Lord let the Philistines overcome us today? Let us get the ark of the Lord&#x27;s agreement here from Shiloh, so that it may be with us and give us salvation from the hands of those who are against us.</p>
 <p><span class="verse-num">4</span>So the people sent to Shiloh and got the ark of the agreement of the Lord of armies whose resting-place is between the winged ones; and Hophni and Phinehas, the two sons of Eli, were there with the ark of God&#x27;s agreement.</p>
@@ -321,6 +323,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

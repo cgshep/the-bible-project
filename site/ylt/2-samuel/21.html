@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>2 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd there is a famine in the days of David three years, year after year, and David seeketh the face of Jehovah, and Jehovah saith, `For Saul and for the bloody house, because that he put to death the Gibeonites.&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd there is a famine in the days of David three years, year after year, and David seeketh the face of Jehovah, and Jehovah saith, `For Saul and for the bloody house, because that he put to death the Gibeonites.&#x27;</p>
 <p><span class="verse-num">2</span>And the king calleth for the Gibeonites, and saith unto them--as to the Gibeonites, they &lt;FI&gt;are&lt;Fi&gt; not of the sons of Israel, but of the remnant of the Amorite, and the sons of Israel had sworn to them, and Saul seeketh to smite them in his zeal for the sons of Israel and Judah--</p>
 <p><span class="verse-num">3</span>yea, David saith unto the Gibeonites, `What do I do for you? and with what do I make atonement? and bless ye the inheritance of Jehovah.&#x27;</p>
 <p><span class="verse-num">4</span>And the Gibeonites say to him, `We have no silver and gold by Saul and by his house, and we have no man to put to death in Israel;&#x27; and he saith, `What ye are saying I do to you.&#x27;</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

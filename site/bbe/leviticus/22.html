@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -280,8 +281,9 @@
       <div class="ch-label">Chapter 22</div>
       <h2>Leviticus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the Lord said to Moses,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the Lord said to Moses,</p>
 <p><span class="verse-num">2</span>Give orders to Aaron and to his sons to keep themselves separate from the holy things of the children of Israel which they give to me, and not to make my holy name common: I am the Lord,</p>
 <p><span class="verse-num">3</span>Say to them, If any man of all your seed through all your generations, being unclean, comes near the holy things which the children of Israel make holy to the Lord, he will be cut off from before me: I am the Lord.</p>
 <p><span class="verse-num">4</span>No man of the seed of Aaron who is a leper, or who has a flow from his body, may take of the holy food till he is clean. And any man touching anything which is unclean because of the dead, or any man whose seed goes from him;</p>
@@ -328,6 +330,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -344,6 +347,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

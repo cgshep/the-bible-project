@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I saw a beast coming up out the sea, having seven heads and ten horns: and upon his horns, ten diadems: and upon his heads, names of blasphemy.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I saw a beast coming up out the sea, having seven heads and ten horns: and upon his horns, ten diadems: and upon his heads, names of blasphemy.</p>
 <p><span class="verse-num">2</span>And the beast which I saw was like to a leopard: and his feet were as the feet of a bear, and his mouth as the mouth of a lion. And the dragon gave him his own strength and great power.</p>
 <p><span class="verse-num">3</span>And I saw one of his heads as it were slain to death: and his death&#x27;s wound was healed. And all the earth was in admiration after the beast.</p>
 <p><span class="verse-num">4</span>And they adored the dragon which gave power to the beast. And they adored the beast, saying: Who is like to the beast? And who shall be able to fight with him?</p>
@@ -308,6 +310,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -324,6 +327,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

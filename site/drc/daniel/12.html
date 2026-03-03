@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 12</div>
       <h2>Daniel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>ut at that time shall Michael rise up, the great prince, who standeth for the children of thy people: and a time shall come, such as never was from the time that nations began, even until that time. And at that time shall thy people be saved, every one that shall be found written in the book.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>ut at that time shall Michael rise up, the great prince, who standeth for the children of thy people: and a time shall come, such as never was from the time that nations began, even until that time. And at that time shall thy people be saved, every one that shall be found written in the book.</p>
 <p><span class="verse-num">2</span>And many of those that sleep in the dust of the earth, shall awake: some unto life everlasting, and others unto reproach, to see it always.</p>
 <p><span class="verse-num">3</span>But they that are learned, shall shine as the brightness of the firmament: and they that instruct many to justice, as stars for all eternity.</p>
 <p><span class="verse-num">4</span>But thou, O Daniel, shut up the words, and seal the book, even to the time appointed: many shall pass over, and knowledge shall be manifold.</p>
@@ -295,6 +297,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -311,6 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

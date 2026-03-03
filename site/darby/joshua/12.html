@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 12</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd these are the kings of the land, whom the children of Israel smote, and of whose land they took possession across the Jordan, toward the sun-rising, from the river Arnon to mount Hermon, and all the plain on the east:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd these are the kings of the land, whom the children of Israel smote, and of whose land they took possession across the Jordan, toward the sun-rising, from the river Arnon to mount Hermon, and all the plain on the east:</p>
 <p><span class="verse-num">2</span>Sihon the king of the Amorites, who dwelt at Heshbon, [and] ruled from Aroer, which is upon the bank of the river Arnon, and from the middle of the ravine, and over half Gilead, as far as the river Jabbok, [which is] the border of the children of Ammon;</p>
 <p><span class="verse-num">3</span>and the plain as far as the sea of Chinneroth on the east, and as far as the sea of the plain, the salt sea, on the east, toward Beth-jeshimoth; and on the south, under the slopes of Pisgah;</p>
 <p><span class="verse-num">4</span>and the territory of Og the king of Bashan, of the residue of the giants, who dwelt at Ashtaroth and at Edrei,</p>
@@ -316,6 +318,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -332,6 +335,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

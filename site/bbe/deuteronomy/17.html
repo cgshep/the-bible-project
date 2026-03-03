@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 17</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>o ox or sheep which has a mark on it or is damaged in any way may be offered to the Lord your God: for that is disgusting to the Lord your God.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>o ox or sheep which has a mark on it or is damaged in any way may be offered to the Lord your God: for that is disgusting to the Lord your God.</p>
 <p><span class="verse-num">2</span>If there is any man or woman among you, in any of the towns which the Lord your God gives you, who does evil in the eyes of the Lord your God, sinning against his agreement,</p>
 <p><span class="verse-num">3</span>By becoming a servant of other gods and worshipping them or the sun or the moon or all the stars of heaven, against my orders;</p>
 <p><span class="verse-num">4</span>If word of this comes to your ears, then let this thing be looked into with care, and if there is no doubt that it is true, and such evil has been done in Israel;</p>
@@ -322,6 +324,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -338,6 +341,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

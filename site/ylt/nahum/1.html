@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -256,8 +257,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Nahum</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">A prophecy of the fall of Nineveh, the great Assyrian capital.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Nahum" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>urden of Nineveh. The Book of the Vision of Nahum the Elkoshite.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>urden of Nineveh. The Book of the Vision of Nahum the Elkoshite.</p>
 <p><span class="verse-num">2</span>A God zealous and avenging &lt;FI&gt;is&lt;Fi&gt; Jehovah, An avenger &lt;FI&gt;is&lt;Fi&gt; Jehovah, and possessing fury. An avenger &lt;FI&gt;is&lt;Fi&gt; Jehovah on His adversaries, And He is watching for His enemies.</p>
 <p><span class="verse-num">3</span>Jehovah &lt;FI&gt;is&lt;Fi&gt; slow to anger, and great in power, And Jehovah doth not entirely acquit, In a hurricane and in a tempest &lt;FI&gt;is&lt;Fi&gt; His way, And a cloud &lt;FI&gt;is&lt;Fi&gt; the dust of His feet.</p>
 <p><span class="verse-num">4</span>He is pushing against a sea, and drieth it up, Yea, all the floods He hath made dry, Languishing &lt;FI&gt;are&lt;Fi&gt; Bashan and Carmel, Yea, the flower of Lebanon &lt;FI&gt;is&lt;Fi&gt; languishing.</p>
@@ -286,6 +288,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -302,6 +305,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

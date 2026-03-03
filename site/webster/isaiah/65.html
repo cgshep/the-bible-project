@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 65</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span> am sought by [them that] asked not [for me]; I am found by [them that] sought me not: I said, Behold me, behold me, to a nation [that] was not called by my name.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span> am sought by [them that] asked not [for me]; I am found by [them that] sought me not: I said, Behold me, behold me, to a nation [that] was not called by my name.</p>
 <p><span class="verse-num">2</span>I have spread out my hands all the day to a rebellious people, which walketh in a way [that is] not good, after their own thoughts;</p>
 <p><span class="verse-num">3</span>A people that provoketh me to anger continually to my face; that sacrificeth in gardens, and burneth incense upon altars of brick;</p>
 <p><span class="verse-num">4</span>Which remain among the graves, and lodge in the monuments, which eat swine&#x27;s flesh, and broth of abominable [things is in] their vessels;</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

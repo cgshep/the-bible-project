@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -256,8 +257,9 @@
       <div class="ch-label">Chapter 3</div>
       <h2>2 Peter</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>his second epistle, beloved, I now write to you; in [both] which I stir up your pure minds by way of remembrance:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>his second epistle, beloved, I now write to you; in [both] which I stir up your pure minds by way of remembrance:</p>
 <p><span class="verse-num">2</span>That ye may be mindful of the words which were spoken before by the holy prophets, and of the commandment of us the apostles of the Lord and Savior:</p>
 <p><span class="verse-num">3</span>Knowing this first, that there will come in the last days scoffers, walking after their own lusts,</p>
 <p><span class="verse-num">4</span>And saying, Where is the promise of his coming? for since the fathers fell asleep, all things continue as [they were] from the beginning of the creation.</p>
@@ -289,6 +291,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -305,6 +308,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

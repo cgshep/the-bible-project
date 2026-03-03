@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -263,8 +264,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Esther</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd in the twelfth month--it &lt;FI&gt;is&lt;Fi&gt; the month of Adar--on the thirteenth day of it, in which the word of the king, even his law, hath come to be done, in the day that the enemies of the Jews had hoped to rule over them, and it is turned that the Jews rule over those hating them--</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd in the twelfth month--it &lt;FI&gt;is&lt;Fi&gt; the month of Adar--on the thirteenth day of it, in which the word of the king, even his law, hath come to be done, in the day that the enemies of the Jews had hoped to rule over them, and it is turned that the Jews rule over those hating them--</p>
 <p><span class="verse-num">2</span>the Jews have been assembled in their cities, in all provinces of the king Ahasuerus, to put forth a hand on those seeking their evil, and no man hath stood in their presence, for their fear hath fallen on all the peoples.</p>
 <p><span class="verse-num">3</span>And all heads of the provinces, and the lieutenants, and the governors, and those doing the work that the king hath, are lifting up the Jews, for a fear of Mordecai hath fallen upon them;</p>
 <p><span class="verse-num">4</span>for great &lt;FI&gt;is&lt;Fi&gt; Mordecai in the house of the king, and his fame is going into all the provinces, for the man Mordecai is going on and becoming great.</p>
@@ -310,6 +312,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -326,6 +329,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

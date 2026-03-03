@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -280,8 +281,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>Leviticus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Jehovah speaketh unto Moses, after the death of the two sons of Aaron, in their drawing near before Jehovah, and they die;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Jehovah speaketh unto Moses, after the death of the two sons of Aaron, in their drawing near before Jehovah, and they die;</p>
 <p><span class="verse-num">2</span>yea, Jehovah saith unto Moses, `Speak unto Aaron thy brother, and he cometh not in at all times unto the sanctuary within the vail, unto the front of the mercy-seat, which &lt;FI&gt;is&lt;Fi&gt; upon the ark, and he dieth not, for in a cloud I am seen upon the mercy-seat.</p>
 <p><span class="verse-num">3</span>`With this doth Aaron come in unto the sanctuary; with a bullock, a son of the herd, for a sin-offering, and a ram for a burnt-offering;</p>
 <p><span class="verse-num">4</span>a holy linen coat he putteth on, and linen trousers are on his flesh, and with a linen girdle he girdeth himself, and with a linen mitre he wrappeth himself up; they &lt;FI&gt;are&lt;Fi&gt; holy garments; and he hath bathed with water his flesh, and hath put them on.</p>
@@ -329,6 +331,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -345,6 +348,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

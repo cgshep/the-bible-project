@@ -91,6 +91,316 @@ BOOK_ABBR = {
 }
 
 # ---------------------------------------------------------------------------
+# Wikipedia links & descriptions for each book
+# ---------------------------------------------------------------------------
+
+BOOK_WIKI = {
+    "Genesis": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Genesis",
+        "desc": "The book of origins — creation, the fall, the flood, and the patriarchs Abraham, Isaac, Jacob, and Joseph.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Michelangelo%2C_Creation_of_Adam_06.jpg/640px-Michelangelo%2C_Creation_of_Adam_06.jpg",
+        "image_alt": "The Creation of Adam by Michelangelo, Sistine Chapel ceiling",
+        "image_credit": "Michelangelo, c. 1512",
+    },
+    "Exodus": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Exodus",
+        "desc": "Israel's deliverance from Egypt, the giving of the Law at Sinai, and the construction of the Tabernacle.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tissot_The_Crossing_of_the_Red_Sea.jpg/640px-Tissot_The_Crossing_of_the_Red_Sea.jpg",
+        "image_alt": "The Crossing of the Red Sea by James Tissot",
+        "image_credit": "James Tissot, c. 1900",
+    },
+    "Leviticus": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Leviticus",
+        "desc": "Laws of sacrifice, purity, and holiness given to the priestly tribe of Levi.",
+    },
+    "Numbers": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Numbers",
+        "desc": "The forty years of wandering in the wilderness, from Sinai to the plains of Moab.",
+    },
+    "Deuteronomy": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Deuteronomy",
+        "desc": "Moses' farewell speeches and the renewal of the covenant before entering the Promised Land.",
+    },
+    "Joshua": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Joshua",
+        "desc": "The conquest and division of Canaan under the leadership of Joshua.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg/640px-Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg",
+        "image_alt": "Joshua Passing the River Jordan by Benjamin West",
+        "image_credit": "Benjamin West, 1800",
+    },
+    "Judges": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Judges",
+        "desc": "The turbulent era of the judges — Deborah, Gideon, Samson — between the conquest and the monarchy.",
+    },
+    "Ruth": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Ruth",
+        "desc": "A story of loyalty and redemption — Ruth the Moabitess, great-grandmother of King David.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg/485px-Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg",
+        "image_alt": "Ruth in the Field of Boaz by Julius Schnorr von Carolsfeld",
+        "image_credit": "Julius Schnorr von Carolsfeld, 1828",
+    },
+    "1 Samuel": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Samuel",
+        "desc": "From the prophet Samuel through Saul's reign to the rise of David.",
+    },
+    "2 Samuel": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Samuel",
+        "desc": "The reign of King David — triumphs, sins, and the promise of an everlasting dynasty.",
+    },
+    "1 Kings": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Kings",
+        "desc": "Solomon's glory, the building of the Temple, the kingdom divided, and the prophet Elijah.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg/640px-Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg",
+        "image_alt": "The Visit of the Queen of Sheba to King Solomon by Edward Poynter",
+        "image_credit": "Edward Poynter, 1890",
+    },
+    "2 Kings": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Kings",
+        "desc": "The divided kingdom's decline, the prophet Elisha, and the fall of Israel and Judah.",
+    },
+    "1 Chronicles": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Chronicles",
+        "desc": "Israel's history retold from Adam to David, with emphasis on worship and the Temple.",
+    },
+    "2 Chronicles": {
+        "url": "https://en.wikipedia.org/wiki/Books_of_Chronicles",
+        "desc": "From Solomon's Temple to the Babylonian exile and Cyrus' decree of return.",
+    },
+    "Ezra": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Ezra",
+        "desc": "The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.",
+    },
+    "Nehemiah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Nehemiah",
+        "desc": "Nehemiah rebuilds the walls of Jerusalem and restores the covenant community.",
+    },
+    "Esther": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Esther",
+        "desc": "Queen Esther saves the Jewish people from destruction in the Persian Empire.",
+    },
+    "Job": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Job",
+        "desc": "The great poem of innocent suffering — Job's trials, his friends' debate, and God's answer from the whirlwind.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/L%C3%A9on_Bonnat_-_Job.jpg/458px-L%C3%A9on_Bonnat_-_Job.jpg",
+        "image_alt": "Job by Léon Bonnat",
+        "image_credit": "Léon Bonnat, 1880",
+    },
+    "Psalms": {
+        "url": "https://en.wikipedia.org/wiki/Psalms",
+        "desc": "The hymnbook of ancient Israel — 150 poems of praise, lament, thanksgiving, and wisdom.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg/465px-King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg",
+        "image_alt": "King David Playing the Harp by Gerard van Honthorst",
+        "image_credit": "Gerard van Honthorst, 1622",
+    },
+    "Proverbs": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Proverbs",
+        "desc": "Wisdom literature attributed to Solomon — practical counsel for righteous living.",
+    },
+    "Ecclesiastes": {
+        "url": "https://en.wikipedia.org/wiki/Ecclesiastes",
+        "desc": "'Vanity of vanities' — the Preacher's meditation on meaning, time, and the fear of God.",
+    },
+    "Song of Solomon": {
+        "url": "https://en.wikipedia.org/wiki/Song_of_Songs",
+        "desc": "A lyric poem celebrating love between bride and bridegroom, read as allegory of divine love.",
+    },
+    "Isaiah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Isaiah",
+        "desc": "The greatest of the prophets — visions of judgment, the Suffering Servant, and a new creation.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Isaiah_%28Michelangelo%29.jpg/411px-Isaiah_%28Michelangelo%29.jpg",
+        "image_alt": "The Prophet Isaiah by Michelangelo, Sistine Chapel",
+        "image_credit": "Michelangelo, 1509",
+    },
+    "Jeremiah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Jeremiah",
+        "desc": "The weeping prophet — warnings of exile, the promise of a new covenant, and Jerusalem's fall.",
+    },
+    "Lamentations": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Lamentations",
+        "desc": "Five poems mourning the destruction of Jerusalem and the Temple in 586 BC.",
+    },
+    "Ezekiel": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Ezekiel",
+        "desc": "Visions from Babylonian exile — the chariot throne, the valley of dry bones, and the restored Temple.",
+    },
+    "Daniel": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Daniel",
+        "desc": "Stories of faithfulness in exile and apocalyptic visions of kingdoms and the Son of Man.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg/640px-Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg",
+        "image_alt": "Daniel in the Lions' Den by Peter Paul Rubens",
+        "image_credit": "Peter Paul Rubens, c. 1615",
+    },
+    "Hosea": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Hosea",
+        "desc": "God's faithful love portrayed through Hosea's marriage to the unfaithful Gomer.",
+    },
+    "Joel": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Joel",
+        "desc": "A plague of locusts as prelude to the Day of the Lord, and the promise of the Spirit poured out.",
+    },
+    "Amos": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Amos",
+        "desc": "A shepherd-prophet denounces social injustice: 'Let justice roll down like waters.'",
+    },
+    "Obadiah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Obadiah",
+        "desc": "The shortest book in the Old Testament — a prophecy against Edom.",
+    },
+    "Jonah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Jonah",
+        "desc": "The reluctant prophet, the great fish, and God's mercy extending even to Nineveh.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg/640px-Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg",
+        "image_alt": "Jonah and the Whale by Pieter Lastman",
+        "image_credit": "Pieter Lastman, 1621",
+    },
+    "Micah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Micah",
+        "desc": "Justice, mercy, and humility — 'What doth the Lord require of thee?'",
+    },
+    "Nahum": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Nahum",
+        "desc": "A prophecy of the fall of Nineveh, the great Assyrian capital.",
+    },
+    "Habakkuk": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Habakkuk",
+        "desc": "A prophet's dialogue with God about evil and justice — 'the just shall live by faith.'",
+    },
+    "Zephaniah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Zephaniah",
+        "desc": "The Day of the Lord draws near — judgment and the promise of a humble remnant.",
+    },
+    "Haggai": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Haggai",
+        "desc": "A call to rebuild the Temple after the return from Babylonian exile.",
+    },
+    "Zechariah": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Zechariah",
+        "desc": "Night visions and messianic prophecies accompanying the rebuilding of the Temple.",
+    },
+    "Malachi": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Malachi",
+        "desc": "The last Old Testament prophet — a call to faithfulness before the messenger of the covenant.",
+    },
+    "Matthew": {
+        "url": "https://en.wikipedia.org/wiki/Gospel_of_Matthew",
+        "desc": "The Gospel for the Jewish audience — Jesus as the promised Messiah, Son of David.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sermon_on_the_Mount_Fra_Angelico.jpg/640px-Sermon_on_the_Mount_Fra_Angelico.jpg",
+        "image_alt": "Sermon on the Mount by Fra Angelico",
+        "image_credit": "Fra Angelico, c. 1440",
+    },
+    "Mark": {
+        "url": "https://en.wikipedia.org/wiki/Gospel_of_Mark",
+        "desc": "The earliest Gospel — a swift, vivid portrait of Jesus as the suffering servant.",
+    },
+    "Luke": {
+        "url": "https://en.wikipedia.org/wiki/Gospel_of_Luke",
+        "desc": "The physician's careful account — Jesus as the compassionate saviour of all people.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg/640px-Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg",
+        "image_alt": "Nativity, Birth of Jesus by Giotto",
+        "image_credit": "Giotto, c. 1305",
+    },
+    "John": {
+        "url": "https://en.wikipedia.org/wiki/Gospel_of_John",
+        "desc": "'In the beginning was the Word' — the theological Gospel of signs and discourses.",
+    },
+    "Acts": {
+        "url": "https://en.wikipedia.org/wiki/Acts_of_the_Apostles",
+        "desc": "The birth of the Church — from Pentecost in Jerusalem to Paul's arrival in Rome.",
+    },
+    "Romans": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Romans",
+        "desc": "Paul's magisterial exposition of the Gospel — justification by faith, life in the Spirit.",
+    },
+    "1 Corinthians": {
+        "url": "https://en.wikipedia.org/wiki/First_Epistle_to_the_Corinthians",
+        "desc": "Paul addresses divisions, ethics, worship, and the resurrection in the Corinthian church.",
+    },
+    "2 Corinthians": {
+        "url": "https://en.wikipedia.org/wiki/Second_Epistle_to_the_Corinthians",
+        "desc": "Paul's most personal letter — weakness, suffering, and the treasure in earthen vessels.",
+    },
+    "Galatians": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Galatians",
+        "desc": "Freedom in Christ — Paul's passionate defence of justification by faith alone.",
+    },
+    "Ephesians": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Ephesians",
+        "desc": "The cosmic scope of God's plan — the Church as the body of Christ, the armour of God.",
+    },
+    "Philippians": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Philippians",
+        "desc": "A letter of joy from prison — 'Rejoice in the Lord always.'",
+    },
+    "Colossians": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Colossians",
+        "desc": "The supremacy of Christ — 'in him all things hold together.'",
+    },
+    "1 Thessalonians": {
+        "url": "https://en.wikipedia.org/wiki/First_Epistle_to_the_Thessalonians",
+        "desc": "Encouragement to a young church and teaching on the Lord's return.",
+    },
+    "2 Thessalonians": {
+        "url": "https://en.wikipedia.org/wiki/Second_Epistle_to_the_Thessalonians",
+        "desc": "Further teaching on the Day of the Lord and a call to steadfastness.",
+    },
+    "1 Timothy": {
+        "url": "https://en.wikipedia.org/wiki/First_Epistle_to_Timothy",
+        "desc": "Paul's pastoral counsel to young Timothy on church order and sound doctrine.",
+    },
+    "2 Timothy": {
+        "url": "https://en.wikipedia.org/wiki/Second_Epistle_to_Timothy",
+        "desc": "Paul's final letter — 'I have fought the good fight, I have finished the course.'",
+    },
+    "Titus": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_Titus",
+        "desc": "Instructions for church leadership and godly living on the island of Crete.",
+    },
+    "Philemon": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_Philemon",
+        "desc": "A personal appeal for the runaway slave Onesimus — brotherhood in Christ.",
+    },
+    "Hebrews": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_to_the_Hebrews",
+        "desc": "Christ as the great high priest — the superiority of the new covenant over the old.",
+    },
+    "James": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_of_James",
+        "desc": "Practical wisdom — 'faith without works is dead.'",
+    },
+    "1 Peter": {
+        "url": "https://en.wikipedia.org/wiki/First_Epistle_of_Peter",
+        "desc": "Hope in suffering — 'a living hope through the resurrection of Jesus Christ.'",
+    },
+    "2 Peter": {
+        "url": "https://en.wikipedia.org/wiki/Second_Epistle_of_Peter",
+        "desc": "Warnings against false teachers and the certainty of the Lord's return.",
+    },
+    "1 John": {
+        "url": "https://en.wikipedia.org/wiki/First_Epistle_of_John",
+        "desc": "'God is light' and 'God is love' — tests of true fellowship with God.",
+    },
+    "2 John": {
+        "url": "https://en.wikipedia.org/wiki/Second_Epistle_of_John",
+        "desc": "A brief letter on truth, love, and discernment against deceivers.",
+    },
+    "3 John": {
+        "url": "https://en.wikipedia.org/wiki/Third_Epistle_of_John",
+        "desc": "A personal note commending hospitality and warning against Diotrephes.",
+    },
+    "Jude": {
+        "url": "https://en.wikipedia.org/wiki/Epistle_of_Jude",
+        "desc": "An urgent appeal to 'contend for the faith' against ungodly intruders.",
+    },
+    "Revelation": {
+        "url": "https://en.wikipedia.org/wiki/Book_of_Revelation",
+        "desc": "The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg/456px-Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg",
+        "image_alt": "The Apocalypse, Flemish illuminated manuscript",
+        "image_credit": "Flemish manuscript, c. 1400",
+    },
+}
+
+# ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
@@ -382,9 +692,8 @@ body {
 }
 .content::before {
   content: '';
-  position: fixed;
-  top: 8px; right: 8px; bottom: 8px;
-  left: calc(var(--sidebar-w) + 8px);
+  position: absolute;
+  top: 8px; right: 8px; bottom: 8px; left: 8px;
   border: 2px solid var(--gold-faint);
   pointer-events: none;
   z-index: 50;
@@ -670,6 +979,13 @@ main {
   padding-top: .06em;
   color: var(--wine);
   font-weight: 700;
+  position: relative;
+}
+.drop-cap .verse-num {
+  position: absolute;
+  top: .08em;
+  left: -.4em;
+  font-size: .18em;
 }
 
 /* ── Chapter nav ───────────────────────────────────────────────────────── */
@@ -692,6 +1008,136 @@ main {
 }
 .chapter-nav a:hover { color: var(--gold); }
 .chapter-nav .placeholder { width: 8rem; }
+
+/* ── Book info panel (with Wikipedia link, description, image) ────────── */
+
+.book-info {
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+.book-info-desc {
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  line-height: 1.7;
+  margin-bottom: .6rem;
+}
+.book-info-link {
+  display: inline-block;
+  font-size: .68rem;
+  color: var(--wine);
+  text-decoration: none;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold-faint);
+  padding: .3rem .8rem;
+  transition: all .25s;
+}
+.book-info-link:hover {
+  background: var(--wine);
+  color: var(--white);
+  border-color: var(--wine);
+}
+.book-info-link::after {
+  content: ' \\2197';
+}
+.book-image-wrap {
+  max-width: 36rem;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+.book-image {
+  max-width: 100%;
+  max-height: 320px;
+  border: 2px solid var(--gold-faint);
+  box-shadow: 0 6px 24px var(--shadow);
+  object-fit: contain;
+}
+.book-image-credit {
+  font-size: .6rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin-top: .4rem;
+  letter-spacing: .03em;
+}
+
+/* ── Reading progress bar ─────────────────────────────────────────────── */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  height: 3px;
+  z-index: 90;
+  background: transparent;
+}
+.reading-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  transition: width .1s linear;
+}
+
+/* ── Scroll to top ────────────────────────────────────────────────────── */
+
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--wine);
+  color: var(--white);
+  border: 1px solid var(--gold-faint);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+  z-index: 80;
+  font-family: inherit;
+}
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.scroll-top:hover {
+  background: var(--gold);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* ── Verse hover highlight ────────────────────────────────────────────── */
+
+.verse-text p {
+  transition: background .2s;
+  padding: .08em .3em;
+  margin-left: -.3em;
+  margin-right: -.3em;
+  border-radius: 2px;
+}
+.verse-text p:hover {
+  background: rgba(184, 134, 11, .06);
+}
+
+/* ── Book card descriptions ───────────────────────────────────────────── */
+
+.book-card .book-desc {
+  font-size: .62rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin-top: .2rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
 /* ── Footer ────────────────────────────────────────────────────────────── */
 
@@ -736,6 +1182,9 @@ footer {
   .book-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
   .verse-text { text-align: left; }
   .version-grid { grid-template-columns: 1fr; padding: 0 1rem 3rem; }
+  .reading-progress { left: 0; }
+  .scroll-top { bottom: 1rem; right: 1rem; width: 2rem; height: 2rem; font-size: .8rem; }
+  .book-image { max-height: 220px; }
 }
 """
 
@@ -1421,6 +1870,44 @@ MASONIC_CSS = r"""
 .masonic-home-card::after {
   background: #c9a84c;
 }
+
+/* Masonic overrides for new features */
+.masonic-theme .book-info-desc {
+  color: #8899b0;
+}
+.masonic-theme .book-info-link {
+  color: #c9a84c;
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .book-info-link:hover {
+  background: #c9a84c;
+  color: #0a1628;
+  border-color: #c9a84c;
+}
+.masonic-theme .book-image {
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .book-image-credit {
+  color: #6b7a90;
+}
+.masonic-theme .book-card .book-desc {
+  color: #6b7a90;
+}
+.masonic-theme .reading-progress-bar {
+  background: linear-gradient(90deg, #c9a84c, #dbbe5e);
+}
+.masonic-theme .scroll-top {
+  background: #111e34;
+  color: #c9a84c;
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .scroll-top:hover {
+  background: #c9a84c;
+  color: #0a1628;
+}
+.masonic-theme .verse-text p:hover {
+  background: rgba(201, 168, 76, .04);
+}
 """
 
 # ---------------------------------------------------------------------------
@@ -1443,6 +1930,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });
@@ -1578,6 +2084,7 @@ def page_shell(title, body_content, sidebar, depth=0, theme=None):
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body{body_cls}>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 {sidebar}
 <div class="content">
@@ -1585,6 +2092,7 @@ def page_shell(title, body_content, sidebar, depth=0, theme=None):
 {masonic_footer}
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>{SIDEBAR_JS}</script>
 </body>
 </html>"""
@@ -1619,6 +2127,18 @@ def generate_home():
     <p class="subtitle">Select a Translation</p>
   </div>
   <div class="home-ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>
+  <div class="book-image-wrap">
+    <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg/412px-Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg" alt="The Gutenberg Bible, the first major book printed with movable type, c. 1455" loading="lazy">
+    <div class="book-image-credit">The Gutenberg Bible &middot; New York Public Library &middot; c. 1455</div>
+  </div>
+  <div class="book-info" style="max-width:42rem;margin-bottom:2rem">
+    <div class="book-info-desc">
+      Seven public-domain translations of the Holy Scriptures, spanning from the
+      eighteenth to the twentieth century, presented here for study, devotion, and
+      comparison.
+    </div>
+    <a class="book-info-link" href="https://en.wikipedia.org/wiki/Bible" target="_blank" rel="noopener">The Bible on Wikipedia</a>
+  </div>
   <div class="version-grid">{cards}
   </div>
   <footer>
@@ -1652,10 +2172,12 @@ def generate_version_index(ver, books):
             continue
         n_ch = len(books[name]["chapters"])
         w = "chapter" if n_ch == 1 else "chapters"
+        wiki = BOOK_WIKI.get(name, {})
+        desc_html = f'\n        <div class="book-desc">{esc(wiki["desc"])}</div>' if wiki.get("desc") else ""
         ot_cards += f"""
       <a class="book-card" href="{slug(name)}/index.html">
         <div class="book-name">{esc(name)}</div>
-        <div class="book-meta">{n_ch} {w}</div>
+        <div class="book-meta">{n_ch} {w}</div>{desc_html}
       </a>"""
 
     nt_cards = ""
@@ -1664,10 +2186,12 @@ def generate_version_index(ver, books):
             continue
         n_ch = len(books[name]["chapters"])
         w = "chapter" if n_ch == 1 else "chapters"
+        wiki = BOOK_WIKI.get(name, {})
+        desc_html = f'\n        <div class="book-desc">{esc(wiki["desc"])}</div>' if wiki.get("desc") else ""
         nt_cards += f"""
       <a class="book-card" href="{slug(name)}/index.html">
         <div class="book-name">{esc(name)}</div>
-        <div class="book-meta">{n_ch} {w}</div>
+        <div class="book-meta">{n_ch} {w}</div>{desc_html}
       </a>"""
 
     sb = sidebar_html(ver, VERSIONS, books, depth=0)
@@ -1729,6 +2253,25 @@ def generate_book_page(ver, books, book_name):
     header_sym = f'<div class="masonic-header-symbol">{SVG_ALL_SEEING_EYE}</div>' if masonic else ''
     divider = f'<div>{SVG_DIVIDER}</div>' if masonic else '<div class="ornament">&mdash; &#x2726; &mdash;</div>'
 
+    # Book info from BOOK_WIKI
+    wiki = BOOK_WIKI.get(book_name, {})
+    info_html = ""
+    if wiki:
+        desc = wiki.get("desc", "")
+        url = wiki.get("url", "")
+        desc_part = f'<div class="book-info-desc">{esc(desc)}</div>' if desc else ""
+        link_part = f'<a class="book-info-link" href="{url}" target="_blank" rel="noopener">Read on Wikipedia</a>' if url else ""
+        info_html = f'<div class="book-info">{desc_part}{link_part}</div>'
+
+    image_html = ""
+    if wiki.get("image"):
+        credit = wiki.get("image_credit", "")
+        credit_part = f'<div class="book-image-credit">{esc(credit)}</div>' if credit else ""
+        image_html = f'''<div class="book-image-wrap">
+      <img class="book-image" src="{wiki["image"]}" alt="{esc(wiki.get("image_alt", book_name))}" loading="lazy">
+      {credit_part}
+    </div>'''
+
     body = f"""
   <div class="content-header">
     {header_sym}
@@ -1737,6 +2280,8 @@ def generate_book_page(ver, books, book_name):
   </div>
   {divider}
   <main>
+    {image_html}
+    {info_html}
     <div class="book-heading">
       <h2>{esc(book_name)}</h2>
       <div class="chapter-count">{n_ch} {w}</div>
@@ -1814,7 +2359,7 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
         if i == 0 and text:
             first_letter = text[0]
             rest = text[1:]
-            verses_html += f'<p{hl_cls}><span class="verse-num">{vn}</span><span class="drop-cap">{first_letter}</span>{rest}</p>\n'
+            verses_html += f'<p{hl_cls}><span class="drop-cap"><span class="verse-num">{vn}</span>{first_letter}</span>{rest}</p>\n'
         else:
             verses_html += f'<p{hl_cls}><span class="verse-num">{vn}</span>{text}</p>\n'
 
@@ -1846,6 +2391,25 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
     chapter_sym = f'<div class="masonic-chapter-symbol">{SVG_ALL_SEEING_EYE}</div>' if masonic else ''
     divider = f'<div>{SVG_DIVIDER}</div>' if masonic else '<div class="ornament">&mdash; &#x2726; &mdash;</div>'
 
+    # Show book image and description on first chapter only
+    wiki = BOOK_WIKI.get(book_name, {})
+    first_ch_extras = ""
+    if chapter_index == 0 and wiki:
+        parts = []
+        if wiki.get("image"):
+            credit = wiki.get("image_credit", "")
+            credit_part = f'<div class="book-image-credit">{esc(credit)}</div>' if credit else ""
+            parts.append(f'''<div class="book-image-wrap">
+        <img class="book-image" src="{wiki["image"]}" alt="{esc(wiki.get("image_alt", book_name))}" loading="lazy">
+        {credit_part}
+      </div>''')
+        if wiki.get("desc"):
+            link_part = ""
+            if wiki.get("url"):
+                link_part = f' <a class="book-info-link" href="{wiki["url"]}" target="_blank" rel="noopener">Wikipedia</a>'
+            parts.append(f'<div class="book-info"><div class="book-info-desc">{esc(wiki["desc"])}</div>{link_part}</div>')
+        first_ch_extras = "\n    ".join(parts)
+
     body = f"""
   <div class="content-header">
     <h1>{esc(book_name)}</h1>
@@ -1858,6 +2422,7 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
       <div class="ch-label">Chapter {ch_num}</div>
       <h2>{esc(book_name)}</h2>
     </div>
+    {first_ch_extras}
     <div class="verse-text">
       {verses_html}
     </div>

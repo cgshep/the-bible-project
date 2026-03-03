@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the word of Samuel came to all Israel. Now Israel went out against the Philistines to battle, and encamped beside Eben-ezer: and the Philistines encamped in Aphek.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the word of Samuel came to all Israel. Now Israel went out against the Philistines to battle, and encamped beside Eben-ezer: and the Philistines encamped in Aphek.</p>
 <p><span class="verse-num">2</span>And the Philistines put themselves in array against Israel: and when they joined battle, Israel was smitten before the Philistines: and they slew of the army in the field about four thousand men.</p>
 <p><span class="verse-num">3</span>And when the people had come into the camp, the elders of Israel said, Why hath the LORD smitten us to-day before the Philistines? Let us bring the ark of the covenant of the LORD out of Shiloh to us, that when it cometh among us, it may save us from the hand of our enemies.</p>
 <p><span class="verse-num">4</span>So the people sent to Shiloh, that they might bring from thence the ark of the covenant of the LORD of hosts, who dwelleth [between] the cherubim: and the two sons of Eli, Hophni and Phinehas, [were] there with the ark of the covenant of God.</p>
@@ -321,6 +323,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

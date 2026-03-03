@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -280,8 +281,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Leviticus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass on the eighth day, [that] Moses called Aaron and his sons, and the elders of Israel;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass on the eighth day, [that] Moses called Aaron and his sons, and the elders of Israel;</p>
 <p><span class="verse-num">2</span>And he said to Aaron, Take thee a young calf for a sin-offering, and a ram for a burnt-offering, without blemish, and offer [them] before the LORD.</p>
 <p><span class="verse-num">3</span>And to the children of Israel thou shalt speak, saying, Take ye a kid of the goats for a sin-offering; and a calf and a lamb, [both] of the first year, without blemish, for a burnt-offering;</p>
 <p><span class="verse-num">4</span>Also a bullock and a ram for peace-offerings, to sacrifice before the LORD; and a meat-offering mingled with oil: for to-day the LORD will appear to you.</p>
@@ -319,6 +321,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -335,6 +338,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

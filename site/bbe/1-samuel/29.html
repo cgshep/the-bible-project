@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 29</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow the Philistines got all their army together at Aphek: and the Israelites put their forces in position by the fountain in Jezreel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow the Philistines got all their army together at Aphek: and the Israelites put their forces in position by the fountain in Jezreel.</p>
 <p><span class="verse-num">2</span>And the lords of the Philistines went on with their hundreds and their thousands, and David and his men came after with Achish.</p>
 <p><span class="verse-num">3</span>Then the rulers of the Philistines said, What are these Hebrews doing here? And Achish said to the rulers of the Philistines, Is this not David, the servant of Saul the king of Israel, who has been with me for a year or two, and I have never seen any wrong in him from the time when he came to me till now?</p>
 <p><span class="verse-num">4</span>But the rulers of the Philistines were angry with him, and said to him, Make the man go back to the place you have given him; do not let him go down with us to the fight, or he may be turned against us and be false to us: for how will this man make peace with his lord? will it not be with the heads of these men?</p>
@@ -310,6 +312,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -326,6 +329,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

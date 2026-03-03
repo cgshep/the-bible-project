@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I heard a great voice out of the sanctuary saying to the seven messengers, `Go away, and pour out the vials of the wrath of God to the earth;&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I heard a great voice out of the sanctuary saying to the seven messengers, `Go away, and pour out the vials of the wrath of God to the earth;&#x27;</p>
 <p><span class="verse-num">2</span>and the first did go away, and did pour out his vial upon the land, and there came a sore--bad and grievous--to men, those having the mark of the beast, and those bowing to his image.</p>
 <p><span class="verse-num">3</span>And the second messenger did pour out his vial to the sea, and there came blood as of &lt;FI&gt;one&lt;Fi&gt; dead, and every living soul died in the sea.</p>
 <p><span class="verse-num">4</span>And the third messenger did pour out his vial to the rivers, and to the fountains of the waters, and there came blood,</p>
@@ -311,6 +313,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -327,6 +330,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

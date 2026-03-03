@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 3</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd to the angel of the church in Sardis say: These things says he who has the seven Spirits of God and the seven stars: I have knowledge of your works, that you seem to be living but are dead.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd to the angel of the church in Sardis say: These things says he who has the seven Spirits of God and the seven stars: I have knowledge of your works, that you seem to be living but are dead.</p>
 <p><span class="verse-num">2</span>Be on the watch, and make strong the rest of the things which are near to death; because as judged by me your works have not come up to God&#x27;s measure.</p>
 <p><span class="verse-num">3</span>Keep in mind, then, the teaching which was given to you, and be ruled by it and have a change of heart. If then you do not keep watch, I will come like a thief, and you will have no knowledge of the hour when I will come on you.</p>
 <p><span class="verse-num">4</span>But you have some names in Sardis who have kept clean their robes; and as a reward they will go in white with me.</p>
@@ -312,6 +314,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -328,6 +331,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

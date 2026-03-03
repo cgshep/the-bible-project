@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Hosea</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>hen my desire was for the fate of my people to be changed and to make Israel well, then the sin of Ephraim was made clear, and the evil-doing of Samaria; for their ways are false, and the thief comes into the house, while the band of outlaws takes property by force in the streets.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>hen my desire was for the fate of my people to be changed and to make Israel well, then the sin of Ephraim was made clear, and the evil-doing of Samaria; for their ways are false, and the thief comes into the house, while the band of outlaws takes property by force in the streets.</p>
 <p><span class="verse-num">2</span>And they do not say to themselves that I keep in mind all their sin; now their evil acts come round them on every side; they are before my face.</p>
 <p><span class="verse-num">3</span>In their sin they make a king for themselves, and rulers in their deceit.</p>
 <p><span class="verse-num">4</span>They are all untrue; they are like a burning oven; the bread-maker does not make up the fire from the time when the paste is mixed till it is leavened.</p>
@@ -298,6 +300,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -314,6 +317,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 47</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he word of the Lord which came to Jeremiah the prophet about the Philistines, before Pharaoh&#x27;s attack on Gaza.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he word of the Lord which came to Jeremiah the prophet about the Philistines, before Pharaoh&#x27;s attack on Gaza.</p>
 <p><span class="verse-num">2</span>This is what the Lord has said: See, waters are coming up out of the north, and will become an overflowing stream, overflowing the land and everything in it, the town and those who are living in it; and men will give a cry, and all the people of the land will be crying out in pain.</p>
 <p><span class="verse-num">3</span>At the noise of the stamping of the feet of his war-horses, at the rushing of his carriages and the thunder of his wheels, fathers will give no thought to their children, because their hands are feeble;</p>
 <p><span class="verse-num">4</span>Because of the day which is coming with destruction on all the Philistines, cutting off from Tyre and Zidon the last of their helpers: for the Lord will send destruction on the Philistines, the rest of the sea-land of Caphtor.</p>
@@ -327,6 +329,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -343,6 +346,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 20</div>
       <h2>2 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow by chance there was present a good-for-nothing person named Sheba, the son of Bichri, a Benjamite: and he, sounding the horn, said, We have no part in David, or any interest in the son of Jesse: let every man go to his tent, O Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow by chance there was present a good-for-nothing person named Sheba, the son of Bichri, a Benjamite: and he, sounding the horn, said, We have no part in David, or any interest in the son of Jesse: let every man go to his tent, O Israel.</p>
 <p><span class="verse-num">2</span>So all the men of Israel, turning away from David, went after Sheba, the son of Bichri: but the men of Judah were true to their king, going with him from Jordan as far as Jerusalem.</p>
 <p><span class="verse-num">3</span>And David came to his house at Jerusalem: and the king took the ten women to whom he had given the care of the house, and had them shut up, and gave them the necessaries of life, but did not go near them. So they were shut up till the day of their death, living as widows.</p>
 <p><span class="verse-num">4</span>Then the king said to Amasa, Get all the men of Judah together, and in three days be here yourself.</p>
@@ -318,6 +320,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -334,6 +337,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

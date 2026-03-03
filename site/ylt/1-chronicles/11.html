@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -282,8 +283,9 @@
       <div class="ch-label">Chapter 11</div>
       <h2>1 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd gathered are all Israel unto David to Hebron, saying, `Lo, thy bone and thy flesh &lt;FI&gt;are&lt;Fi&gt; we;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd gathered are all Israel unto David to Hebron, saying, `Lo, thy bone and thy flesh &lt;FI&gt;are&lt;Fi&gt; we;</p>
 <p><span class="verse-num">2</span>even in time past, even in Saul&#x27;s being king, it is thou who art taking out and bringing in Israel, and Jehovah thy God saith to thee: Thou dost feed My people Israel, and thou art leader over My people Israel.&#x27;</p>
 <p><span class="verse-num">3</span>And all the elders of Israel come in unto the king to Hebron, and David maketh with them a covenant in Hebron before Jehovah, and they anoint David for king over Israel, according to the word of Jehovah by the hand of Samuel.</p>
 <p><span class="verse-num">4</span>And David goeth, and all Israel, to Jerusalem--it &lt;FI&gt;is&lt;Fi&gt; Jebus--and there the Jebusite, the inhabitants of the land.</p>
@@ -344,6 +346,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -360,6 +363,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

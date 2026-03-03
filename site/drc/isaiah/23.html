@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he burden of Tyre. Howl, ye ships of the sea, for the house is destroyed, from whence they were wont to come: from the land of Cethim it is revealed to them.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he burden of Tyre. Howl, ye ships of the sea, for the house is destroyed, from whence they were wont to come: from the land of Cethim it is revealed to them.</p>
 <p><span class="verse-num">2</span>Be silent, you that dwell in the island: the merchants of Sidon passing over the sea, have filled thee.</p>
 <p><span class="verse-num">3</span>The seed of the Nile in many waters, the harvest of the river is her revenue: and she is become the mart of the nations.</p>
 <p><span class="verse-num">4</span>Be thou ashamed, O Sidon: for the sea speaketh, even the strength of the sea, saying: I have not been in labour, nor have I brought forth, nor have I nourished up young men, nor brought up virgins.</p>
@@ -352,6 +354,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -368,6 +371,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 31</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>oe &lt;FI&gt;to&lt;Fi&gt; those going down to Egypt for help, And on horses lean, And trust on chariots, because many, And on horsemen, because very strong, And have not looked on the Holy One of Israel, And Jehovah have not sought.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>oe &lt;FI&gt;to&lt;Fi&gt; those going down to Egypt for help, And on horses lean, And trust on chariots, because many, And on horsemen, because very strong, And have not looked on the Holy One of Israel, And Jehovah have not sought.</p>
 <p><span class="verse-num">2</span>And He also &lt;FI&gt;is&lt;Fi&gt; wise, and bringeth in evil, And His words He hath not turned aside, And He hath risen against a house of evil doers, And against the help of workers of iniquity.</p>
 <p><span class="verse-num">3</span>And the Egyptians &lt;FI&gt;are men&lt;Fi&gt; , and not God, And their horses &lt;FI&gt;are&lt;Fi&gt; flesh, and not spirit, And Jehovah stretcheth out His hand, And stumbled hath the helper, And fallen hath the helped one, And together all of them are consumed.</p>
 <p><span class="verse-num">4</span>For thus said Jehovah unto me: `As growl doth the lion and the young lion over his prey, Called against whom is a multitude of shepherds, From their voice he is not affrighted, And from their noise he is not humbled; So come down doth Jehovah of Hosts To war on mount Zion, and on her height.</p>
@@ -343,6 +345,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -359,6 +362,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

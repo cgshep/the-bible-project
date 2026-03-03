@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>Esther</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow when Mardochai had heard these things, he rent his garments, and put on sackcloth, strewing ashes on his head and he cried with a loud voice in the street in the midst of the city, shewing the anguish of his mind.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow when Mardochai had heard these things, he rent his garments, and put on sackcloth, strewing ashes on his head and he cried with a loud voice in the street in the midst of the city, shewing the anguish of his mind.</p>
 <p><span class="verse-num">2</span>And he came lamenting in this manner even to the gate of the palace: for no one clothed with sackcloth might enter the king&#x27;s court.</p>
 <p><span class="verse-num">3</span>And in all provinces, towns, and places, to which the king&#x27;s cruel edict was come, there was great mourning among the Jews, with fasting, wailing, and weeping, many using sackcloth and ashes for their bed.</p>
 <p><span class="verse-num">4</span>Then Esther&#x27;s maids and her eunuchs went in, and told her. And when she heard it she was in a consternation and she sent a garment, to clothe him, and to take away the sackcloth: but he would not receive it.</p>
@@ -301,6 +303,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -317,6 +320,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

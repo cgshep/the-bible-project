@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -266,8 +267,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Hebrews</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">Christ as the great high priest — the superiority of the new covenant over the old.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Epistle_to_the_Hebrews" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n times past the word of God came to our fathers through the prophets, in different parts and in different ways;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n times past the word of God came to our fathers through the prophets, in different parts and in different ways;</p>
 <p><span class="verse-num">2</span>But now, at the end of these days, it has come to us through his Son, to whom he has given all things for a heritage, and through whom he made the order of the generations;</p>
 <p><span class="verse-num">3</span>Who, being the outshining of his glory, the true image of his substance, supporting all things by the word of his power, having given himself as an offering making clean from sins, took his seat at the right hand of God in heaven;</p>
 <p><span class="verse-num">4</span>Having become by so much better than the angels, as the name which is his heritage is more noble than theirs.</p>
@@ -295,6 +297,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -311,6 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he word that hath been unto Jeremiah from Jehovah, in the king Zedekiah&#x27;s sending unto him Pashhur son of Malchiah, and Zephaniah son of Maaseiah the priest, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he word that hath been unto Jeremiah from Jehovah, in the king Zedekiah&#x27;s sending unto him Pashhur son of Malchiah, and Zephaniah son of Maaseiah the priest, saying,</p>
 <p><span class="verse-num">2</span>`Inquire, we pray thee, for us at Jehovah, for Nebuchadrezzar king of Babylon hath fought against us; perhaps Jehovah doth deal with us according to all His wonders, and doth cause him to go up from off us.&#x27;</p>
 <p><span class="verse-num">3</span>And Jeremiah saith unto them, `Thus do ye say unto Zedekiah,</p>
 <p><span class="verse-num">4</span>Thus said Jehovah, God of Israel: Lo, I am turning round the weapons of battle That &lt;FI&gt;are&lt;Fi&gt; in your hand, With which ye do fight the king of Babylon, And the Chaldeans, who are laying siege against you, At the outside of the wall, And I have gathered them into the midst of this city,</p>
@@ -334,6 +336,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -350,6 +353,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

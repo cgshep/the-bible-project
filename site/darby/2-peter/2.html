@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -256,8 +257,9 @@
       <div class="ch-label">Chapter 2</div>
       <h2>2 Peter</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>ut there were false prophets also among the people, as there shall be also among you false teachers, who shall bring in by the bye destructive heresies, and deny the master that bought them, bringing upon themselves swift destruction;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>ut there were false prophets also among the people, as there shall be also among you false teachers, who shall bring in by the bye destructive heresies, and deny the master that bought them, bringing upon themselves swift destruction;</p>
 <p><span class="verse-num">2</span>and many shall follow their dissolute ways, through whom the way of the truth shall be blasphemed.</p>
 <p><span class="verse-num">3</span>And through covetousness, with well-turned words, will they make merchandise of you: for whom judgment of old is not idle, and their destruction slumbers not.</p>
 <p><span class="verse-num">4</span>For ifGod spared not [the] angels who had sinned, but having cast them down to the deepest pit of gloom has delivered them to chains of darkness [to be] kept for judgment;</p>
@@ -293,6 +295,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -309,6 +312,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

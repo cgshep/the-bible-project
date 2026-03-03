@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -260,8 +261,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Micah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>oe is me, for I am become as one that gleaneth in autumn the grapes of the vintage: there is no cluster to eat, my soul desired the first ripe figs.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>oe is me, for I am become as one that gleaneth in autumn the grapes of the vintage: there is no cluster to eat, my soul desired the first ripe figs.</p>
 <p><span class="verse-num">2</span>The holy man is perished out of the earth, and there is none upright among men: they all lie in wait for blood, every one hunteth his brother to death.</p>
 <p><span class="verse-num">3</span>The evil of their hands they call good: the prince requireth, and the judge is for giving: and the great man hath uttered the desire of his soul, and they have troubled it.</p>
 <p><span class="verse-num">4</span>He that is best among them, is as a brier, and he that is righteous, as the thorn of the hedge. The day of thy inspection, thy visitation cometh: now shall be their destruction.</p>
@@ -295,6 +297,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -311,6 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

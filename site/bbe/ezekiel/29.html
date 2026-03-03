@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 29</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the tenth year, in the tenth month, on the twelfth day of the month, the word of the Lord came to me, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the tenth year, in the tenth month, on the twelfth day of the month, the word of the Lord came to me, saying,</p>
 <p><span class="verse-num">2</span>Son of man, let your face be turned against Pharaoh, king of Egypt, and be a prophet against him and against all Egypt:</p>
 <p><span class="verse-num">3</span>Say to them, These are the words of the Lord: See, I am against you, Pharaoh, king of Egypt, the great river-beast stretched out among his Nile streams, who has said, The Nile is mine, and I have made it for myself.</p>
 <p><span class="verse-num">4</span>And I will put hooks in your mouth, and the fish of your streams will be hanging from your skin; and I will make you come up out of your streams, with all the fish of your streams hanging from your skin.</p>
@@ -337,6 +339,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -353,6 +356,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

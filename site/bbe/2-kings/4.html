@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow a certain woman, the wife of one of the sons of the prophets, came crying to Elisha and said, Your servant my husband is dead; and to your knowledge he was a worshipper of the Lord; but now, the creditor has come to take my two children as servants in payment of his debt.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow a certain woman, the wife of one of the sons of the prophets, came crying to Elisha and said, Your servant my husband is dead; and to your knowledge he was a worshipper of the Lord; but now, the creditor has come to take my two children as servants in payment of his debt.</p>
 <p><span class="verse-num">2</span>Then Elisha said to her, What am I to do for you? say now, what have you in the house? And she said, Your servant has nothing in the house but a pot of oil.</p>
 <p><span class="verse-num">3</span>Then he said, Go out to all your neighbours and get vessels, a very great number of them.</p>
 <p><span class="verse-num">4</span>Then go in, and, shutting the door on yourself and your sons, put oil into all these vessels, putting on one side the full ones.</p>
@@ -337,6 +339,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -353,6 +356,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

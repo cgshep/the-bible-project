@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -403,8 +404,9 @@
       <div class="ch-label">Chapter 57</div>
       <h2>Psalms</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>o the Overseer. --`Destroy not.&#x27; --A secret treasure of David, in his fleeing from the face of Saul into a cave. Favour me, O God, favour me, For in Thee is my soul trusting, And in the shadow of Thy wings I trust, Until the calamities pass over.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>o the Overseer. --`Destroy not.&#x27; --A secret treasure of David, in his fleeing from the face of Saul into a cave. Favour me, O God, favour me, For in Thee is my soul trusting, And in the shadow of Thy wings I trust, Until the calamities pass over.</p>
 <p><span class="verse-num">2</span>I call to God Most High, To God &lt;FI&gt;who&lt;Fi&gt; is perfecting for me.</p>
 <p><span class="verse-num">3</span>He sendeth from the heaven, and saveth me, He reproached--who is panting after me. Selah. God sendeth forth His kindness and His truth.</p>
 <p><span class="verse-num">4</span>My soul &lt;FI&gt;is&lt;Fi&gt; in the midst of lions, I lie down &lt;FI&gt;among&lt;Fi&gt; flames--sons of men, Their teeth &lt;FI&gt;are&lt;Fi&gt; a spear and arrows, And their tongue a sharp sword.</p>
@@ -429,6 +431,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -445,6 +448,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>2 Samuel</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The reign of King David — triumphs, sins, and the promise of an everlasting dynasty.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Samuel" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow it came to pass after the death of Saul, when David had returned from the slaughter of the Amalekites, and David had abode two days in Ziklag;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow it came to pass after the death of Saul, when David had returned from the slaughter of the Amalekites, and David had abode two days in Ziklag;</p>
 <p><span class="verse-num">2</span>It came even to pass on the third day, that behold, a man came out of the camp from Saul with his clothes rent, and earth upon his head: and [so] it was, when he came to David, that he fell to the earth, and did obeisance.</p>
 <p><span class="verse-num">3</span>And David said to him, From whence comest thou? And he said to him, Out of the camp of Israel have I escaped.</p>
 <p><span class="verse-num">4</span>And David said to him, How went the matter? I pray thee, tell me. And he answered, That the people have fled from the battle, and many of the people also have fallen, and are dead; and Saul and Jonathan his son are dead also.</p>
@@ -319,6 +321,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -335,6 +338,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

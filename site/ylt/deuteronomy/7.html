@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">`</span>When Jehovah thy God doth bring thee in unto the land whither thou art going in to possess it, and He hath cast out many nations from thy presence, the Hittite, and the Girgashite, and the Amorite, and the Canaanite, and the Perizzite, and the Hivite, and the Jebusite, seven nations more numerous and mighty than thou,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>`</span>When Jehovah thy God doth bring thee in unto the land whither thou art going in to possess it, and He hath cast out many nations from thy presence, the Hittite, and the Girgashite, and the Amorite, and the Canaanite, and the Perizzite, and the Hivite, and the Jebusite, seven nations more numerous and mighty than thou,</p>
 <p><span class="verse-num">2</span>and Jehovah thy God hath given them before thee, and thou hast smitten them--thou dost utterly devote them--thou dost not make with them a covenant, nor dost thou favour them.</p>
 <p><span class="verse-num">3</span>`And thou dost not join in marriage with them; thy daughter thou dost not give to his son, and his daughter thou dost not take to thy son,</p>
 <p><span class="verse-num">4</span>for he doth turn aside thy son from after Me, and they have served other gods, and the anger of Jehovah hath burned against you, and hath destroyed thee hastily.</p>
@@ -328,6 +330,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -344,6 +347,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

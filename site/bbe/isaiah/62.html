@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 62</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>ecause of Zion I will not keep quiet, and because of Jerusalem I will take no rest, till her righteousness goes out like the shining of the sun, and her salvation like a burning light.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>ecause of Zion I will not keep quiet, and because of Jerusalem I will take no rest, till her righteousness goes out like the shining of the sun, and her salvation like a burning light.</p>
 <p><span class="verse-num">2</span>And the nations will see your righteousness, and all kings your glory: and you will have a new name, given by the mouth of the Lord.</p>
 <p><span class="verse-num">3</span>And you will be a fair crown in the hand of the Lord, and a king&#x27;s head-dress in the hand of your God.</p>
 <p><span class="verse-num">4</span>You will not now be named, She who is given up; and your land will no longer be named, The waste land: but you will have the name, My pleasure is in her, and your land will be named, Married: for the Lord has pleasure in you, and your land will be married.</p>
@@ -346,6 +348,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -362,6 +365,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

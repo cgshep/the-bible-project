@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Joshua was old, advanced in age, and Jehovah said to him, Thou art old, advanced in age, and there remaineth yet very much land to take possession of.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Joshua was old, advanced in age, and Jehovah said to him, Thou art old, advanced in age, and there remaineth yet very much land to take possession of.</p>
 <p><span class="verse-num">2</span>This is the land that yet remaineth: all the districts of the Philistines and all the Geshurites,</p>
 <p><span class="verse-num">3</span>from the Shihor, which [floweth] before Egypt, as far as the borders of Ekron northward, [and which] is counted to the Canaanite; five lordships of the Philistines: of Gazah, and of Ashdod, of Eshkalon, of Gath, and of Ekron; also the Avvites;</p>
 <p><span class="verse-num">4</span>in the south, the whole land of the Canaanites, and Mearah which [belongeth] to the Sidonians, unto Aphek, to the border of the Amorites;</p>
@@ -325,6 +327,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -341,6 +344,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

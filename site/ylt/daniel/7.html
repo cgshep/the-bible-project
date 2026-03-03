@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -265,8 +266,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Daniel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the first year of Belshazzar king of Babylon, Daniel hath seen a dream, and the visions of his head on his bed, then the dream he hath written, the chief of the things he hath said.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the first year of Belshazzar king of Babylon, Daniel hath seen a dream, and the visions of his head on his bed, then the dream he hath written, the chief of the things he hath said.</p>
 <p><span class="verse-num">2</span>Answered hath Daniel and said, `I was seeing in my vision by night, and lo, the four winds of the heavens are coming forth to the great sea;</p>
 <p><span class="verse-num">3</span>and four great beasts are coming up from the sea, diverse one from another.</p>
 <p><span class="verse-num">4</span>The first &lt;FI&gt;is&lt;Fi&gt; like a lion, and it hath an eagle&#x27;s wings. I was seeing till that its wings have been plucked, and it hath been lifted up from the earth, and on feet as a man it hath been caused to stand, and a heart of man is given to it.</p>
@@ -308,6 +310,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -324,6 +327,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

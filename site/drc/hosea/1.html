@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Hosea</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">God&#x27;s faithful love portrayed through Hosea&#x27;s marriage to the unfaithful Gomer.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Hosea" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he word of the Lord, that came to Hosea, the son of Beeri, in the days of Ozias, Joathan, Achaz, and Ezechias, kings of Juda, and in the days of Jeroboam, the son of Joas, king of Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he word of the Lord, that came to Hosea, the son of Beeri, in the days of Ozias, Joathan, Achaz, and Ezechias, kings of Juda, and in the days of Jeroboam, the son of Joas, king of Israel.</p>
 <p><span class="verse-num">2</span>The beginning of the Lord&#x27;s speaking by Hosea: and the Lord said to Hosea: Go, take thee a wife of fornications, and have of her children of fornications: for the land by fornication shall depart from the Lord.</p>
 <p><span class="verse-num">3</span>So he went and took Gomer, the daughter of Debelaim: and she conceived, and bore him a son.</p>
 <p><span class="verse-num">4</span>And the Lord said to him: Call his name Jezrahel: for yet a little while, and I will visit the blood of Jezrahel upon the house of Jehu, and I will cause to cease the kingdom of the house of Israel.</p>
@@ -293,6 +295,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -309,6 +312,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass in the days of Achaz the son of Joathan, the son of Ozias, king of Juda, that Rasin king of Syria and Phacee the son of Romelia king of Israel, came up to Jerusalem, to fight against it: but they could not prevail over it.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass in the days of Achaz the son of Joathan, the son of Ozias, king of Juda, that Rasin king of Syria and Phacee the son of Romelia king of Israel, came up to Jerusalem, to fight against it: but they could not prevail over it.</p>
 <p><span class="verse-num">2</span>And they told the house of David, saying: Syria hath rested upon Ephraim, and his heart was moved, and the heart of his people, as the trees of the woods are moved with the wind.</p>
 <p><span class="verse-num">3</span>And the Lord said to Isaiah: Go forth to meet Achaz, thou and Jasub thy son that is left, to the conduit of the upper pool in the way of the fuller&#x27;s field.</p>
 <p><span class="verse-num">4</span>And thou shalt say to him: See thou be quiet: fear not, and let not thy heart be afraid of the two tails of these firebrands, smoking with the wrath of the fury of Rasin king of Syria, and of the son of Romelia.</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

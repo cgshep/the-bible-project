@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 10</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hen Samuel took the bottle of oil, and put the oil on his head and gave him a kiss and said, Is not the Lord with the holy oil making you ruler over Israel, his people? and you will have authority over the people of the Lord, and you will make them safe from the hands of their attackers round about them, and this will be the sign for you:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hen Samuel took the bottle of oil, and put the oil on his head and gave him a kiss and said, Is not the Lord with the holy oil making you ruler over Israel, his people? and you will have authority over the people of the Lord, and you will make them safe from the hands of their attackers round about them, and this will be the sign for you:</p>
 <p><span class="verse-num">2</span>When you have gone away from me today, you will see two men by the resting-place of Rachel&#x27;s body, in the land of Benjamin at Zelzah; and they will say to you, The asses which you went in search of have come back, and now your father, caring no longer for the asses, is troubled about you, saying, What am I to do about my son?</p>
 <p><span class="verse-num">3</span>Then you are to go on from there, and when you come to the oak-tree of Tabor, you will see three men going up to God to Beth-el, one having with him three young goats and another three cakes of bread and another a skin full of wine:</p>
 <p><span class="verse-num">4</span>They will say, Peace be with you, and will give you two cakes of bread, which you are to take from them.</p>
@@ -326,6 +328,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -342,6 +345,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

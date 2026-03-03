@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 46</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hus saith the Lord God: The gate of the inner court that looketh toward the east, shall be shut the six days, on which work is done; but on the sabbath day it shall be opened, yea and on the day of the new moon it shall be opened.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hus saith the Lord God: The gate of the inner court that looketh toward the east, shall be shut the six days, on which work is done; but on the sabbath day it shall be opened, yea and on the day of the new moon it shall be opened.</p>
 <p><span class="verse-num">2</span>And the prince shall enter by the way of the porch of the gate from without, and he shall stand at the threshold of the gate: and the priests shall offer his holocaust, and his peace offerings: and he shall adore upon the threshold of the gate, and shall go out: but the gate shall not be shut till the evening.</p>
 <p><span class="verse-num">3</span>And the people of the land shall adore at the door of that gate before the Lord on the sabbaths, and on the new moons.</p>
 <p><span class="verse-num">4</span>And the holocaust that the prince shall offer to the Lord on the sabbath day, shall be six lambs without blemish, and a ram without blemish.</p>
@@ -340,6 +342,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -356,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

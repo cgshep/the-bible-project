@@ -408,3 +408,41 @@
 .masonic-home-card::after {
   background: #c9a84c;
 }
+
+/* Masonic overrides for new features */
+.masonic-theme .book-info-desc {
+  color: #8899b0;
+}
+.masonic-theme .book-info-link {
+  color: #c9a84c;
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .book-info-link:hover {
+  background: #c9a84c;
+  color: #0a1628;
+  border-color: #c9a84c;
+}
+.masonic-theme .book-image {
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .book-image-credit {
+  color: #6b7a90;
+}
+.masonic-theme .book-card .book-desc {
+  color: #6b7a90;
+}
+.masonic-theme .reading-progress-bar {
+  background: linear-gradient(90deg, #c9a84c, #dbbe5e);
+}
+.masonic-theme .scroll-top {
+  background: #111e34;
+  color: #c9a84c;
+  border-color: rgba(201, 168, 76, .3);
+}
+.masonic-theme .scroll-top:hover {
+  background: #c9a84c;
+  color: #0a1628;
+}
+.masonic-theme .verse-text p:hover {
+  background: rgba(201, 168, 76, .04);
+}

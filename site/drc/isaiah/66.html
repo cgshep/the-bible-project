@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 66</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hus saith the Lord: Heaven is my throne, and the earth my footstool: what is this house that you will build to me? and what is this place of my rest?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hus saith the Lord: Heaven is my throne, and the earth my footstool: what is this house that you will build to me? and what is this place of my rest?</p>
 <p><span class="verse-num">2</span>My hand made all these things, and all these things were made, saith the Lord. But to whom shall I have respect, but to him that is poor and little, and of a contrite spirit, and that trembleth at my words?</p>
 <p><span class="verse-num">3</span>He that sacrificeth an ox, is as if he slew a man: he that killeth a sheep in sacrifice, as if he should brain a dog: he that offereth an oblation, as if he should offer swine&#x27;s blood; he that remembereth incense, as if he should bless an idol. All these things have they chosen in their ways, and their soul is delighted in their abominations.</p>
 <p><span class="verse-num">4</span>Wherefore I also will choose their mockeries, and will bring upon them the things they feared: because I called, and there was none that would answer; I have spoken, and they heard not; and they have done evil in my eyes, and have chosen the things that displease me.</p>
@@ -358,6 +360,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -374,6 +377,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

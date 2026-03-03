@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -293,8 +294,9 @@
       <div class="ch-label">Chapter 28</div>
       <h2>Exodus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">`</span>And thou, bring thou near unto thee Aaron thy brother, and his sons with him, from the midst of the sons of Israel, for his being priest to Me, &lt;FI&gt;even&lt;Fi&gt; Aaron, Nadab, and Abihu, Eleazar and Ithamar, sons of Aaron;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>`</span>And thou, bring thou near unto thee Aaron thy brother, and his sons with him, from the midst of the sons of Israel, for his being priest to Me, &lt;FI&gt;even&lt;Fi&gt; Aaron, Nadab, and Abihu, Eleazar and Ithamar, sons of Aaron;</p>
 <p><span class="verse-num">2</span>and thou hast made holy garments for Aaron thy brother, for honour and for beauty;</p>
 <p><span class="verse-num">3</span>and thou--thou dost speak unto all the wise of heart, whom I have filled &lt;FI&gt;with&lt;Fi&gt; a spirit of wisdom, and they have made the garments of Aaron to sanctify him for his being priest to Me.</p>
 <p><span class="verse-num">4</span>`And these &lt;FI&gt;are&lt;Fi&gt; the garments which they make: a breastplate, and an ephod, and an upper robe, and an embroidered coat, a mitre, and a girdle; yea, they have made holy garments for Aaron thy brother, and for his sons, for his being priest to Me.</p>
@@ -351,6 +353,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -367,6 +370,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

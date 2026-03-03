@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 8</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the Lord said to Joshua: Fear not, nor be thou dismayed: take with thee all the multitude of fighting men, arise, and go up to the town of Hai: Behold I have delivered into thy hand the king thereof, and the people, and the city, and the land.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the Lord said to Joshua: Fear not, nor be thou dismayed: take with thee all the multitude of fighting men, arise, and go up to the town of Hai: Behold I have delivered into thy hand the king thereof, and the people, and the city, and the land.</p>
 <p><span class="verse-num">2</span>And thou shalt do to the city of Hai, and to the king thereof, as thou hast done to Jericho, and to the king thereof: but the spoils, and all the cattle, you shall take for a prey to yourselves: lay an ambush for the city behind it.</p>
 <p><span class="verse-num">3</span>And Joshua arose, and all the army of the fighting men with him, to go up against Hai: and he sent thirty thousand chosen valiant men in the night,</p>
 <p><span class="verse-num">4</span>And commanded them, saying: Lay an ambush behind the city: and go not very far from it: and be ye all ready.</p>
@@ -327,6 +329,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -343,6 +346,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

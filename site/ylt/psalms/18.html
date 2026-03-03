@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -403,8 +404,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Psalms</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>o the Overseer. --By a servant of Jehovah, by David, who hath spoken to Jehovah the words of this song in the day Jehovah delivered him from the hand of all his enemies, and from the hand of Saul, and he saith: --I love Thee, O Jehovah, my strength.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>o the Overseer. --By a servant of Jehovah, by David, who hath spoken to Jehovah the words of this song in the day Jehovah delivered him from the hand of all his enemies, and from the hand of Saul, and he saith: --I love Thee, O Jehovah, my strength.</p>
 <p><span class="verse-num">2</span>Jehovah &lt;FI&gt;is&lt;Fi&gt; my rock, and my bulwark, And my deliverer, My God &lt;FI&gt;is&lt;Fi&gt; my rock, I trust in Him: My shield, and a horn of my salvation, My high tower.</p>
 <p><span class="verse-num">3</span>The `Praised One&#x27; I call Jehovah, And from my enemies I am saved.</p>
 <p><span class="verse-num">4</span>Compassed me have cords of death, And streams of the worthless make me afraid.</p>
@@ -468,6 +470,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -484,6 +487,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

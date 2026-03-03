@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n those days there was no king in Israel, and in those days the Danites were looking for a heritage for themselves, to be their living-place; for up to that time no distribution of land had been made to them among the tribes of Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n those days there was no king in Israel, and in those days the Danites were looking for a heritage for themselves, to be their living-place; for up to that time no distribution of land had been made to them among the tribes of Israel.</p>
 <p><span class="verse-num">2</span>So the children of Dan sent five men from among their number, strong men, from Zorah and from Eshtaol, to take a look at the land and make a search through it; and they said to them, Go and make a search through the land; and they came to the hill-country of Ephraim, to the house of Micah, where they made a stop for the night.</p>
 <p><span class="verse-num">3</span>When they were near the house of Micah, hearing a voice which was not strange to them, that of the young Levite, they went out of their road to his place, and said to him, How did you come here? and what are you doing in this place? and why are you here?</p>
 <p><span class="verse-num">4</span>And he said to them, This is what Micah did for me, and he gave me payment and I became his priest.</p>
@@ -320,6 +322,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -336,6 +339,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

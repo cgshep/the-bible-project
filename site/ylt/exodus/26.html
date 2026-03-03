@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -293,8 +294,9 @@
       <div class="ch-label">Chapter 26</div>
       <h2>Exodus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">`</span>And thou dost make the tabernacle: ten curtains of twined linen, and blue, and purple, and scarlet; &lt;FI&gt;with&lt;Fi&gt; cherubs, work of a designer, thou dost make them;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>`</span>And thou dost make the tabernacle: ten curtains of twined linen, and blue, and purple, and scarlet; &lt;FI&gt;with&lt;Fi&gt; cherubs, work of a designer, thou dost make them;</p>
 <p><span class="verse-num">2</span>the length of the one curtain &lt;FI&gt;is&lt;Fi&gt; eight and twenty by the cubit, and the breadth of the one curtain four by the cubit, one measure &lt;FI&gt;is&lt;Fi&gt; to all the curtains;</p>
 <p><span class="verse-num">3</span>five of the curtains are joining one unto another, and five curtains are joining one to another.</p>
 <p><span class="verse-num">4</span>`And thou hast made loops of blue upon the edge of the one curtain, at the end in the joining; and so thou makest in the edge of the outermost curtain, in the joining of the second.</p>
@@ -345,6 +347,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -361,6 +364,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

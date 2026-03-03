@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -281,8 +282,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>Acts</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd when it came to pass that we were parted from them and had set sail, we came with a straight course unto Cos, and the next day unto Rhodes, and from thence unto Patara:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd when it came to pass that we were parted from them and had set sail, we came with a straight course unto Cos, and the next day unto Rhodes, and from thence unto Patara:</p>
 <p><span class="verse-num">2</span>and having found a ship crossing over unto Phoenicia, we went aboard, and set sail.</p>
 <p><span class="verse-num">3</span>And when we had come in sight of Cyprus, leaving it on the left hand, we sailed unto Syria, and landed at Tyre; for there the ship was to unlade her burden.</p>
 <p><span class="verse-num">4</span>And having found the disciples, we tarried there seven days: and these said to Paul through the Spirit, that he should not set foot in Jerusalem.</p>
@@ -336,6 +338,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -352,6 +355,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

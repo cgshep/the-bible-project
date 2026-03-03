@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd in the seventh year Joiada being encouraged, took the captains of hundreds, to wit, Azarias the son of Jeroham, and Ismahel the son of Johanan, and Azarias the son of Obed, and Maasias the son of Adaias, and Elisaphat the son of Zechri: and made a covenant with them.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd in the seventh year Joiada being encouraged, took the captains of hundreds, to wit, Azarias the son of Jeroham, and Ismahel the son of Johanan, and Azarias the son of Obed, and Maasias the son of Adaias, and Elisaphat the son of Zechri: and made a covenant with them.</p>
 <p><span class="verse-num">2</span>And they went about Juda, and gathered together the Levites out of all the cities of Juda, and the chiefs of the families of Israel, and they came to Jerusalem.</p>
 <p><span class="verse-num">3</span>And all the multitude made a covenant with the king in the house of God: and Joiada said to them: Behold the king&#x27;s son shall reign, as the Lord hath said of the sons of David.</p>
 <p><span class="verse-num">4</span>And this is the thing that you shall do:</p>
@@ -325,6 +327,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -341,6 +344,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

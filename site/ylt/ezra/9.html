@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -263,8 +264,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Ezra</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd at the completion of these things, drawn nigh unto me have the heads, saying, `The people of Israel, and the priests, and the Levites, have not been separated from the peoples of the lands, as to their abominations, even the Canaanite, the Hittite, the Perizzite, the Jebusite, the Ammonite, the Moabite, the Egyptian, and the Amorite,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd at the completion of these things, drawn nigh unto me have the heads, saying, `The people of Israel, and the priests, and the Levites, have not been separated from the peoples of the lands, as to their abominations, even the Canaanite, the Hittite, the Perizzite, the Jebusite, the Ammonite, the Moabite, the Egyptian, and the Amorite,</p>
 <p><span class="verse-num">2</span>for they have taken of their daughters to them, and to their sons, and the holy seed have mingled themselves among the peoples of the lands, and the hand of the heads and of the seconds have been first in this trespass.&#x27;</p>
 <p><span class="verse-num">3</span>And at my hearing this word, I have rent my garment and my upper robe, and pluck out of the hair of my head, and of my beard, and sit astonished,</p>
 <p><span class="verse-num">4</span>and unto me are gathered every one trembling at the words of the God of Israel, because of the trespass of the removal, and I am sitting astonished till the present of the evening.</p>
@@ -293,6 +295,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -309,6 +312,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

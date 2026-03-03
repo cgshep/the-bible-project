@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 49</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">C</span>oncerning the sons of Ammon: `Thus said Jehovah: Sons--hath Israel none? heir--hath he none? Wherefore hath Malcam possessed Gad? And his people in its cities have dwelt?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>C</span>oncerning the sons of Ammon: `Thus said Jehovah: Sons--hath Israel none? heir--hath he none? Wherefore hath Malcam possessed Gad? And his people in its cities have dwelt?</p>
 <p><span class="verse-num">2</span>Therefore, lo, days are coming, An affirmation of Jehovah, And I have sounded unto Rabbah of the sons of Ammon a shout of battle, And it hath been for a heap--a desolation, And her daughters with fire are burnt, And Israel hath succeeded its heirs, Said hath Jehovah.</p>
 <p><span class="verse-num">3</span>Howl, Heshbon, for spoiled is Ai, Cry, daughters of Rabbah, gird on sackcloth, Lament, and go to and fro by the hedges, For Malcam into captivity doth go, His priests and his princes together.</p>
 <p><span class="verse-num">4</span>What--dost thou boast thyself in valleys? Flowed hath thy valley, O backsliding daughter, Who is trusting in her treasures: Who doth come in unto me?</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

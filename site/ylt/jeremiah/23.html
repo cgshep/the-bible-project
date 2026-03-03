@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>oe to shepherds destroying, And scattering the flock of My pasture, An affirmation of Jehovah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>oe to shepherds destroying, And scattering the flock of My pasture, An affirmation of Jehovah.</p>
 <p><span class="verse-num">2</span>Therefore, thus said Jehovah, God of Israel, Against the shepherds who feed My people, Ye have scattered My flock, and drive them away, And have not inspected them, Lo, I am charging on you the evil of your doings, An affirmation of Jehovah.</p>
 <p><span class="verse-num">3</span>And I do gather the remnant of My flock Out of all the lands whither I drove them, And have brought them back unto their fold, And they have been fruitful, and multiplied.</p>
 <p><span class="verse-num">4</span>And I have raised for them shepherds, And they have fed them, And they fear no more, nor are affrighted, Nor are they lacking--an affirmation of Jehovah.</p>
@@ -360,6 +362,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -376,6 +379,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

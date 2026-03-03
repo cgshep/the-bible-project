@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -303,8 +304,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>Genesis</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Sarai, Abram&#x27;s wife, hath not borne to him, and she hath an handmaid, an Egyptian, and her name &lt;FI&gt;is&lt;Fi&gt; Hagar;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Sarai, Abram&#x27;s wife, hath not borne to him, and she hath an handmaid, an Egyptian, and her name &lt;FI&gt;is&lt;Fi&gt; Hagar;</p>
 <p><span class="verse-num">2</span>and Sarai saith unto Abram, `Lo, I pray thee, Jehovah hath restrained me from bearing, go in, I pray thee, unto my handmaid; perhaps I am built up from her;&#x27; and Abram hearkeneth to the voice of Sarai.</p>
 <p><span class="verse-num">3</span>And Sarai, Abram&#x27;s wife, taketh Hagar the Egyptian, her handmaid, at the end of the tenth year of Abram&#x27;s dwelling in the land of Canaan, and giveth her to Abram her husband, to him for a wife,</p>
 <p><span class="verse-num">4</span>and he goeth in unto Hagar, and she conceiveth, and she seeth that she hath conceived, and her mistress is lightly esteemed in her eyes.</p>
@@ -334,6 +336,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -350,6 +353,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

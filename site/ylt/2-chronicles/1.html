@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>2 Chronicles</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">From Solomon&#x27;s Temple to the Babylonian exile and Cyrus&#x27; decree of return.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Chronicles" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd strengthen himself doth Solomon son of David over his kingdom, and Jehovah his God &lt;FI&gt;is&lt;Fi&gt; with him, and maketh him exceedingly great.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd strengthen himself doth Solomon son of David over his kingdom, and Jehovah his God &lt;FI&gt;is&lt;Fi&gt; with him, and maketh him exceedingly great.</p>
 <p><span class="verse-num">2</span>And Solomon saith to all Israel, to heads of the thousands, and of the hundreds, and to judges, and to every honourable one of all Israel, heads of the fathers,</p>
 <p><span class="verse-num">3</span>and they go--Solomon, and all the assembly with him--to the high place that &lt;FI&gt;is&lt;Fi&gt; in Gibeon, for there hath been God&#x27;s tent of meeting, that Moses, servant of Jehovah, made in the wilderness,</p>
 <p><span class="verse-num">4</span>but the ark of God had David brought up from Kirjath-Jearim, when David prepared for it, for he stretched out for it a tent in Jerusalem;</p>
@@ -321,6 +323,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

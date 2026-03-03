@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -282,8 +283,9 @@
       <div class="ch-label">Chapter 29</div>
       <h2>1 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd king David said to all the assembly: Solomon my son, whom alone God hath chosen, is as yet young and tender: and the work is great, for a house is prepared not for man, but for God.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd king David said to all the assembly: Solomon my son, whom alone God hath chosen, is as yet young and tender: and the work is great, for a house is prepared not for man, but for God.</p>
 <p><span class="verse-num">2</span>And I with all my ability have prepared the expenses for the house of my God. Gold for vessels of gold, and silver for vessels of silver, brass for things of brass, iron for things of iron, wood for things of wood: and onyx stones, and stones like alabaster, and of divers colours, and all manner of precious stones, and marble of Paros in great abundance.</p>
 <p><span class="verse-num">3</span>Now over and above the things which I have offered into the house of my God I give of my own proper goods, gold and silver for the temple of my God, beside what things I have prepared for the holy house.</p>
 <p><span class="verse-num">4</span>Three thousand talents of gold of the gold of Ophir: and seven thousand talents of refined silver, to overlay the walls of the temple.</p>
@@ -327,6 +329,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -343,6 +346,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

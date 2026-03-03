@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -265,8 +266,9 @@
       <div class="ch-label">Chapter 6</div>
       <h2>Daniel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">D</span>arius was pleased to put over the kingdom a hundred and twenty captains, who were to be all through the kingdom;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>D</span>arius was pleased to put over the kingdom a hundred and twenty captains, who were to be all through the kingdom;</p>
 <p><span class="verse-num">2</span>And over them were three chief rulers, of whom Daniel was one; and the captains were to be responsible to the chief rulers, so that the king might undergo no loss.</p>
 <p><span class="verse-num">3</span>Then this Daniel did his work better than the chief rulers and the captains, because there was a special spirit in him; and it was the king&#x27;s purpose to put him over all the kingdom.</p>
 <p><span class="verse-num">4</span>Then the chief rulers and the captains were looking for some cause for putting Daniel in the wrong in connection with the kingdom, but they were unable to put forward any wrongdoing or error against him; because he was true, and no error or wrong was to be seen in him.</p>
@@ -308,6 +310,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -324,6 +327,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

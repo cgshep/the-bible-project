@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 54</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">S</span>ing, O barren, she hath not borne! Break forth with singing, and cry aloud, She hath not brought forth! For more &lt;FI&gt;are&lt;Fi&gt; the sons of the desolate, Than the sons of the married one, said Jehovah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>S</span>ing, O barren, she hath not borne! Break forth with singing, and cry aloud, She hath not brought forth! For more &lt;FI&gt;are&lt;Fi&gt; the sons of the desolate, Than the sons of the married one, said Jehovah.</p>
 <p><span class="verse-num">2</span>Enlarge the place of thy tent, And the curtains of thy tabernacles they stretch out, Restrain not--lengthen thy cords, And thy pins make strong.</p>
 <p><span class="verse-num">3</span>For right and left thou breakest forth, And thy seed doth nations possess,</p>
 <p><span class="verse-num">4</span>And desolate cities they cause to be inhabited. Fear not, for thou art not ashamed, Nor blush, for thou art not confounded, For the shame of thy youth thou forgettest, And the reproach of thy widowhood Thou dost not remember any more.</p>
@@ -351,6 +353,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -367,6 +370,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

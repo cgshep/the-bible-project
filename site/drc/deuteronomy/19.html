@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 19</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>hen the Lord thy God hath destroyed the nations, whose land he will deliver to thee, and thou shalt possess it, and shalt dwell in the cities and houses thereof:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>hen the Lord thy God hath destroyed the nations, whose land he will deliver to thee, and thou shalt possess it, and shalt dwell in the cities and houses thereof:</p>
 <p><span class="verse-num">2</span>Thou shalt separate to thee three cities in the midst of the land, which the Lord will give thee in possession,</p>
 <p><span class="verse-num">3</span>Paving diligently the way: and thou shalt divide the whole province of thy land equally into three parts: that he who is forced to flee for manslaughter, may have near at hand whither to escape.</p>
 <p><span class="verse-num">4</span>This shall be the law of the slayer that fleeth, whose life is to be saved: He that killeth his neighbor ignorantly, and who is proved to have had no hatred against him yesterday and the day before:</p>
@@ -323,6 +325,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -339,6 +342,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

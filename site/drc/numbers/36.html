@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 36</div>
       <h2>Numbers</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the princes of the families of Galaad, the son of Machir, the son of Manasses, of the stock of the children of Joseph, came and spoke to Moses before the princes of Israel, and said:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the princes of the families of Galaad, the son of Machir, the son of Manasses, of the stock of the children of Joseph, came and spoke to Moses before the princes of Israel, and said:</p>
 <p><span class="verse-num">2</span>The Lord hath commanded thee, my lord, that thou shouldst divide the land by lot to the children of Israel, and that thou shouldst give to the daughters of Salphaad our brother the possession due to their father:</p>
 <p><span class="verse-num">3</span>Now if men of another tribe take them to wives, their possession will follow them, and being transferred to another tribe, will be a diminishing of our inheritance.</p>
 <p><span class="verse-num">4</span>And so it shall come to pass, that when the jubilee, the is, the fiftieth year of remission, is come, the distribution made by the lots shall be confounded, and the possession of the one shall pass to the others.</p>
@@ -317,6 +319,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -333,6 +336,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

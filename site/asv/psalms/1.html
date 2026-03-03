@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -403,8 +404,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Psalms</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg/465px-King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg" alt="King David Playing the Harp by Gerard van Honthorst" loading="lazy">
+        <div class="book-image-credit">Gerard van Honthorst, 1622</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The hymnbook of ancient Israel — 150 poems of praise, lament, thanksgiving, and wisdom.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Psalms" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>lessed is the man that walketh not in the counsel of the wicked, Nor standeth in the way of sinners, Nor sitteth in the seat of scoffers:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>lessed is the man that walketh not in the counsel of the wicked, Nor standeth in the way of sinners, Nor sitteth in the seat of scoffers:</p>
 <p><span class="verse-num">2</span>But his delight is in the law of Jehovah; And on his law doth he meditate day and night.</p>
 <p><span class="verse-num">3</span>And he shall be like a tree planted by the streams of water, That bringeth forth its fruit in its season, Whose leaf also doth not wither; And whatsoever he doeth shall prosper.</p>
 <p><span class="verse-num">4</span>The wicked are not so, But are like the chaff which the wind driveth away.</p>
@@ -424,6 +430,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -440,6 +447,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });
