@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd when the queen of Sheba heard of the fame of Solomon, she came to prove Solomon with hard questions at Jerusalem, with a very great company, and camels that bore spices, and gold in abundance, and precious stones: and when she had come to Solomon, she communed with him of all that was in her heart.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd when the queen of Sheba heard of the fame of Solomon, she came to prove Solomon with hard questions at Jerusalem, with a very great company, and camels that bore spices, and gold in abundance, and precious stones: and when she had come to Solomon, she communed with him of all that was in her heart.</p>
 <p><span class="verse-num">2</span>And Solomon told her all her questions: and there was nothing hid from Solomon which he told her not.</p>
 <p><span class="verse-num">3</span>And when the queen of Sheba had seen the wisdom of Solomon, and the house that he had built,</p>
 <p><span class="verse-num">4</span>And the provisions of his table, and the sitting of his servants, and the attendance of his ministers, and their apparel; his cup-bearers also, and their apparel; and his ascent by which he went up into the house of the LORD; there was no more spirit in her.</p>
@@ -335,6 +337,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -351,6 +354,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

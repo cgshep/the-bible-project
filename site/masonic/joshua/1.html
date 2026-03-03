@@ -9,6 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body class="masonic-theme">
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -312,8 +313,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Joshua</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg/640px-Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg" alt="Joshua Passing the River Jordan by Benjamin West" loading="lazy">
+        <div class="book-image-credit">Benjamin West, 1800</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The conquest and division of Canaan under the leadership of Joshua.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Joshua" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow after the death of Moses the servant of the LORD it came to pass, that the LORD spake unto Joshua the son of Nun, Moses’ minister, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow after the death of Moses the servant of the LORD it came to pass, that the LORD spake unto Joshua the son of Nun, Moses’ minister, saying,</p>
 <p><span class="verse-num">2</span>Moses my servant is dead; now therefore arise, go over this Jordan, thou, and all this people, unto the land which I do give to them, even to the children of Israel.</p>
 <p><span class="verse-num">3</span>Every place that the sole of your foot shall tread upon, that have I given unto you, as I said unto Moses.</p>
 <p><span class="verse-num">4</span>From the wilderness and this Lebanon even unto the great river, the river Euphrates, all the land of the Hittites, and unto the great sea toward the going down of the sun, shall be your coast.</p>
@@ -354,6 +360,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -370,6 +377,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

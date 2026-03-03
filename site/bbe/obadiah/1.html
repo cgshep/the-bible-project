@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -254,8 +255,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Obadiah</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The shortest book in the Old Testament — a prophecy against Edom.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Obadiah" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he vision of Obadiah. This is what the Lord has said about Edom: We have had word from the Lord, and a representative has been sent among the nations, saying, Up! and let us make war against her.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he vision of Obadiah. This is what the Lord has said about Edom: We have had word from the Lord, and a representative has been sent among the nations, saying, Up! and let us make war against her.</p>
 <p><span class="verse-num">2</span>See, I have made you small among the nations: you are much looked down on.</p>
 <p><span class="verse-num">3</span>You have been tricked by the pride of your heart, O you whose living-place is in the cracks of the rock, whose house is high up; who has said in his heart, Who will make me come down to earth?</p>
 <p><span class="verse-num">4</span>Though you go up on high like an eagle, though your house is placed among the stars, I will make you come down from there, says the Lord.</p>
@@ -290,6 +292,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -306,6 +309,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

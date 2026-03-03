@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 11</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow when Athaliah, the mother of Ahaziah, saw that her son was dead, she had all the rest of the seed of the kingdom put to death.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow when Athaliah, the mother of Ahaziah, saw that her son was dead, she had all the rest of the seed of the kingdom put to death.</p>
 <p><span class="verse-num">2</span>But Jehosheba, the daughter of King Joram, sister of Ahaziah, secretly took Joash, the son of Ahaziah, with the woman who took care of him, away from among the king&#x27;s sons who were put to death, and put him in the bedroom; and they kept him safe from Athaliah, so that he was not put to death.</p>
 <p><span class="verse-num">3</span>And for six years she kept him safe in the house of the Lord, while Athaliah was ruling over the land.</p>
 <p><span class="verse-num">4</span>Then in the seventh year, Jehoiada sent for the captains of hundreds of the Carians, and the armed men, and taking them into the house of the Lord, made an agreement with them, and made them take an oath in the house of the Lord, and let them see the king&#x27;s son.</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

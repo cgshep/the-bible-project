@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hen Elisha said, Give ear to the word of the Lord: the Lord says, Tomorrow, about this time, a measure of good meal will be offered for the price of a shekel and two measures of barley for a shekel, in the market-place of Samaria.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hen Elisha said, Give ear to the word of the Lord: the Lord says, Tomorrow, about this time, a measure of good meal will be offered for the price of a shekel and two measures of barley for a shekel, in the market-place of Samaria.</p>
 <p><span class="verse-num">2</span>Then the captain whose arm was supporting the king said to the man of God, Even if the Lord made windows in heaven, would such a thing be possible? And he said, Your eyes will see it, but you will not have a taste of the food.</p>
 <p><span class="verse-num">3</span>Now there were four lepers seated at the doorway into the town: and they said to one another, Why are we waiting here for death?</p>
 <p><span class="verse-num">4</span>If we say, We will go into the town, there is no food in the town, and we will come to our end there; and if we go on waiting here, death will come to us. Come then, let us give ourselves up to the army of Aram: if they let us go on living, then life will be ours; and if they put us to death, then death will be ours.</p>
@@ -313,6 +315,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -329,6 +332,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

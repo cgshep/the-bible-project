@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 42</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">L</span>o, My servant, I take hold on him, My chosen one--My soul hath accepted, I have put My Spirit upon him, Judgment to nations he bringeth forth.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>L</span>o, My servant, I take hold on him, My chosen one--My soul hath accepted, I have put My Spirit upon him, Judgment to nations he bringeth forth.</p>
 <p><span class="verse-num">2</span>He doth not cry, nor lift up, Nor cause his voice to be heard, in the street.</p>
 <p><span class="verse-num">3</span>A bruised reed he breaketh not, And dim flax he quencheth not, To truth he bringeth forth judgment.</p>
 <p><span class="verse-num">4</span>He doth not become weak nor bruised, Till he setteth judgment in the earth, And for his law isles wait with hope.</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 34</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">J</span>osiah was eight years old when he began to reign; and he reigned thirty-one years in Jerusalem.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>J</span>osiah was eight years old when he began to reign; and he reigned thirty-one years in Jerusalem.</p>
 <p><span class="verse-num">2</span>And he did what was right in the sight of Jehovah, and walked in the ways of David his father, and turned not aside to the right hand nor to the left.</p>
 <p><span class="verse-num">3</span>And in the eighth year of his reign, while he was yet young, he began to seek after theGod of David his father; and in the twelfth year he began to purge Judah and Jerusalem from the high places, and the Asherahs, and the graven images, and the molten images.</p>
 <p><span class="verse-num">4</span>And they broke down the altars of the Baals in his presence; and the sun-pillars that were on high above them he cut down; and the Asherahs and the graven images and the molten images he broke in pieces, and made dust [of them] and strewed it upon the graves of those that had sacrificed to them;</p>
@@ -337,6 +339,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -353,6 +356,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

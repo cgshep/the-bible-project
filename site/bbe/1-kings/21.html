@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>1 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow Naboth the Jezreelite had a vine-garden in Jezreel, near the house of Ahab, king of Samaria.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow Naboth the Jezreelite had a vine-garden in Jezreel, near the house of Ahab, king of Samaria.</p>
 <p><span class="verse-num">2</span>And Ahab said to Naboth, Give me your vine-garden so that I may have it for a garden of sweet plants, for it is near my house; and let me give you a better vine-garden in exchange, or, if it seems good to you, let me give you its value in money.</p>
 <p><span class="verse-num">3</span>But Naboth said to Ahab, By the Lord, far be it from me to give you the heritage of my fathers.</p>
 <p><span class="verse-num">4</span>So Ahab came into his house bitter and angry because Naboth the Jezreelite had said to him, I will not give you the heritage of my fathers. And stretching himself on the bed with his face turned away, he would take no food.</p>
@@ -319,6 +321,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -335,6 +338,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -265,8 +266,9 @@
       <div class="ch-label">Chapter 8</div>
       <h2>Daniel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the third year of the rule of Belshazzar the king, a vision was seen by me, Daniel, after the one I saw at first.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the third year of the rule of Belshazzar the king, a vision was seen by me, Daniel, after the one I saw at first.</p>
 <p><span class="verse-num">2</span>And I saw in the vision; and when I saw it, I was in the strong town Shushan, which is in the country of Elam; and in the vision I was by the water-door of the Ulai.</p>
 <p><span class="verse-num">3</span>And lifting up my eyes, I saw, there before the stream, a male sheep with two horns: and the two horns were high, but one was higher than the other, the higher one coming up last.</p>
 <p><span class="verse-num">4</span>I saw the sheep pushing to the west and to the north and to the south; and no beasts were able to keep their place before him, and no one was able to get people out of his power; but he did whatever his pleasure was and made himself great.</p>
@@ -307,6 +309,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -323,6 +326,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

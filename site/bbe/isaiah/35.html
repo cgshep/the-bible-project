@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 35</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he waste land and the dry places will be glad; the lowland will have joy and be full of flowers.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he waste land and the dry places will be glad; the lowland will have joy and be full of flowers.</p>
 <p><span class="verse-num">2</span>It will be flowering like the rose; it will be full of delight and songs; the glory of Lebanon will be given to it; the pride of Carmel and Sharon: they will see the glory of the Lord, the power of our God.</p>
 <p><span class="verse-num">3</span>Make strong the feeble hands, give support to the shaking knees.</p>
 <p><span class="verse-num">4</span>Say to those who are full of fear, Be strong and take heart: see, your God will give punishment; the reward of God will come; he himself will come to be your saviour.</p>
@@ -344,6 +346,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -360,6 +363,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

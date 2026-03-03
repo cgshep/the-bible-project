@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -261,8 +262,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>Song of Solomon</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">S</span>ee, you are fair, my love, you are fair; you have the eyes of a dove; your hair is as a flock of goats, which take their rest on the side of Gilead.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>S</span>ee, you are fair, my love, you are fair; you have the eyes of a dove; your hair is as a flock of goats, which take their rest on the side of Gilead.</p>
 <p><span class="verse-num">2</span>Your teeth are like a flock of sheep whose wool is newly cut, which come up from the washing; every one has two lambs, and there is not one without young.</p>
 <p><span class="verse-num">3</span>Your red lips are like a bright thread, and your mouth is fair of form; the sides of your head are like pomegranate fruit under your veil.</p>
 <p><span class="verse-num">4</span>Your neck is like the tower of David made for a store-house of arms, in which a thousand breastplates are hanging, breastplates for fighting-men.</p>
@@ -292,6 +294,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -308,6 +311,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

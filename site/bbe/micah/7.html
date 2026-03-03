@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -260,8 +261,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Micah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">S</span>orrow is mine! for I am as when they have got in the summer fruits, like the last of the grapes: there is nothing for food, not even an early fig for my desire.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>S</span>orrow is mine! for I am as when they have got in the summer fruits, like the last of the grapes: there is nothing for food, not even an early fig for my desire.</p>
 <p><span class="verse-num">2</span>The good man is gone from the earth, there is no one upright among men: they are all waiting secretly for blood, every man is going after his brother with a net.</p>
 <p><span class="verse-num">3</span>Their hands are made ready to do evil; the ruler makes requests for money, and the judge is looking for a reward; and the great man gives decisions at his pleasure, and the right is twisted.</p>
 <p><span class="verse-num">4</span>The best of them is like a waste plant, and their upright ones are like a wall of thorns. Sorrow! the day of their fate has come; now will trouble come on them.</p>
@@ -295,6 +297,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -311,6 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

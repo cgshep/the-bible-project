@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow Jehoshaphat had riches and honor in abundance, and joined affinity with Ahab.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow Jehoshaphat had riches and honor in abundance, and joined affinity with Ahab.</p>
 <p><span class="verse-num">2</span>And after [certain] years he went down to Ahab to Samaria. And Ahab killed sheep and oxen for him in abundance, and for the people that [he had] with him, and persuaded him to go up [with him] to Ramoth-gilead.</p>
 <p><span class="verse-num">3</span>And Ahab king of Israel said to Jehoshaphat king of Judah, Wilt thou go with me to Ramoth-gilead? And he answered him, I [am] as thou [art], and my people as thy people; and [we will be] with thee in the war.</p>
 <p><span class="verse-num">4</span>And Jehoshaphat said to the king of Israel, Inquire, I pray thee, at the word of the LORD to-day.</p>
@@ -338,6 +340,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -354,6 +357,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

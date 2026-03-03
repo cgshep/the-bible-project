@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 27</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Moses with the ancients of Israel commanded the people, saying: Keep every commandment that I command you this day.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Moses with the ancients of Israel commanded the people, saying: Keep every commandment that I command you this day.</p>
 <p><span class="verse-num">2</span>And when you are passed over the Jordan into the land which the Lord thy God will give thee, thou shalt set up great stones, and shalt plaster them over with plaster,</p>
 <p><span class="verse-num">3</span>That thou mayst write on them all the words of this law, when thou art passed over the Jordan: that thou mayst enter into the land which the Lord thy God will give thee, a land flowing with milk and honey, as he swore to thy fathers.</p>
 <p><span class="verse-num">4</span>Therefore when you are passed over the Jordan, set up the stones which I command you this day, in mount Hebal, and thou shalt plaster them with plaster:</p>
@@ -328,6 +330,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -344,6 +347,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

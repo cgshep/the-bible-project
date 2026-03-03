@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -266,8 +267,9 @@
       <div class="ch-label">Chapter 10</div>
       <h2>2 Corinthians</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I, Paul, myself, do call upon you--through the meekness and gentleness of the Christ--who in presence, indeed &lt;FI&gt;am&lt;Fi&gt; humble among you, and being absent, have courage toward you,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I, Paul, myself, do call upon you--through the meekness and gentleness of the Christ--who in presence, indeed &lt;FI&gt;am&lt;Fi&gt; humble among you, and being absent, have courage toward you,</p>
 <p><span class="verse-num">2</span>and I beseech &lt;FI&gt;you&lt;Fi&gt; , that, being present, I may not have courage, with the confidence with which I reckon to be bold against certain reckoning us as walking according to the flesh;</p>
 <p><span class="verse-num">3</span>for walking in the flesh, not according to the flesh do we war,</p>
 <p><span class="verse-num">4</span>for the weapons of our warfare &lt;FI&gt;are&lt;Fi&gt; not fleshly, but powerful to God for bringing down of strongholds,</p>
@@ -299,6 +301,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -315,6 +318,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

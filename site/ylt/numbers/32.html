@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 32</div>
       <h2>Numbers</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd much cattle hath been to the sons of Reuben and to the sons of Gad, very many; and they see the land of Jazer, and the land of Gilead, and lo, the place &lt;FI&gt;is&lt;Fi&gt; a place &lt;FI&gt;for&lt;Fi&gt; cattle;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd much cattle hath been to the sons of Reuben and to the sons of Gad, very many; and they see the land of Jazer, and the land of Gilead, and lo, the place &lt;FI&gt;is&lt;Fi&gt; a place &lt;FI&gt;for&lt;Fi&gt; cattle;</p>
 <p><span class="verse-num">2</span>and the sons of Gad, and the sons of Reuben, come in and speak unto Moses, and unto Eleazar the priest, and unto the princes of the company, saying:</p>
 <p><span class="verse-num">3</span>`Ataroth, and Dibon, and Jazer, and Nimrah, and Heshbon, and Elealeh, and Shebam, and Nebo, and Beon--</p>
 <p><span class="verse-num">4</span>the land which Jehovah hath smitten before the company of Israel, is a land for cattle, and thy servants have cattle.&#x27;</p>
@@ -346,6 +348,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -362,6 +365,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

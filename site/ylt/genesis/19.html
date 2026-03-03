@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -303,8 +304,9 @@
       <div class="ch-label">Chapter 19</div>
       <h2>Genesis</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd two of the messengers come towards Sodom at even, and Lot is sitting at the gate of Sodom, and Lot seeth, and riseth to meet them, and boweth himself--face to the earth,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd two of the messengers come towards Sodom at even, and Lot is sitting at the gate of Sodom, and Lot seeth, and riseth to meet them, and boweth himself--face to the earth,</p>
 <p><span class="verse-num">2</span>and he saith, `Lo, I pray you, my lords, turn aside, I pray you, unto the house of your servant, and lodge, and wash your feet--then ye have risen early and gone on your way;&#x27; and they say, `Nay, but in the broad place we do lodge.&#x27;</p>
 <p><span class="verse-num">3</span>And he presseth on them greatly, and they turn aside unto him, and come in unto his house; and he maketh for them a banquet, and hath baked unleavened things; and they do eat.</p>
 <p><span class="verse-num">4</span>Before they lie down, the men of the city--men of Sodom--have come round about against the house, from young even unto aged, all the people from the extremity;</p>
@@ -356,6 +358,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -372,6 +375,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 14</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I saw, and behold, the Lamb standing upon mount Zion, and with him a hundred [and] forty-four thousand, having his name and the name of his Father written upon their foreheads.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I saw, and behold, the Lamb standing upon mount Zion, and with him a hundred [and] forty-four thousand, having his name and the name of his Father written upon their foreheads.</p>
 <p><span class="verse-num">2</span>And I heard a voice out of the heaven as a voice of many waters, and as a voice of great thunder. And the voice which I heard [was] as of harp-singers harping with their harps;</p>
 <p><span class="verse-num">3</span>and they sing a new song before the throne, and before the four living creatures and the elders. And no one could learn that song save the hundred [and] forty-four thousand who were bought from the earth.</p>
 <p><span class="verse-num">4</span>These are they who have not been defiled with women, for they are virgins: these are they who follow the Lamb wheresoever it goes. These have been bought from men [as] first-fruits toGod and to the Lamb:</p>
@@ -310,6 +312,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -326,6 +329,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

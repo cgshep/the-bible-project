@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -260,8 +261,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Micah</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">Justice, mercy, and humility — &#x27;What doth the Lord require of thee?&#x27;</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Micah" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he word of the Lord, that came to Micah, the Morasthite, in the days of Joathan, Achaz, and Ezechias, kings of Juda: which he saw concerning Samaria and Jerusalem.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he word of the Lord, that came to Micah, the Morasthite, in the days of Joathan, Achaz, and Ezechias, kings of Juda: which he saw concerning Samaria and Jerusalem.</p>
 <p><span class="verse-num">2</span>Hear, all ye people: and let the earth give ear, and all that is therein: and let the Lord God be a witness to you, the Lord from his holy temple.</p>
 <p><span class="verse-num">3</span>For behold the Lord will come forth out of his place: and he will come down, and will tread upon the high places of the earth.</p>
 <p><span class="verse-num">4</span>And the mountains shall be melted under him: and the valleys shall be cleft, as wax before the fire, and as waters that run down a steep place.</p>
@@ -291,6 +293,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -307,6 +310,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

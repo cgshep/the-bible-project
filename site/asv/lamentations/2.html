@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -258,8 +259,9 @@
       <div class="ch-label">Chapter 2</div>
       <h2>Lamentations</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">H</span>ow hath the Lord covered the daughter of Zion with a cloud in his anger! He hath cast down from heaven unto the earth the beauty of Israel, And hath not remembered his footstool in the day of his anger.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>H</span>ow hath the Lord covered the daughter of Zion with a cloud in his anger! He hath cast down from heaven unto the earth the beauty of Israel, And hath not remembered his footstool in the day of his anger.</p>
 <p><span class="verse-num">2</span>The Lord hath swallowed up all the habitations of Jacob, and hath not pitied: He hath thrown down in his wrath the strongholds of the daughter of Judah; He hath brought them down to the ground; he hath profaned the kingdom and the princes thereof.</p>
 <p><span class="verse-num">3</span>He hath cut off in fierce anger all the horn of Israel; He hath drawn back his right hand from before the enemy: And he hath burned up Jacob like a flaming fire, which devoureth round about.</p>
 <p><span class="verse-num">4</span>He hath bent his bow like an enemy, he hath stood with his right hand as an adversary, And hath slain all that were pleasant to the eye: In the tent of the daughter of Zion he hath poured out his wrath like fire.</p>
@@ -295,6 +297,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -311,6 +314,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

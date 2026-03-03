@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>Esther</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd this was the copy of the letter: Artaxerxes the great king who reigneth from India to Ethiopia, to the princes and governors of the hundred and twenty-seven provinces, that are subject to his empire, greeting.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd this was the copy of the letter: Artaxerxes the great king who reigneth from India to Ethiopia, to the princes and governors of the hundred and twenty-seven provinces, that are subject to his empire, greeting.</p>
 <p><span class="verse-num">2</span>Whereas I reigned over many nations, and had brought all the world under my dominion, I was not willing to abuse the greatness of my power, but to govern my subjects with clemency and that they might live quietly without any terror, and might enjoy peace, which is desired by all men,</p>
 <p><span class="verse-num">3</span>But when I asked my counsellors how this might be accomplished, one that excelled the rest in wisdom and fidelity, and was second after the king, Aman by name,</p>
 <p><span class="verse-num">4</span>Told me that there was a people scattered through the whole world, which used new laws, and acted against the customs of all nations, despised the commandments of kings, and violated by their opposition the concord of all nations.</p>
@@ -302,6 +304,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -318,6 +321,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

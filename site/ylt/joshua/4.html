@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it cometh to pass, when all the nation hath completed to pass over the Jordan, that Jehovah speaketh unto Joshua, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it cometh to pass, when all the nation hath completed to pass over the Jordan, that Jehovah speaketh unto Joshua, saying,</p>
 <p><span class="verse-num">2</span>`Take for you out of the people twelve men, one man--one man out of a tribe;</p>
 <p><span class="verse-num">3</span>and command ye them, saying, Take up for you from this &lt;FI&gt;place&lt;Fi&gt; , from the midst of the Jordan, from the established standing-place of the feet of the priests, twelve stones, and ye have removed them over with you, and placed them in the lodging-place in which ye lodge to-night.&#x27;</p>
 <p><span class="verse-num">4</span>And Joshua calleth unto the twelve men whom he prepared out of the sons of Israel, one man--one man out of a tribe;</p>
@@ -316,6 +318,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -332,6 +335,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Elisha saith, `Hear ye a word of Jehovah: thus said Jehovah, About this time to-morrow, a measure of fine flour &lt;FI&gt;is&lt;Fi&gt; at a shekel, and two measures of barley at a shekel, in the gate of Samaria.&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Elisha saith, `Hear ye a word of Jehovah: thus said Jehovah, About this time to-morrow, a measure of fine flour &lt;FI&gt;is&lt;Fi&gt; at a shekel, and two measures of barley at a shekel, in the gate of Samaria.&#x27;</p>
 <p><span class="verse-num">2</span>And the captain whom the king hath, by whose hand he hath been supported, answereth the man of God and saith, `Lo, Jehovah is making windows in the heavens--shall this thing be?&#x27; and he saith, `Lo, thou art seeing it with thine eyes, and thereof thou dost not eat.&#x27;</p>
 <p><span class="verse-num">3</span>And four men have been leprous, at the opening of the gate, and they say one unto another, `What--we are sitting here till we have died;</p>
 <p><span class="verse-num">4</span>if we have said, We go in to the city, then the famine &lt;FI&gt;is&lt;Fi&gt; in the city, and we have died there; and if we have sat here, then we have died; and now, come and we fall unto the camp of Aram; if they keep us alive, we live, and if they put us to death--we have died.&#x27;</p>
@@ -313,6 +315,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -329,6 +332,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

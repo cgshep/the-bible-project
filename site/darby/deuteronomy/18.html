@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>he priests, the Levites, [and] the whole tribe of Levi, shall have no portion nor inheritance with Israel: Jehovah&#x27;s offerings by fire, and his inheritance shall they eat,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he priests, the Levites, [and] the whole tribe of Levi, shall have no portion nor inheritance with Israel: Jehovah&#x27;s offerings by fire, and his inheritance shall they eat,</p>
 <p><span class="verse-num">2</span>but they shall have no inheritance among their brethren: Jehovah, he is their inheritance, as he hath said unto them.</p>
 <p><span class="verse-num">3</span>And this shall be the priest&#x27;s due from the people, from them that sacrifice a sacrifice, whether ox, or sheep: they shall give unto the priest the shoulder, and the jawbones, and the maw.</p>
 <p><span class="verse-num">4</span>The firstfruits [also] of thy corn, of thy new wine, and of thine oil, and the firstfruits of the shearing of thy sheep, shalt thou give him;</p>
@@ -324,6 +326,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -340,6 +343,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

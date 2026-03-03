@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 10</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I look, and lo, on the expanse that &lt;FI&gt;is&lt;Fi&gt; above the head of the cherubs, as a sapphire stone, as the appearance of the likeness of a throne, He hath been seen over them.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I look, and lo, on the expanse that &lt;FI&gt;is&lt;Fi&gt; above the head of the cherubs, as a sapphire stone, as the appearance of the likeness of a throne, He hath been seen over them.</p>
 <p><span class="verse-num">2</span>And He speaketh unto the man clothed with linen, and saith, `Go in unto the midst of the wheel, unto the place of the cherub, and fill thy hands with coals of fire from between the cherubs, and scatter over the city.&#x27; And he goeth in before mine eyes.</p>
 <p><span class="verse-num">3</span>And the cherubs are standing on the right side of the house, at the going in of the man, and the cloud hath filled the inner court,</p>
 <p><span class="verse-num">4</span>and become high doth the honour of Jehovah above the cherub, over the threshold of the house, and the house is filled with the cloud, and the court hath been filled with the brightness of the honour of Jehovah.</p>
@@ -338,6 +340,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -354,6 +357,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

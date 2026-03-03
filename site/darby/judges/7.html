@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Jerubbaal, who is Gideon, arose early, and all the people that were with him, and they encamped beside the spring Harod; and he had the camp of Midian on the north by the hill of Moreh in the valley.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Jerubbaal, who is Gideon, arose early, and all the people that were with him, and they encamped beside the spring Harod; and he had the camp of Midian on the north by the hill of Moreh in the valley.</p>
 <p><span class="verse-num">2</span>And Jehovah said to Gideon, The people that are with thee are too many for me to give Midian into their hand, lest Israel vaunt themselves against me, saying, Mine own hand hath saved me.</p>
 <p><span class="verse-num">3</span>And now proclaim in the ears of the people, saying, Whoever is timid and afraid, let him go back and turn from mount Gilead. And there went back of the people twenty-two thousand; and there remained ten thousand.</p>
 <p><span class="verse-num">4</span>And Jehovah said to Gideon, Still the people are many; bring them down to the water, and I will try them for thee there, and it shall be, that of whom I shall say unto thee, This shall go with thee, the same shall go with thee; and of whomsoever I shall say unto thee, This shall not go with thee, the same shall not go.</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

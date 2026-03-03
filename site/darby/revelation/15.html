@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 15</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I saw another sign in the heaven, great and wonderful: seven angels having seven plagues, the last; for in them the fury ofGod is completed.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I saw another sign in the heaven, great and wonderful: seven angels having seven plagues, the last; for in them the fury ofGod is completed.</p>
 <p><span class="verse-num">2</span>And I saw as a glass sea, mingled with fire, and those that had gained the victory over the beast, and over its image, and over the number of its name, standing upon the glass sea, having harps ofGod.</p>
 <p><span class="verse-num">3</span>And they sing the song of Moses bondman ofGod, and the song of the Lamb, saying, Great and wonderful [are] thy works, LordGod Almighty; righteous and true [are] thy ways, O King of nations.</p>
 <p><span class="verse-num">4</span>Who shall not fear [thee], O Lord, and glorify thy name? for [thou] only [art] holy; for all nations shall come and do homage before thee; for thy righteousnesses have been made manifest.</p>
@@ -298,6 +300,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -314,6 +317,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

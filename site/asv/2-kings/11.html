@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 11</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow when Athaliah the mother of Ahaziah saw that her son was dead, she arose and destroyed all the seed royal.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow when Athaliah the mother of Ahaziah saw that her son was dead, she arose and destroyed all the seed royal.</p>
 <p><span class="verse-num">2</span>But Jehosheba, the daughter of king Joram, sister of Ahaziah, took Joash the son of Ahaziah, and stole him away from among the king’s sons that were slain, even him and his nurse, and put them in the bedchamber; and they hid him from Athaliah, so that he was not slain;</p>
 <p><span class="verse-num">3</span>And he was with her hid in the house of Jehovah six years. And Athaliah reigned over the land.</p>
 <p><span class="verse-num">4</span>And in the seventh year Jehoiada sent and fetched the captains over hundreds of the Carites and of the guard, and brought them to him into the house of Jehovah; and he made a covenant with them, and took an oath of them in the house of Jehovah, and showed them the king’s son.</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 40</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the five and twentieth year of our captivity, in the beginning of the year, the tenth day of the month, the fourteenth year after the city was destroyed: in the selfsame day the hand of the Lord was upon me, and he brought me thither.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the five and twentieth year of our captivity, in the beginning of the year, the tenth day of the month, the fourteenth year after the city was destroyed: in the selfsame day the hand of the Lord was upon me, and he brought me thither.</p>
 <p><span class="verse-num">2</span>In the visions of God he brought me into the land of Israel, and set me upon a very high mountain: upon which there was as the building of a city, bending towards the south.</p>
 <p><span class="verse-num">3</span>And he brought me in thither, and behold a man, whose appearance was like the appearance of brass, with a line of flax in his hand, and a measuring reed in his hand, and he stood in the gate.</p>
 <p><span class="verse-num">4</span>And this man said to me: Son of man, see with thy eyes, and hear with thy ears, and set thy heart upon all that I shall shew thee: for thou art brought hither that they may be shewn to thee: declare all that thou seest, to the house of Israel.</p>
@@ -365,6 +367,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -381,6 +384,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

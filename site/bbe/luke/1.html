@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Luke</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg/640px-Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg" alt="Nativity, Birth of Jesus by Giotto" loading="lazy">
+        <div class="book-image-credit">Giotto, c. 1305</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The physician&#x27;s careful account — Jesus as the compassionate saviour of all people.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Gospel_of_Luke" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>s a number of attempts have been made to put together in order an account of those events which took place among us,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>s a number of attempts have been made to put together in order an account of those events which took place among us,</p>
 <p><span class="verse-num">2</span>As they were handed down to us by those who saw them from the first and were preachers of the word,</p>
 <p><span class="verse-num">3</span>It seemed good to me, having made observation, with great care, of the direction of events in their order, to put the facts in writing for you, most noble Theophilus;</p>
 <p><span class="verse-num">4</span>So that you might have certain knowledge of those things about which you were given teaching.</p>
@@ -372,6 +378,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -388,6 +395,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

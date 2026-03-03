@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 46</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>his is what the Lord has said: The doorway of the inner square looking to the east is to be shut on the six working days; but on the Sabbath it is to be open, and at the time of the new moon it is to be open.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>his is what the Lord has said: The doorway of the inner square looking to the east is to be shut on the six working days; but on the Sabbath it is to be open, and at the time of the new moon it is to be open.</p>
 <p><span class="verse-num">2</span>And the ruler is to go in through the covered way of the outer doorway outside, and take his place by the pillar of the doorway, and the priests will make his burned offering and his peace-offerings and he will give worship at the doorstep of the doorway; then he will go out, and the door will not be shut till the evening.</p>
 <p><span class="verse-num">3</span>And the people of the land are to give worship at the door of that doorway before the Lord on the Sabbaths and at the new moons.</p>
 <p><span class="verse-num">4</span>And the burned offering offered to the Lord by the ruler on the Sabbath day is to be six lambs without a mark on them and a male sheep without a mark;</p>
@@ -340,6 +342,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -356,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -303,8 +304,9 @@
       <div class="ch-label">Chapter 44</div>
       <h2>Genesis</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd he commanded him who was over his house, saying, Fill the men&#x27;s sacks with food, as much as they can carry; and put every man&#x27;s money in the mouth of his sack.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd he commanded him who was over his house, saying, Fill the men&#x27;s sacks with food, as much as they can carry; and put every man&#x27;s money in the mouth of his sack.</p>
 <p><span class="verse-num">2</span>And put my cup, the silver cup, in the mouth of the sack of the youngest, and his grain-money. And he did according to the word of Joseph which he had spoken.</p>
 <p><span class="verse-num">3</span>In the morning, when it was light, the men were sent away, they and their asses.</p>
 <p><span class="verse-num">4</span>They were gone out of the city, [and] not [yet] far off, when Joseph said to him who was over his house, Up! follow after the men; and when thou overtakest them, thou shalt say to them, Why have ye rewarded evil for good?</p>
@@ -352,6 +354,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -368,6 +371,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

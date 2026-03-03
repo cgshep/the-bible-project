@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Romans</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>s it not clear, my brothers (I am using an argument to those who have knowledge of the law), that the law has power over a man as long as he is living?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>s it not clear, my brothers (I am using an argument to those who have knowledge of the law), that the law has power over a man as long as he is living?</p>
 <p><span class="verse-num">2</span>For the woman who has a husband is placed by the law under the power of her husband as long as he is living; but if her husband is dead, she is free from the law of the husband.</p>
 <p><span class="verse-num">3</span>So if, while the husband is living, she is joined to another man, she will get the name of one who is untrue to her husband: but if the husband is dead, she is free from the law, so that she is not untrue, even if she takes another man.</p>
 <p><span class="verse-num">4</span>In the same way, my brothers, you were made dead to the law through the body of Christ, so that you might be joined to another, even to him who came again from the dead, so that we might give fruit to God.</p>
@@ -309,6 +311,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -325,6 +328,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

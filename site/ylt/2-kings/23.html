@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the king sendeth, and they gather unto him all the elders of Judah and Jerusalem,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the king sendeth, and they gather unto him all the elders of Judah and Jerusalem,</p>
 <p><span class="verse-num">2</span>and the king goeth up to the house of Jehovah, and every man of Judah, and all the inhabitants of Jerusalem, with him, and the priests, and the prophets, and all the people, from small unto great, and he readeth in their ears all the words of the book of the covenant that is found in the house of Jehovah.</p>
 <p><span class="verse-num">3</span>And the king standeth by the pillar, and maketh the covenant before Jehovah, to walk after Jehovah, and to keep His commands, and His testimonies, and His statutes, with all the heart, and with all the soul, to establish the words of this covenant that are written on this book, and all the people stand in the covenant.</p>
 <p><span class="verse-num">4</span>And the king commandeth Hilkiah the high priest, and the priests of the second order, and the keepers of the threshold, to bring out from the temple of Jehovah all the vessels that are made for Baal, and for the shrine, and for all the host of the heavens, and he burneth them at the outside of Jerusalem, in the fields of Kidron, and hath borne their ashes to Beth-El.</p>
@@ -330,6 +332,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -346,6 +349,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

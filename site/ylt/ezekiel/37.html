@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 37</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>here hath been upon me a hand of Jehovah, and He taketh me forth in the Spirit of Jehovah, and doth place me in the midst of the valley, and it is full of bones,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>here hath been upon me a hand of Jehovah, and He taketh me forth in the Spirit of Jehovah, and doth place me in the midst of the valley, and it is full of bones,</p>
 <p><span class="verse-num">2</span>and He causeth me to pass over by them, all round about, and lo, very many &lt;FI&gt;are&lt;Fi&gt; on the face of the valley, and lo, very dry.</p>
 <p><span class="verse-num">3</span>And He saith unto me, `Son of man, do these bones live?&#x27; And I say, `O Lord Jehovah, Thou--Thou hast known.&#x27;</p>
 <p><span class="verse-num">4</span>And He saith unto me, `Prophesy concerning these bones, and thou hast said unto them: O dry bones, hear a word of Jehovah:</p>
@@ -344,6 +346,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -360,6 +363,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 29</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow the Philistines collected all their armies to Aphek: and the Israelites encamped by a fountain which [is] in Jezreel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow the Philistines collected all their armies to Aphek: and the Israelites encamped by a fountain which [is] in Jezreel.</p>
 <p><span class="verse-num">2</span>And the lords of the Philistines passed on by hundreds, and by thousands: but David and his men passed on in the rear with Achish.</p>
 <p><span class="verse-num">3</span>Then said the princes of the Philistines, What [do] these Hebrews [here]? And Achish said to the princes of the Philistines, [Is] not this David, the servant of Saul the king of Israel, who hath been with me these days, or these years, and I have found no fault in him since he fell [to me] to this day?</p>
 <p><span class="verse-num">4</span>And the princes of the Philistines were wroth with him; and the princes of the Philistines said to him, Make this man return, that he may go again to his place which thou hast appointed him, and let him not go down with us to battle, lest in the battle he should be an adversary to us: for with what would he reconcile himself to his master? [would it] not [be] with the heads of these men?</p>
@@ -310,6 +312,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -326,6 +329,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>fter these things I saw another angel descending out of the heaven, having great authority: and the earth was lightened with his glory.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>fter these things I saw another angel descending out of the heaven, having great authority: and the earth was lightened with his glory.</p>
 <p><span class="verse-num">2</span>And he cried with a strong voice, saying, Great Babylon has fallen, has fallen, and has become the habitation of demons, and a hold of every unclean spirit, and a hold of every unclean and hated bird;</p>
 <p><span class="verse-num">3</span>because all the nations have drunk of the wine of the fury of her fornication; and the kings of the earth have committed fornication with her, and the merchants of the earth have been enriched through the might of her luxury.</p>
 <p><span class="verse-num">4</span>And I heard another voice out of the heaven saying, Come out of her, my people, that ye have not fellowship in her sins, and that ye do not receive of her plagues:</p>
@@ -314,6 +316,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -330,6 +333,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Hosea</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">R</span>ejoice not, O Israel: rejoice not as the nations do: for thou hast committed fornication against thy God, thou hast loved a reward upon every cornfloor.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>R</span>ejoice not, O Israel: rejoice not as the nations do: for thou hast committed fornication against thy God, thou hast loved a reward upon every cornfloor.</p>
 <p><span class="verse-num">2</span>The floor and the winepress shall not feed them, and the wine shall deceive them.</p>
 <p><span class="verse-num">3</span>They shall not dwell in the Lord&#x27;s land: Ephraim is returned to Egypt, and hath eaten unclean things among the Assyrians.</p>
 <p><span class="verse-num">4</span>They shall not offer wine to the Lord, neither shall they please him: their sacrifices shall be like the bread of mourners: all that shall eat it shall be defiled: for their bread is life for their soul, it shall not enter into the house of the Lord.</p>
@@ -299,6 +301,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -315,6 +318,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

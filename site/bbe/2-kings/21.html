@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 21</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">M</span>anasseh was twelve years old when he became king; for fifty-five years he was ruling in Jerusalem; and his mother&#x27;s name was Hephzi-bah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>M</span>anasseh was twelve years old when he became king; for fifty-five years he was ruling in Jerusalem; and his mother&#x27;s name was Hephzi-bah.</p>
 <p><span class="verse-num">2</span>He did evil in the eyes of the Lord, copying the disgusting ways of those nations whom the Lord had sent out before the children of Israel.</p>
 <p><span class="verse-num">3</span>He put up again the high places which had been pulled down by Hezekiah his father; he made altars for Baal, and an Asherah, as Ahab, king of Israel, had done; he was a worshipper and servant of all the stars of heaven.</p>
 <p><span class="verse-num">4</span>And he put up altars in the house of the Lord, of which the Lord had said, In Jerusalem will I put my name.</p>
@@ -319,6 +321,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -335,6 +338,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

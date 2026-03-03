@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>2 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd these &lt;FI&gt;are&lt;Fi&gt; the last words of David: --`The affirmation of David son of Jesse--And the affirmation of the man raised up--Concerning the Anointed of the God of Jacob, And the Sweetness of the Songs of Israel:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd these &lt;FI&gt;are&lt;Fi&gt; the last words of David: --`The affirmation of David son of Jesse--And the affirmation of the man raised up--Concerning the Anointed of the God of Jacob, And the Sweetness of the Songs of Israel:</p>
 <p><span class="verse-num">2</span>The Spirit of Jehovah hath spoken by me, And His word &lt;FI&gt;is&lt;Fi&gt; on my tongue.</p>
 <p><span class="verse-num">3</span>He said--the God of Israel--to me, He spake--the Rock of Israel: He who is ruling over man &lt;FI&gt;is&lt;Fi&gt; righteous, He is ruling in the fear of God.</p>
 <p><span class="verse-num">4</span>And as the light of morning he riseth, A morning sun--no clouds! By the shining, by the rain, Tender grass of the earth!</p>
@@ -331,6 +333,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -347,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

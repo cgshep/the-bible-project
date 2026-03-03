@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>1 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd behold there came a man of God out of Juda, by the word of the Lord, to Bethel, when Jeroboam was standing upon the altar, and burning incense.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd behold there came a man of God out of Juda, by the word of the Lord, to Bethel, when Jeroboam was standing upon the altar, and burning incense.</p>
 <p><span class="verse-num">2</span>And he cried out against the altar in the word of the Lord, and said: O altar, altar, thus saith the Lord: Behold a child shall be born to the house of David, Josias by name, and he shall immolate upon thee the priests of the high places, who now burn incense upon thee, and he shall burn men&#x27;s bones upon thee.</p>
 <p><span class="verse-num">3</span>And he gave a sign the same day, saying: This shall be the sign, that the Lord hath spoken: Behold the altar shall be rent, and the ashes that are upon it, shall be poured out.</p>
 <p><span class="verse-num">4</span>And when the king had heard the word of the man of God, which he had cried out against the altar in Bethel, he stretched forth his hand from the altar, saying: Lay hold on him. And his hand which he stretched forth against him, withered: and he was not able to draw it back again to him.</p>
@@ -324,6 +326,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -340,6 +343,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

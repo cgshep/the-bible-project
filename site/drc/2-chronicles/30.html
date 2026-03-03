@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 30</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Ezechias sent to all Israel and Juda: and he wrote letters to Ephraim and Manasses, that they should come to the house of the Lord in Jerusalem, and keep the phase to the Lord the God of Israel,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Ezechias sent to all Israel and Juda: and he wrote letters to Ephraim and Manasses, that they should come to the house of the Lord in Jerusalem, and keep the phase to the Lord the God of Israel,</p>
 <p><span class="verse-num">2</span>For the king, taking counsel, and the princes, and all the assembly of Jerusalem, decreed to keep the phase the second month.</p>
 <p><span class="verse-num">3</span>For they could not keep it in its time; because there were not priests enough sanctified, and the people was not as yet gathered together to Jerusalem.</p>
 <p><span class="verse-num">4</span>And the thing pleased the king, and all the people.</p>
@@ -331,6 +333,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -347,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>2 Kings</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The divided kingdom&#x27;s decline, the prophet Elisha, and the fall of Israel and Judah.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Kings" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>fter the death of Ahab, Moab made itself free from the authority of Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>fter the death of Ahab, Moab made itself free from the authority of Israel.</p>
 <p><span class="verse-num">2</span>Now Ahaziah had a fall from the window of his room in Samaria, and was ill. And he sent men, and said to them, Put a question to Baal-zebub, the god of Ekron, about the outcome of my disease, to see if I will get well or not.</p>
 <p><span class="verse-num">3</span>But the angel of the Lord said to Elijah the Tishbite, Go now, and, meeting the men sent by the king of Samaria, say to them, Is it because there is no God in Israel, that you are going to get directions from Baal-zebub, the god of Ekron?</p>
 <p><span class="verse-num">4</span>Give ear then to the words of the Lord: You will never again get down from the bed on to which you have gone up, but death will certainly come to you. Then Elijah went away.</p>
@@ -311,6 +313,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -327,6 +330,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

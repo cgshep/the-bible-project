@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 14</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd these are the heritages which the children of Israel took in the land of Canaan, which Eleazar, the priest, and Joshua, the son of Nun, and the heads of the tribes of the children of Israel, gave out to them;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd these are the heritages which the children of Israel took in the land of Canaan, which Eleazar, the priest, and Joshua, the son of Nun, and the heads of the tribes of the children of Israel, gave out to them;</p>
 <p><span class="verse-num">2</span>Their heritage by the Lord&#x27;s decision, as he gave orders by Moses, for the nine tribes and the half-tribe.</p>
 <p><span class="verse-num">3</span>For Moses had given their heritage to the two tribes and the half-tribe on the other side of Jordan, but to the Levites he gave no heritage among them.</p>
 <p><span class="verse-num">4</span>Because the children of Joseph were two tribes, Manasseh and Ephraim; and they gave the Levites no part in the land, only towns for their living-places, with the grass-lands for their cattle and for their property.</p>
@@ -307,6 +309,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -323,6 +326,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

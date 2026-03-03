@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n those days there was no king in Israel, and the tribe of Dan sought them an inheritance to dwell in: for unto that day they had not received their lot among the other tribes.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n those days there was no king in Israel, and the tribe of Dan sought them an inheritance to dwell in: for unto that day they had not received their lot among the other tribes.</p>
 <p><span class="verse-num">2</span>So the children of Dan sent five most valiant men, of their stock and family, from Saraa and Esthaol, to spy out the land, and to view it diligently: and they said to them: Go, and view the land. They went on their way, and when they came to mount Ephraim, they went into the house of Michas, and rested there:</p>
 <p><span class="verse-num">3</span>And knowing the voice of the young man the Levite, and lodging with him, they said to him: Who brought thee hither? what dost thou here? why wouldst thou come hither?</p>
 <p><span class="verse-num">4</span>He answered them: Michas hath done such and such things for me, and hath hired me to be his priest.</p>
@@ -320,6 +322,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -336,6 +339,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

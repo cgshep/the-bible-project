@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the Lord said to Samuel, How long will you go on sorrowing for Saul, seeing that I have put him from his place as king over Israel? Take oil in your vessel and go; I will send you to Jesse, the Beth-lehemite: for I have got a king for myself among his sons.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the Lord said to Samuel, How long will you go on sorrowing for Saul, seeing that I have put him from his place as king over Israel? Take oil in your vessel and go; I will send you to Jesse, the Beth-lehemite: for I have got a king for myself among his sons.</p>
 <p><span class="verse-num">2</span>And Samuel said, How is it possible for me to go? If Saul gets news of it he will put me to death. And the Lord said, Take a young cow with you and say, I have come to make an offering to the Lord.</p>
 <p><span class="verse-num">3</span>And send for Jesse to be present at the offering, and I will make clear to you what you are to do: and you are to put the holy oil on him whose name I give you.</p>
 <p><span class="verse-num">4</span>And Samuel did as the Lord said and came to Beth-lehem. And the responsible men of the town came out to him in fear and said, Do you come in peace?</p>
@@ -322,6 +324,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -338,6 +341,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

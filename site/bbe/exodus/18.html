@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -293,8 +294,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Exodus</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow news came to Jethro, the priest of Midian, Moses&#x27; father-in-law, of all God had done for Moses and for Israel his people, and how the Lord had taken Israel out of Egypt.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow news came to Jethro, the priest of Midian, Moses&#x27; father-in-law, of all God had done for Moses and for Israel his people, and how the Lord had taken Israel out of Egypt.</p>
 <p><span class="verse-num">2</span>And Jethro, Moses&#x27; father-in-law, took Zipporah, Moses&#x27; wife, after he had sent her away,</p>
 <p><span class="verse-num">3</span>And her two sons, one of whom was named Gershom, for he said, I have been living in a strange land:</p>
 <p><span class="verse-num">4</span>And the name of the other was Eliezer, for he said, The God of my father was my help, and kept me safe from the sword of Pharaoh:</p>
@@ -335,6 +337,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -351,6 +354,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

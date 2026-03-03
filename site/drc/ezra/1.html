@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -263,8 +264,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Ezra</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezra" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the first year of Cyrus king of the Persians, that the word of the Lord by the mouth of Jeremias might be fulfilled, the Lord stirred up the spirit of Cyrus king of the Persians: and he made a proclamation throughout all his kingdom, and in writing also, saying:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the first year of Cyrus king of the Persians, that the word of the Lord by the mouth of Jeremias might be fulfilled, the Lord stirred up the spirit of Cyrus king of the Persians: and he made a proclamation throughout all his kingdom, and in writing also, saying:</p>
 <p><span class="verse-num">2</span>Thus saith Cyrus king of the Persians: The Lord the God of heaven hath given to me all the kingdoms of the earth, and he hath charged me to build him a house in Jerusalem, which is in Judea.</p>
 <p><span class="verse-num">3</span>Who is there among you of all his people? His God be with him. Let him go up to Jerusalem, which is in Judea, and build the house of the Lord the God of Israel: he is the God that is in Jerusalem.</p>
 <p><span class="verse-num">4</span>And let all the rest in all places wheresoever they dwell, help him every man from his place, with silver and gold, and goods, and cattle, besides that which they offer freely to the temple of God, which is in Jerusalem.</p>
@@ -289,6 +291,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -305,6 +308,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

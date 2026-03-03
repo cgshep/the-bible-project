@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd all the company of the sons of Israel are assembled &lt;FI&gt;at&lt;Fi&gt; Shiloh, and they cause the tent of meeting to tabernacle there, and the land hath been subdued before them.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd all the company of the sons of Israel are assembled &lt;FI&gt;at&lt;Fi&gt; Shiloh, and they cause the tent of meeting to tabernacle there, and the land hath been subdued before them.</p>
 <p><span class="verse-num">2</span>And there are left among the sons of Israel who have not shared their inheritance, seven tribes,</p>
 <p><span class="verse-num">3</span>and Joshua saith unto the sons of Israel, `Till when are ye remiss to go in to possess the land which He hath given to you, Jehovah, God of your fathers?</p>
 <p><span class="verse-num">4</span>Give for you three men for a tribe, and I send them, and they rise and go up and down through the land, and describe it according to their inheritance, and come in unto me,</p>
@@ -320,6 +322,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -336,6 +339,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

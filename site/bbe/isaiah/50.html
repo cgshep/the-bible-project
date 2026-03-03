@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 50</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>his is the word of the Lord: Where is the statement which I gave your mother when I put her away? or to which of my creditors have I given you for money? It was for your sins that you were given into the hands of others, and for your evil-doing was your mother put away.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>his is the word of the Lord: Where is the statement which I gave your mother when I put her away? or to which of my creditors have I given you for money? It was for your sins that you were given into the hands of others, and for your evil-doing was your mother put away.</p>
 <p><span class="verse-num">2</span>Why, then, when I came, was there no man? and no one to give answer to my voice? has my hand become feeble, so that it is unable to take up your cause? or have I no power to make you free? See, at my word the sea becomes dry, I make the rivers a waste land: their fish are dead for need of water, and make an evil smell.</p>
 <p><span class="verse-num">3</span>By me the heavens are clothed with black, and I make haircloth their robe.</p>
 <p><span class="verse-num">4</span>The Lord God has given me the tongue of those who are experienced, so that I may be able to give the word a special sense for the feeble: every morning my ear is open to his teaching, like those who are experienced:</p>
@@ -345,6 +347,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -361,6 +364,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

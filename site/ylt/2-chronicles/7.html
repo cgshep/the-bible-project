@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd at Solomon&#x27;s finishing to pray, then the fire hath come down from the heavens, and consumeth the burnt-offering and the sacrifices, and the honour of Jehovah hath filled the house,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd at Solomon&#x27;s finishing to pray, then the fire hath come down from the heavens, and consumeth the burnt-offering and the sacrifices, and the honour of Jehovah hath filled the house,</p>
 <p><span class="verse-num">2</span>and the priests have not been able to go in unto the house of Jehovah, because the honour of Jehovah hath filled the house of Jehovah.</p>
 <p><span class="verse-num">3</span>And all the sons of Israel are looking on the descending of the fire, and the honour of Jehovah on the house, and they bow--faces to the earth--on the pavement, and do obeisance, and give thanks to Jehovah, for good, for to the age &lt;FI&gt; is&lt;Fi&gt; His kindness.</p>
 <p><span class="verse-num">4</span>And the king and all the people are sacrificing a sacrifice before Jehovah,</p>
@@ -326,6 +328,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -342,6 +345,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

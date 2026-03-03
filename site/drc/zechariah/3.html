@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 3</div>
       <h2>Zechariah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the Lord shewed me Jesus the high priest standing before the angel of the Lord: and Satan stood on his right hand to be his adversary.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the Lord shewed me Jesus the high priest standing before the angel of the Lord: and Satan stood on his right hand to be his adversary.</p>
 <p><span class="verse-num">2</span>And the Lord said to Satan: The Lord rebuke thee, O Satan: and the Lord that chose Jerusalem rebuke thee: Is not this a brand plucked out of the fire?</p>
 <p><span class="verse-num">3</span>And Jesus was clothed with filthy garments: and he stood before the face of the angel.</p>
 <p><span class="verse-num">4</span>Who answered, and said to them that stood before him, saying: Take away the filthy garments from him. And he said to him: Behold I have taken away thy iniquity, and have clothed thee with change of garments.</p>
@@ -292,6 +294,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -308,6 +311,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -267,8 +268,9 @@
       <div class="ch-label">Chapter 10</div>
       <h2>Hosea</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">`</span>An empty vine &lt;FI&gt;is&lt;Fi&gt; Israel, Fruit he maketh like to himself, According to the abundance of his fruit, He hath multiplied for the altars, According to the goodness of his land, They have made goodly standing-pillars.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>`</span>An empty vine &lt;FI&gt;is&lt;Fi&gt; Israel, Fruit he maketh like to himself, According to the abundance of his fruit, He hath multiplied for the altars, According to the goodness of his land, They have made goodly standing-pillars.</p>
 <p><span class="verse-num">2</span>Their heart hath been divided, now they are guilty, He doth break down their altars, He doth destroy their standing-pillars.</p>
 <p><span class="verse-num">3</span>For now they say: We have no king, Because we have not feared Jehovah, And the king--what doth he for us?</p>
 <p><span class="verse-num">4</span>They have spoken words, To swear falsehood in making a covenant, And flourished as a poisonous herb hath judgment, on the furrows of a field.</p>
@@ -297,6 +299,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -313,6 +316,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

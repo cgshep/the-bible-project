@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 27</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n that day the Lord, with his great and strong and cruel sword, will send punishment on Leviathan, the quick-moving snake, and on Leviathan, the twisted snake; and he will put to death the dragon which is in the sea.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n that day the Lord, with his great and strong and cruel sword, will send punishment on Leviathan, the quick-moving snake, and on Leviathan, the twisted snake; and he will put to death the dragon which is in the sea.</p>
 <p><span class="verse-num">2</span>In that day it will be said, A vine-garden of delight, make a song about it.</p>
 <p><span class="verse-num">3</span>I, the Lord, am watching it; I will give it water at all times: I will keep it night and day, for fear that any damage comes to it.</p>
 <p><span class="verse-num">4</span>My passion is over: if the thorns were fighting against me, I would make an attack on them, and they would be burned up together.</p>
@@ -347,6 +349,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -363,6 +366,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

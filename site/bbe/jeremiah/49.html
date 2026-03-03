@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 49</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>bout the children of Ammon. These are the words of the Lord: Has Israel no sons? has he no one to take the heritage? why then has Milcom taken Gad for himself, putting his people in its towns?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>bout the children of Ammon. These are the words of the Lord: Has Israel no sons? has he no one to take the heritage? why then has Milcom taken Gad for himself, putting his people in its towns?</p>
 <p><span class="verse-num">2</span>Because of this, see, the days are coming when I will have a cry of war sounded against Rabbah, the town of the children of Ammon; it will become a waste of broken walls, and her daughter-towns will be burned with fire: then Israel will take the heritage of those who took his heritage, says the Lord.</p>
 <p><span class="verse-num">3</span>Make sounds of grief, O Heshbon, for Ai is wasted; give loud cries, O daughters of Rabbah, and put haircloth round you: give yourselves to weeping, running here and there and wounding yourselves; for Milcom will be taken prisoner together with his rulers and his priests.</p>
 <p><span class="verse-num">4</span>Why are you lifted up in pride on account of your valleys, your flowing valley, O daughter ever turning away? who puts her faith in her wealth, saying, Who will come against me?</p>
@@ -359,6 +361,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -375,6 +378,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

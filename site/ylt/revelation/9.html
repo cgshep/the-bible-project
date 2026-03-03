@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the fifth messenger did sound, and I saw a star out of the heaven having fallen to the earth, and there was given to it the key of the pit of the abyss,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the fifth messenger did sound, and I saw a star out of the heaven having fallen to the earth, and there was given to it the key of the pit of the abyss,</p>
 <p><span class="verse-num">2</span>and he did open the pit of the abyss, and there came up a smoke out of the pit as smoke of a great furnace, and darkened was the sun and the air, from the smoke of the pit.</p>
 <p><span class="verse-num">3</span>And out of the smoke came forth locusts to the earth, and there was given to them authority, as scorpions of the earth have authority,</p>
 <p><span class="verse-num">4</span>and it was said to them that they may not injure the grass of the earth, nor any green thing, nor any tree, but--the men only who have not the seal of God upon their foreheads,</p>
@@ -311,6 +313,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -327,6 +330,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

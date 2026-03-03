@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 34</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">J</span>osiah was eight years old when he became king; he was ruling in Jerusalem for thirty-one years.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>J</span>osiah was eight years old when he became king; he was ruling in Jerusalem for thirty-one years.</p>
 <p><span class="verse-num">2</span>And he did what was right in the eyes of the Lord, walking in the ways of his father David, without turning to the right hand or to the left.</p>
 <p><span class="verse-num">3</span>In the eighth year of his rule, while he was still young, his heart was first turned to the God of his father David; and in the twelfth year he undertook the clearing away of all the high places and the pillars and the images of wood and metal from Judah and Jerusalem.</p>
 <p><span class="verse-num">4</span>He had the altars of the Baals broken down, while he himself was present; and the sun-images which were placed on high over them he had cut down; and the pillars of wood and the metal images he had broken up and crushed to dust, dropping the dust over the resting-places of the dead who had made offerings to them.</p>
@@ -337,6 +339,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -353,6 +356,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -281,8 +282,9 @@
       <div class="ch-label">Chapter 27</div>
       <h2>Acts</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd when our sailing to Italy was determined, they were delivering up both Paul and certain others, prisoners, to a centurion, by name Julius, of the band of Sebastus,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd when our sailing to Italy was determined, they were delivering up both Paul and certain others, prisoners, to a centurion, by name Julius, of the band of Sebastus,</p>
 <p><span class="verse-num">2</span>and having embarked in a ship of Adramyttium, we, being about to sail by the coasts of Asia, did set sail, there being with us Aristarchus, a Macedonian of Thessalonica,</p>
 <p><span class="verse-num">3</span>on the next &lt;FI&gt;day&lt;Fi&gt; also we touched at Sidon, and Julius, courteously treating Paul, did permit &lt;FI&gt;him&lt;Fi&gt; , having gone on unto friends, to receive &lt;FI&gt;their&lt;Fi&gt; care.</p>
 <p><span class="verse-num">4</span>And thence, having set sail, we sailed under Cyprus, because of the winds being contrary,</p>
@@ -340,6 +342,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -356,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

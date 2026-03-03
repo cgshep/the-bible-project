@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -403,8 +404,9 @@
       <div class="ch-label">Chapter 27</div>
       <h2>Psalms</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">B</span>y David. Jehovah &lt;FI&gt;is&lt;Fi&gt; my light and my salvation, Whom do I fear? Jehovah &lt;FI&gt;is&lt;Fi&gt; the strength of my life, Of whom am I afraid?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>B</span>y David. Jehovah &lt;FI&gt;is&lt;Fi&gt; my light and my salvation, Whom do I fear? Jehovah &lt;FI&gt;is&lt;Fi&gt; the strength of my life, Of whom am I afraid?</p>
 <p><span class="verse-num">2</span>When evil doers come near to me to eat my flesh, My adversaries and mine enemies to me, They have stumbled and fallen.</p>
 <p><span class="verse-num">3</span>Though a host doth encamp against me, My heart doth not fear, Though war riseth up against me, In this I &lt;FI&gt;am&lt;Fi&gt; confident.</p>
 <p><span class="verse-num">4</span>One &lt;FI&gt;thing&lt;Fi&gt; I asked of Jehovah--it I seek. My dwelling in the house of Jehovah, All the days of my life, To look on the pleasantness of Jehovah, And to inquire in His temple.</p>
@@ -432,6 +434,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -448,6 +451,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

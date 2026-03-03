@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 20</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it cometh to pass, in the seventh year, in the fifth &lt;FI&gt;month&lt;Fi&gt; , in the tenth of the month, come in have certain of the elders of Israel to seek Jehovah, and they sit before me;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it cometh to pass, in the seventh year, in the fifth &lt;FI&gt;month&lt;Fi&gt; , in the tenth of the month, come in have certain of the elders of Israel to seek Jehovah, and they sit before me;</p>
 <p><span class="verse-num">2</span>and there is a word of Jehovah unto me, saying,</p>
 <p><span class="verse-num">3</span>`Son of man, speak with the elders of Israel, and thou hast said unto them, Thus said the Lord Jehovah: To seek Me are ye coming in? I live--I am not sought by you--an affirmation of the Lord Jehovah.</p>
 <p><span class="verse-num">4</span>Dost thou judge them? Dost thou judge, son of man? The abominations of their fathers cause them to know,</p>
@@ -365,6 +367,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -381,6 +384,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

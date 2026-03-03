@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 20</div>
       <h2>Revelation</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd I saw a messenger coming down out of the heaven, having the key of the abyss, and a great chain over his hand,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd I saw a messenger coming down out of the heaven, having the key of the abyss, and a great chain over his hand,</p>
 <p><span class="verse-num">2</span>and he laid hold on the dragon, the old serpent, who is Devil and Adversary, and did bind him a thousand years,</p>
 <p><span class="verse-num">3</span>and he cast him to the abyss, and did shut him up, and put a seal upon him, that he may not lead astray the nations any more, till the thousand years may be finished; and after these it behoveth him to be loosed a little time.</p>
 <p><span class="verse-num">4</span>And I saw thrones, and they sat upon them, and judgment was given to them, and the souls of those who have been beheaded because of the testimony of Jesus, and because of the word of God, and who did not bow before the beast, nor his image, and did not receive the mark upon their forehead and upon their hand, and they did live and reign with Christ the thousand years;</p>
@@ -305,6 +307,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -321,6 +324,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

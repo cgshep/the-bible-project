@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">`</span>Hear, Israel, thou art passing over to-day the Jordan, to go in to possess nations greater and mightier than thyself; cities great and fenced in the heavens;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>`</span>Hear, Israel, thou art passing over to-day the Jordan, to go in to possess nations greater and mightier than thyself; cities great and fenced in the heavens;</p>
 <p><span class="verse-num">2</span>a people great and tall, sons of Anakim, whom thou--thou hast known, (and thou--thou hast heard: Who doth station himself before sons of Anak?)</p>
 <p><span class="verse-num">3</span>and thou hast known to-day, that Jehovah thy God &lt;FI&gt;is&lt;Fi&gt; He who is passing over before thee--a fire consuming; He doth destroy them, and He doth humble them before thee, and thou hast dispossessed them, and destroyed them hastily, as Jehovah hath spoken to thee.</p>
 <p><span class="verse-num">4</span>`Thou dost not speak in thy heart (in Jehovah thy God&#x27;s driving them away from before thee), saying, For my righteousness hath Jehovah brought me in to possess this land, seeing for the wickedness of these nations is Jehovah dispossessing them from thy presence;</p>
@@ -331,6 +333,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -347,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

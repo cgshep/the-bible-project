@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -266,8 +267,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Hebrews</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">F</span>or this Melchizedek, the king of Salem, a priest of the Most High God, who gave Abraham his blessing, meeting him when he came back after putting the kings to death,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>F</span>or this Melchizedek, the king of Salem, a priest of the Most High God, who gave Abraham his blessing, meeting him when he came back after putting the kings to death,</p>
 <p><span class="verse-num">2</span>And to whom Abraham gave a tenth part of everything which he had, being first named King of righteousness, and then in addition, King of Salem, that is to say, King of peace;</p>
 <p><span class="verse-num">3</span>Being without father or mother, or family, having no birth or end to his life, being made like the Son of God, is a priest for ever.</p>
 <p><span class="verse-num">4</span>Now see how great this man was, to whom our father Abraham gave a tenth part of what he had got in the fight.</p>
@@ -309,6 +311,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -325,6 +328,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

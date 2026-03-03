@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -282,8 +283,9 @@
       <div class="ch-label">Chapter 29</div>
       <h2>1 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd David the king saith to all the assembly, `Solomon my son--the one on whom God hath fixed--&lt;FI&gt; is&lt;Fi&gt; young and tender, and the work &lt;FI&gt;is&lt;Fi&gt; great, for not for man is the palace, but for Jehovah God;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd David the king saith to all the assembly, `Solomon my son--the one on whom God hath fixed--&lt;FI&gt; is&lt;Fi&gt; young and tender, and the work &lt;FI&gt;is&lt;Fi&gt; great, for not for man is the palace, but for Jehovah God;</p>
 <p><span class="verse-num">2</span>and with all my power I have prepared for the house of my God, the gold for &lt;FI&gt;things of&lt;Fi&gt; gold, and the silver for &lt;FI&gt;those of&lt;Fi&gt; silver, and the brass for &lt;FI&gt;those of&lt;Fi&gt; brass, the iron for &lt;FI&gt;those of&lt;Fi&gt; iron, and the wood for &lt;FI&gt;those of&lt;Fi&gt; wood, shoham stones, and settings, and stones of painting and of diverse colours, and all &lt;FI&gt;kinds of&lt;Fi&gt; precious stone, and stones of white marble, in abundance.</p>
 <p><span class="verse-num">3</span>`And again, because of my delighting in the house of my God, the substance I have--a peculiar treasure of gold and silver--I have given for the house of my God, even over and above all I have prepared for the house of the sanctuary:</p>
 <p><span class="verse-num">4</span>three thousand talents of gold, of the gold of Ophir, and seven thousand talents of refined silver, to overlay the walls of the houses,</p>
@@ -327,6 +329,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -343,6 +346,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

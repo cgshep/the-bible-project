@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 26</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd the Ziphites come in unto Saul, at Gibeah, saying, `Is not David hiding himself in the height of Hachilah, on the front of the desert?&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd the Ziphites come in unto Saul, at Gibeah, saying, `Is not David hiding himself in the height of Hachilah, on the front of the desert?&#x27;</p>
 <p><span class="verse-num">2</span>And Saul riseth, and goeth down unto the wilderness of Ziph, and with him three thousand men, chosen ones of Israel, to seek David in the wilderness of Ziph.</p>
 <p><span class="verse-num">3</span>And Saul encampeth in the height of Hachilah, which &lt;FI&gt;is&lt;Fi&gt; on the front of the desert, by the way, and David is abiding in the wilderness, and he seeth that Saul hath come after him in to the wilderness;</p>
 <p><span class="verse-num">4</span>and David sendeth spies, and knoweth that Saul hath come unto Nachon,</p>
@@ -324,6 +326,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -340,6 +343,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

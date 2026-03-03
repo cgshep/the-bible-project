@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass in those days, that the Philistines gathered themselves together to fight: and Israel went out to war against the Philistines, and camped by the Stone of help. And the Philistines came to Aphec,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass in those days, that the Philistines gathered themselves together to fight: and Israel went out to war against the Philistines, and camped by the Stone of help. And the Philistines came to Aphec,</p>
 <p><span class="verse-num">2</span>And put their army in array against Israel. And when they had joined battle, Israel turned their backs to the Philistines: and there were slain in that fight, here and there in the fields, about four thousand men.</p>
 <p><span class="verse-num">3</span>And the people returned to the camp: and the ancients of Israel said: Why hath the Lord defeated us to day before the Philistines? Let us fetch unto us the ark of the covenant of the Lord from Silo, and let it come in the midst of us, that it may save us from the hand of our enemies.</p>
 <p><span class="verse-num">4</span>So the people sent to Silo, and they brought from thence the ark of the covenant of the Lord of hosts, sitting upon the cherubims: and the two sons of Heli, Ophni and Phinees, were with the ark of the covenant of God.</p>
@@ -321,6 +323,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -337,6 +340,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

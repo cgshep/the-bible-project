@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 5</div>
       <h2>Joshua</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass, when all the kings of the Amorites, that were beyond the Jordan westward, and all the kings of the Canaanites, that were by the sea, heard how that Jehovah had dried up the waters of the Jordan from before the children of Israel, until we were passed over, that their heart melted, neither was there spirit in them any more, because of the children of Israel.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass, when all the kings of the Amorites, that were beyond the Jordan westward, and all the kings of the Canaanites, that were by the sea, heard how that Jehovah had dried up the waters of the Jordan from before the children of Israel, until we were passed over, that their heart melted, neither was there spirit in them any more, because of the children of Israel.</p>
 <p><span class="verse-num">2</span>At that time Jehovah said unto Joshua, Make thee knives of flint, and circumcise again the children of Israel the second time.</p>
 <p><span class="verse-num">3</span>And Joshua made him knives of flint, and circumcised the children of Israel at the hill of the foreskins.</p>
 <p><span class="verse-num">4</span>And this is the cause why Joshua did circumcise: all the people that came forth out of Egypt, that were males, even all the men of war, died in the wilderness by the way, after they came forth out of Egypt.</p>
@@ -307,6 +309,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -323,6 +326,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

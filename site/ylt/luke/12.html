@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 12</div>
       <h2>Luke</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>t which time the myriads of the multitude having been gathered together, so as to tread upon one another, he began to say unto his disciples, first, `Take heed to yourselves of the leaven of the Pharisees, which is hypocrisy;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>t which time the myriads of the multitude having been gathered together, so as to tread upon one another, he began to say unto his disciples, first, `Take heed to yourselves of the leaven of the Pharisees, which is hypocrisy;</p>
 <p><span class="verse-num">2</span>and there is nothing covered, that shall not be revealed; and hid, that shall not be known;</p>
 <p><span class="verse-num">3</span>because whatever in the darkness ye said, in the light shall be heard: and what to the ear ye spake in the inner-chambers, shall be proclaimed upon the house-tops.</p>
 <p><span class="verse-num">4</span>`And I say to you, my friends, be not afraid of those killing the body, and after these things are not having anything over to do;</p>
@@ -351,6 +353,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -367,6 +370,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

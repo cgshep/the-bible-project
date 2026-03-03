@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>2 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow after this, it came about that Absalom, David&#x27;s son, had a beautiful sister, whose name was Tamar; and David&#x27;s son Amnon was in love with her.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow after this, it came about that Absalom, David&#x27;s son, had a beautiful sister, whose name was Tamar; and David&#x27;s son Amnon was in love with her.</p>
 <p><span class="verse-num">2</span>And he was so deeply in love that he became ill because of his sister Tamar; for she was a virgin, and so it seemed hard to Amnon to do anything to her.</p>
 <p><span class="verse-num">3</span>But Amnon had a friend whose name was Jonadab, the son of Shimeah, David&#x27;s brother: and Jonadab was a very wise man.</p>
 <p><span class="verse-num">4</span>And he said to him, O son of the king, why are you getting thinner day by day? will you not say what your trouble is? And Amnon said to him, I am in love with Tamar, my brother Absalom&#x27;s sister.</p>
@@ -331,6 +333,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -347,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

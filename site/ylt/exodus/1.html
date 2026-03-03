@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -293,8 +294,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Exodus</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tissot_The_Crossing_of_the_Red_Sea.jpg/640px-Tissot_The_Crossing_of_the_Red_Sea.jpg" alt="The Crossing of the Red Sea by James Tissot" loading="lazy">
+        <div class="book-image-credit">James Tissot, c. 1900</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">Israel&#x27;s deliverance from Egypt, the giving of the Law at Sinai, and the construction of the Tabernacle.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Exodus" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd these &lt;FI&gt;are&lt;Fi&gt; the names of the sons of Israel who are coming into Egypt with Jacob; a man and his household have they come;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd these &lt;FI&gt;are&lt;Fi&gt; the names of the sons of Israel who are coming into Egypt with Jacob; a man and his household have they come;</p>
 <p><span class="verse-num">2</span>Reuben, Simeon, Levi, and Judah,</p>
 <p><span class="verse-num">3</span>Issachar, Zebulun, and Benjamin,</p>
 <p><span class="verse-num">4</span>Dan, and Naphtali, Gad, and Asher.</p>
@@ -330,6 +336,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -346,6 +353,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

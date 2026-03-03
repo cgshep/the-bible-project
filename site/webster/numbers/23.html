@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>Numbers</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Balaam said to Balak, Build me here seven altars, and prepare me here seven oxen and seven rams.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Balaam said to Balak, Build me here seven altars, and prepare me here seven oxen and seven rams.</p>
 <p><span class="verse-num">2</span>And Balak did as Balaam had spoken; and Balak and Balaam offered on [every] altar a bullock and a ram.</p>
 <p><span class="verse-num">3</span>And Balaam said to Balak, Stand by thy burnt-offering, and I will go: it may be the LORD will come to meet me: and whatever he showeth me I will tell thee. And he went to a high place.</p>
 <p><span class="verse-num">4</span>And God met Balaam: and he said to him, I have prepared seven altars, and I have offered upon [every] altar a bullock and a ram.</p>
@@ -334,6 +336,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -350,6 +353,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

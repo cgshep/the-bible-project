@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 22</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hus saith the Lord: Go down to the house of the king of Juda, and there thou shalt speak this word,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hus saith the Lord: Go down to the house of the king of Juda, and there thou shalt speak this word,</p>
 <p><span class="verse-num">2</span>And thou shalt say: Hear the word of the Lord, king of Juda, that sittest upon the throne of David: thou and thy servants, and thy people, who enter in by these gates.</p>
 <p><span class="verse-num">3</span>Thus saith the Lord: Execute judgment and justice, and deliver him that is oppressed out of the hand of the oppressor: and afflict not the stranger, the fatherless, and the widow, nor oppress them unjustly: and shed not innocent blood in this place.</p>
 <p><span class="verse-num">4</span>For if you will do this thing indeed, then shall there enter in by the gates of this house, kings of the race of David sitting upon his throne, and riding in chariots and on horses, they and their servants, and their people.</p>
@@ -350,6 +352,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -366,6 +369,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

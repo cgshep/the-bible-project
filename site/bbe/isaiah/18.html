@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">H</span>o! land of the sounding of wings, on the other side of the rivers of Ethiopia:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>H</span>o! land of the sounding of wings, on the other side of the rivers of Ethiopia:</p>
 <p><span class="verse-num">2</span>Which sends its representatives by the sea, even in ships of papyrus on the waters. Go back quickly, O representatives, to a nation tall and smooth, to a people causing fear through all their history; a strong nation, crushing down its haters, whose land is cut through by rivers.</p>
 <p><span class="verse-num">3</span>All you peoples of the world, and you who are living on the earth, when a flag is lifted up on the mountains, give attention; and when the horn is sounded, give ear.</p>
 <p><span class="verse-num">4</span>For this is what the Lord has said to me: I will be quiet, watching from my place; like the clear heat when the sun is shining, like a mist of dew in the heat of summer.</p>
@@ -341,6 +343,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -357,6 +360,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

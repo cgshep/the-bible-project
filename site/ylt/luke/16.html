@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>Luke</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd he said also unto his disciples, `A certain man was rich, who had a steward, and he was accused to him as scattering his goods;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd he said also unto his disciples, `A certain man was rich, who had a steward, and he was accused to him as scattering his goods;</p>
 <p><span class="verse-num">2</span>and having called him, he said to him, What &lt;FI&gt;is&lt;Fi&gt; this I hear about thee? render the account of thy stewardship, for thou mayest not any longer be steward.</p>
 <p><span class="verse-num">3</span>`And the steward said in himself, What shall I do, because my lord doth take away the stewardship from me? to dig I am not able, to beg I am ashamed: --</p>
 <p><span class="verse-num">4</span>I have known what I shall do, that, when I may be removed from the stewardship, they may receive me to their houses.</p>
@@ -323,6 +325,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -339,6 +342,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -257,8 +258,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Jonah</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg/640px-Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg" alt="Jonah and the Whale by Pieter Lastman" loading="lazy">
+        <div class="book-image-credit">Pieter Lastman, 1621</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">The reluctant prophet, the great fish, and God&#x27;s mercy extending even to Nineveh.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Jonah" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow the word of the LORD came unto Jonah the son of Amittai, saying,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow the word of the LORD came unto Jonah the son of Amittai, saying,</p>
 <p><span class="verse-num">2</span>Arise, go to Nineveh, that great city, and cry against it; for their wickedness is come up before me.</p>
 <p><span class="verse-num">3</span>But Jonah rose up to flee unto Tarshish from the presence of the LORD, and went down to Joppa; and he found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of the LORD.</p>
 <p><span class="verse-num">4</span>But the LORD sent out a great wind into the sea, and there was a mighty tempest in the sea, so that the ship was like to be broken.</p>
@@ -289,6 +295,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -305,6 +312,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -265,8 +266,13 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Daniel</h2>
     </div>
+    <div class="book-image-wrap">
+        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg/640px-Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg" alt="Daniel in the Lions&#x27; Den by Peter Paul Rubens" loading="lazy">
+        <div class="book-image-credit">Peter Paul Rubens, c. 1615</div>
+      </div>
+    <div class="book-info"><div class="book-info-desc">Stories of faithfulness in exile and apocalyptic visions of kingdoms and the Son of Man.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Daniel" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">I</span>n the third year of the rule of Jehoiakim, king of Judah, Nebuchadnezzar, king of Babylon, came to Jerusalem, shutting it in with his forces.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the third year of the rule of Jehoiakim, king of Judah, Nebuchadnezzar, king of Babylon, came to Jerusalem, shutting it in with his forces.</p>
 <p><span class="verse-num">2</span>And the Lord gave into his hands Jehoiakim, king of Judah, with some of the vessels of the house of God; and he took them away into the land of Shinar to the house of his god; and he put the vessels into the store-house of his god.</p>
 <p><span class="verse-num">3</span>And the king gave orders to Ashpenaz, the captain of his unsexed servants, to take in some of the children of Israel, certain of the king&#x27;s family, and those of high birth;</p>
 <p><span class="verse-num">4</span>Young men who were strong and healthy, good-looking, and trained in all wisdom, having a good education and much knowledge, and able to take positions in the king&#x27;s house; and to have them trained in the writing and language of the Chaldaeans.</p>
@@ -301,6 +307,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -317,6 +324,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

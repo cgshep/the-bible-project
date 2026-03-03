@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -278,8 +279,9 @@
       <div class="ch-label">Chapter 23</div>
       <h2>2 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hen the king sent and got together all the responsible men of Judah and of Jerusalem.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hen the king sent and got together all the responsible men of Judah and of Jerusalem.</p>
 <p><span class="verse-num">2</span>And the king went up to the house of the Lord, with all the men of Judah and all the people of Jerusalem, and the priests and the prophets and all the people, small and great; and they were present at his reading of the book of the law which had come to light in the house of the Lord.</p>
 <p><span class="verse-num">3</span>And the king took his place by the pillar, and made an agreement before the Lord, to go in the way of the Lord, and keep his orders and his decisions and his rules with all his heart and all his soul, and to keep the words of the agreement recorded in the book; and all the people gave their word to keep the agreement.</p>
 <p><span class="verse-num">4</span>Then the king gave orders to Hilkiah, the chief priest, and to the priests of the second order, and to the keepers of the door, to take out of the house of the Lord all the vessels made for Baal and for the Asherah and for all the stars of heaven; and he had them burned outside Jerusalem in the fields of Kidron, and took the dust of them to Beth-el.</p>
@@ -330,6 +332,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -346,6 +349,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

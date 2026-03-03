@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -257,8 +258,9 @@
       <div class="ch-label">Chapter 3</div>
       <h2>Ruth</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Naomi, her mother-in-law, said to her, My daughter, am I not to get you a resting-place where you may be in comfort?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Naomi, her mother-in-law, said to her, My daughter, am I not to get you a resting-place where you may be in comfort?</p>
 <p><span class="verse-num">2</span>And now, is there not Boaz, our relation, with whose young women you were? See, tonight he is separating the grain from the waste in his grain-floor.</p>
 <p><span class="verse-num">3</span>So take a bath, and, after rubbing your body with sweet oil, put on your best robe, and go down to the grain-floor; but do not let him see you till he has come to the end of his meal.</p>
 <p><span class="verse-num">4</span>But see to it, when he goes to rest, that you take note of the place where he is sleeping, and go in there, and, uncovering his feet, take your place by him; and he will say what you are to do.</p>
@@ -290,6 +292,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -306,6 +309,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

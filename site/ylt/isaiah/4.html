@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd taken hold have seven women on one man, In that day, saying, `Our own bread we do eat, And our own raiment we put on, Only, let thy name be called over us, Remove thou our reproach.&#x27;</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd taken hold have seven women on one man, In that day, saying, `Our own bread we do eat, And our own raiment we put on, Only, let thy name be called over us, Remove thou our reproach.&#x27;</p>
 <p><span class="verse-num">2</span>In that day is the Shoot of Jehovah for desire and for honour, And the fruit of the earth For excellence and for beauty to the escaped of Israel.</p>
 <p><span class="verse-num">3</span>And it hath been, he who is left in Zion, And he who is remaining in Jerusalem, `Holy&#x27; is said of him, Of every one who is written for life in Jerusalem.</p>
 <p><span class="verse-num">4</span>If the Lord hath washed away The filth of daughters of Zion, And the blood of Jerusalem purgeth from her midst, By the spirit of judgment, and by the spirit of burning.</p>
@@ -340,6 +342,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -356,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

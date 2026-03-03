@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 7</div>
       <h2>Romans</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>re ye ignorant, brethren, (for I speak to those knowing law,) that law rules over a man as long as he lives?</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>re ye ignorant, brethren, (for I speak to those knowing law,) that law rules over a man as long as he lives?</p>
 <p><span class="verse-num">2</span>For the married woman is bound by law to her husband so long as he is alive; but if the husband should die, she is clear from the law of the husband:</p>
 <p><span class="verse-num">3</span>so then, the husband being alive, she shall be called an adulteress if she be to another man; but if the husband should die, she is free from the law, so as not to be an adulteress, though she be to another man.</p>
 <p><span class="verse-num">4</span>So that, my brethren, ye also have been made dead to the law by the body of the Christ, to be to another, who has been raised up from among [the] dead, in order that we might bear fruit toGod.</p>
@@ -309,6 +311,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -325,6 +328,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 31</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd at the completion of all this, gone out have all Israel who are found present to the cities of Judah, and break the standing-pillars, and cut down the shrines, and break down the high places and the altars, out of all Judah and Benjamin, and in Ephraim and Manasseh, even to completion, and all the sons of Israel turn back, each to his Possession, to their cities.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd at the completion of all this, gone out have all Israel who are found present to the cities of Judah, and break the standing-pillars, and cut down the shrines, and break down the high places and the altars, out of all Judah and Benjamin, and in Ephraim and Manasseh, even to completion, and all the sons of Israel turn back, each to his Possession, to their cities.</p>
 <p><span class="verse-num">2</span>And Hezekiah appointeth the courses of the priests, and of the Levites, by their courses, each according to his service, of the priests and of the Levites, for burnt-offering, and for peace-offerings, to minister, and to give thanks, and to give praise in the gates of the camps of Jehovah.</p>
 <p><span class="verse-num">3</span>And a portion of the king, from his substance, &lt;FI&gt;is&lt;Fi&gt; for burnt-offerings, for burnt-offerings of the morning, and of the evening, and the burnt-offerings of sabbaths, and of new moons, and of appointed seasons, as it is written in the law of Jehovah.</p>
 <p><span class="verse-num">4</span>And he saith to the people, to the inhabitants of Jerusalem, to give the portion of the priests, and of the Levites, so that they are strengthened in the law of Jehovah;</p>
@@ -325,6 +327,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -341,6 +344,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

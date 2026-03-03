@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -275,8 +276,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>1 Kings</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass after many days, that the word of Jehovah came to Elijah in the third year, saying, Go, shew thyself to Ahab; and I will send rain upon the face of the earth.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass after many days, that the word of Jehovah came to Elijah in the third year, saying, Go, shew thyself to Ahab; and I will send rain upon the face of the earth.</p>
 <p><span class="verse-num">2</span>And Elijah went to shew himself to Ahab. And the famine was severe in Samaria.</p>
 <p><span class="verse-num">3</span>And Ahab called Obadiah, who was the steward of his house (now Obadiah feared Jehovah greatly;</p>
 <p><span class="verse-num">4</span>and it was so, when Jezebel cut off the prophets of Jehovah, that Obadiah took a hundred prophets, and hid them by fifty in a cave, and maintained them with bread and water);</p>
@@ -336,6 +338,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -352,6 +355,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

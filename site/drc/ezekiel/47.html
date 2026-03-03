@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -301,8 +302,9 @@
       <div class="ch-label">Chapter 47</div>
       <h2>Ezekiel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd he brought me again to the gate of the house, and behold waters issued out from under the threshold of the house toward the east: for the forefront of the house looked toward the east: but the waters came down to the right side of the temple to the south part of the altar.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd he brought me again to the gate of the house, and behold waters issued out from under the threshold of the house toward the east: for the forefront of the house looked toward the east: but the waters came down to the right side of the temple to the south part of the altar.</p>
 <p><span class="verse-num">2</span>And he led me out by the way of the north gate, and he caused me to turn to the way without the outward gate to the way that looked toward the east: and behold there ran out waters on the right side.</p>
 <p><span class="verse-num">3</span>And when the man that had the line in his hand went out towards the east, he measured a thousand cubits: and he brought me through the water up to the ankles.</p>
 <p><span class="verse-num">4</span>And again he measured a thousand, and he brought me through the water up to the knees.</p>
@@ -339,6 +341,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -355,6 +358,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

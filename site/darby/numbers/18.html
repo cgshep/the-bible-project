@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 18</div>
       <h2>Numbers</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Jehovah said to Aaron, Thou and thy sons and thy father&#x27;s house with thee shall bear the iniquity of the sanctuary; and thou and thy sons with thee shall bear the iniquity of your priesthood.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Jehovah said to Aaron, Thou and thy sons and thy father&#x27;s house with thee shall bear the iniquity of the sanctuary; and thou and thy sons with thee shall bear the iniquity of your priesthood.</p>
 <p><span class="verse-num">2</span>And thy brethren also, the tribe of Levi, the tribe of thy father, bring near with thee, that they may unite with thee, and minister unto thee; but thou and thy sons with thee [shall serve] before the tent of the testimony.</p>
 <p><span class="verse-num">3</span>And they shall keep thy charge, and the charge of the whole tent: only they shall not come near to the vessels of the sanctuary and to the altar, that they may not die, and you as well as they.</p>
 <p><span class="verse-num">4</span>And they shall unite with thee, and keep the charge of the tent of meeting, for all the service of the tent; and no stranger shall come near to you.</p>
@@ -336,6 +338,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -352,6 +355,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

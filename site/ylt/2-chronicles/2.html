@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -289,8 +290,9 @@
       <div class="ch-label">Chapter 2</div>
       <h2>2 Chronicles</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Solomon saith to build a house for the name of Jehovah, and a house for his kingdom,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Solomon saith to build a house for the name of Jehovah, and a house for his kingdom,</p>
 <p><span class="verse-num">2</span>and Solomon numbereth seventy thousand men bearing burden, and eighty thousand men hewing in the mountain, and overseers over them--three thousand and six hundred.</p>
 <p><span class="verse-num">3</span>And Solomon sendeth unto Huram king of Tyre, saying, `When thou hast dealt with David my father, then thou dost send to him cedars to build for him a house to dwell in;</p>
 <p><span class="verse-num">4</span>lo, I am building a house to the name of Jehovah my God, to sanctify &lt;FI&gt;it&lt;Fi&gt; to Him, to make perfume before Him, perfume of spices, and a continual arrangement, and burnt-offerings at morning and at evening, at sabbaths, and at new moons, and at appointed seasons of Jehovah our God; to the age this &lt;FI&gt;is&lt;Fi&gt; on Israel.</p>
@@ -322,6 +324,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -338,6 +341,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

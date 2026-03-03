@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -274,8 +275,9 @@
       <div class="ch-label">Chapter 12</div>
       <h2>Judges</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">N</span>ow the men of Ephraim came together and took up arms and went over to Zaphon; and they said to Jephthah, Why did you go over to make war against the children of Ammon without sending for us to go with you? Now we will put your house on fire over you.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow the men of Ephraim came together and took up arms and went over to Zaphon; and they said to Jephthah, Why did you go over to make war against the children of Ammon without sending for us to go with you? Now we will put your house on fire over you.</p>
 <p><span class="verse-num">2</span>And Jephthah said to them, I and my people were in danger, and the children of Ammon were very cruel to us, and when I sent for you, you gave me no help against them.</p>
 <p><span class="verse-num">3</span>So when I saw that there was no help to be had from you, I put my life in my hand and went over against the children of Ammon, and the Lord gave them into my hands: why then have you come up to me this day to make war on me?</p>
 <p><span class="verse-num">4</span>Then Jephthah got together all the men of Gilead and made war on Ephraim; and the men of Gilead overcame Ephraim.</p>
@@ -304,6 +306,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -320,6 +323,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

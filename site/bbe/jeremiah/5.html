@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 5</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">G</span>o quickly through the streets of Jerusalem, and see now, and get knowledge, and make a search in her wide places if there is a man, if there is one in her who is upright, who keeps faith; and she will have my forgiveness.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>G</span>o quickly through the streets of Jerusalem, and see now, and get knowledge, and make a search in her wide places if there is a man, if there is one in her who is upright, who keeps faith; and she will have my forgiveness.</p>
 <p><span class="verse-num">2</span>And though they say, By the living Lord; truly their oaths are false.</p>
 <p><span class="verse-num">3</span>O Lord, do not your eyes see good faith? you have given them punishment, but they were not troubled; you have sent destruction on them, but they did not take your teaching to heart: they have made their faces harder than a rock; they would not come back.</p>
 <p><span class="verse-num">4</span>Then I said, But these are the poor: they are foolish, for they have no knowledge of the way of the Lord or of the behaviour desired by their God.</p>
@@ -351,6 +353,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -367,6 +370,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

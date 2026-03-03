@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 9</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">W</span>ho doth make my head waters, And mine eye a fountain of tears? And I weep by day and by night, For the wounded of the daughter of my people.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>W</span>ho doth make my head waters, And mine eye a fountain of tears? And I weep by day and by night, For the wounded of the daughter of my people.</p>
 <p><span class="verse-num">2</span>Who doth give me in a wilderness A lodging-place of travellers? And I leave my people, and go from them, For all of them &lt;FI&gt;are&lt;Fi&gt; adulterers, An assembly of treacherous ones.</p>
 <p><span class="verse-num">3</span>And they bend their tongue, their bow &lt;FI&gt;is&lt;Fi&gt; a lie, And not for stedfastness have they been mighty in the land, For from evil unto evil they have gone forth, And Me they have not known, An affirmation of Jehovah!</p>
 <p><span class="verse-num">4</span>Each of his friend--beware ye, And on any brother, do not trust, For every brother doth utterly supplant, For every friend slanderously doth walk,</p>
@@ -346,6 +348,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -362,6 +365,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

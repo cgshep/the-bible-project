@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -284,8 +285,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>1 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd Jehovah saith unto Samuel, `Till when art thou mourning for Saul, and I have rejected him from reigning over Israel? fill thy horn with oil, and go, I send thee unto Jesse the Beth-Lehemite, for I have seen among his sons for Myself a king.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Jehovah saith unto Samuel, `Till when art thou mourning for Saul, and I have rejected him from reigning over Israel? fill thy horn with oil, and go, I send thee unto Jesse the Beth-Lehemite, for I have seen among his sons for Myself a king.</p>
 <p><span class="verse-num">2</span>And Samuel saith, `How do I go? when Saul hath heard, then he hath slain me.&#x27; And Jehovah saith, `A heifer of the herd thou dost take in thy hand, and hast said, To sacrifice to Jehovah I have come;</p>
 <p><span class="verse-num">3</span>and thou hast called for Jesse in the sacrifice, and I cause thee to know that which thou dost do, and thou hast anointed to Me him of whom I speak unto thee.&#x27;</p>
 <p><span class="verse-num">4</span>And Samuel doth that which Jehovah hath spoken, and cometh in to Beth-Lehem, and the elders of the city tremble to meet him, and &lt;FI&gt;one&lt;Fi&gt; saith, `Is thy coming peace?&#x27;</p>
@@ -322,6 +324,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -338,6 +341,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

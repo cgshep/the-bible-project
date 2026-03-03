@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -258,8 +259,9 @@
       <div class="ch-label">Chapter 4</div>
       <h2>1 Peter</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">C</span>hrist, then, having suffered for us in the flesh, ye also with the same mind arm yourselves, because he who did suffer in the flesh hath done with sin,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>C</span>hrist, then, having suffered for us in the flesh, ye also with the same mind arm yourselves, because he who did suffer in the flesh hath done with sin,</p>
 <p><span class="verse-num">2</span>no more in the desires of men, but in the will of God, to live the rest of the time in the flesh;</p>
 <p><span class="verse-num">3</span>for sufficient to us &lt;FI&gt;is&lt;Fi&gt; the past time of life the will of the nations to have wrought, having walked in lasciviousnesses, desires, excesses of wines, revellings, drinking-bouts, and unlawful idolatries,</p>
 <p><span class="verse-num">4</span>in which they think it strange--your not running with them to the same excess of dissoluteness, speaking evil,</p>
@@ -292,6 +294,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -308,6 +311,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

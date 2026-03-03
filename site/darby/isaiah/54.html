@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 54</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">E</span>xult, thou barren, that didst not bear; break forth into singing, and shout for joy, thou that didst not travail with child: for more are the children of the desolate than the children of the married wife, saith Jehovah.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>E</span>xult, thou barren, that didst not bear; break forth into singing, and shout for joy, thou that didst not travail with child: for more are the children of the desolate than the children of the married wife, saith Jehovah.</p>
 <p><span class="verse-num">2</span>Enlarge the place of thy tent, and let them stretch forth the curtains of thy habitations: spare not, lengthen thy cords, and strengthen thy stakes.</p>
 <p><span class="verse-num">3</span>For thou shalt spread abroad on the right hand and on the left; and thy seed shall possess nations, and they shall make desolate cities to be inhabited.</p>
 <p><span class="verse-num">4</span>Fear not, for thou shalt not be ashamed; neither be thou confounded, for thou shalt not be put to shame: for thou shalt forget the shame of thy youth, and shalt not remember the reproach of thy widowhood any more.</p>
@@ -351,6 +353,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -367,6 +370,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

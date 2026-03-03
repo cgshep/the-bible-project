@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,8 +278,9 @@
       <div class="ch-label">Chapter 13</div>
       <h2>2 Samuel</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>nd it came to pass after this that Ammon the son of David loved the sister of Absalom the son of David, who was very beautiful, and her name was Thamar.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd it came to pass after this that Ammon the son of David loved the sister of Absalom the son of David, who was very beautiful, and her name was Thamar.</p>
 <p><span class="verse-num">2</span>And he was exceedingly fond of her, so that he fell sick for the love of her: for as she was a virgin, he thought it hard to do any thing dishonestly with her.</p>
 <p><span class="verse-num">3</span>Now Ammon had a friend, named Jonadab the son of Semmaa the brother of David, a very wise man:</p>
 <p><span class="verse-num">4</span>And he said to him: Why dost thou grow so lean from day to day, O son of the king? why dost thou not tell me the reason of it? And Ammon said to him: I am in love with Thamar the sister of my brother Absalom.</p>
@@ -331,6 +333,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -347,6 +350,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -259,8 +260,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Ephesians</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">The cosmic scope of God&#x27;s plan — the Church as the body of Christ, the armour of God.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Epistle_to_the_Ephesians" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">P</span>aul, an Apostle of Christ Jesus by the purpose of God, to the saints who are at Ephesus, and those who have faith in Christ Jesus:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>P</span>aul, an Apostle of Christ Jesus by the purpose of God, to the saints who are at Ephesus, and those who have faith in Christ Jesus:</p>
 <p><span class="verse-num">2</span>Grace to you and peace from God our Father and the Lord Jesus Christ.</p>
 <p><span class="verse-num">3</span>Praise be to the God and Father of our Lord Jesus Christ, who has given us every blessing of the Spirit in the heavens in Christ:</p>
 <p><span class="verse-num">4</span>Even as he made selection of us in him from the first, so that we might be holy and free from all evil before him in love:</p>
@@ -297,6 +299,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -313,6 +316,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

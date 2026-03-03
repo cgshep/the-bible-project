@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -287,8 +288,9 @@
       <div class="ch-label">Chapter 16</div>
       <h2>Deuteronomy</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>ake note of the month of Abib and keep the Passover to the Lord your God: for in the month of Abib the Lord your God took you out of Egypt by night.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>ake note of the month of Abib and keep the Passover to the Lord your God: for in the month of Abib the Lord your God took you out of Egypt by night.</p>
 <p><span class="verse-num">2</span>The Passover offering, from your flock or your herd, is to be given to the Lord your God in the place marked out by him as the resting-place of his name.</p>
 <p><span class="verse-num">3</span>Take no leavened bread with it; for seven days let your food be unleavened bread, that is, the bread of sorrow; for you came out of the land of Egypt quickly: so the memory of that day, when you came out of the land of Egypt, will be with you all your life.</p>
 <p><span class="verse-num">4</span>For seven days let no leaven be used through all your land; and nothing of the flesh which is put to death in the evening of the first day is to be kept through the night till morning.</p>
@@ -324,6 +326,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -340,6 +343,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

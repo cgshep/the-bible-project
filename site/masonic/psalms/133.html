@@ -9,6 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body class="masonic-theme">
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -438,6 +439,7 @@
       <div class="ch-label">Chapter 133</div>
       <h2>Psalms</h2>
     </div>
+    
     <div class="verse-text">
       <div class="masonic-annotation">
   <div class="masonic-ann-header">
@@ -455,7 +457,7 @@
   </div>
   <div class="masonic-ann-note">The psalm of Brotherly Love, traditionally recited at the opening of the Lodge. Unity is the first tenet of Freemasonry.</div>
 </div>
-<p class="masonic-verse-hl"><span class="verse-num">1</span><span class="drop-cap">B</span>ehold, how good and how pleasant it is for brethren to dwell together in unity!</p>
+<p class="masonic-verse-hl"><span class="drop-cap"><span class="verse-num">1</span>B</span>ehold, how good and how pleasant it is for brethren to dwell together in unity!</p>
 <p class="masonic-verse-hl"><span class="verse-num">2</span>It is like the precious ointment upon the head, that ran down upon the beard, even Aaron’s beard: that went down to the skirts of his garments;</p>
 <p class="masonic-verse-hl"><span class="verse-num">3</span>As the dew of Hermon, and as the dew that descended upon the mountains of Zion: for there the LORD commanded the blessing, even life for evermore.</p>
 
@@ -481,6 +483,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -497,6 +500,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

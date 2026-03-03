@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -269,8 +270,9 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Romans</h2>
     </div>
+    <div class="book-info"><div class="book-info-desc">Paul&#x27;s magisterial exposition of the Gospel — justification by faith, life in the Spirit.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Epistle_to_the_Romans" target="_blank" rel="noopener">Wikipedia</a></div>
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">P</span>aul, a servant of Jesus Christ, called to be an apostle, separated unto the gospel of God,</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>P</span>aul, a servant of Jesus Christ, called to be an apostle, separated unto the gospel of God,</p>
 <p><span class="verse-num">2</span>(Which he had promised afore by his prophets in the holy scriptures,)</p>
 <p><span class="verse-num">3</span>Concerning his Son Jesus Christ our Lord, which was made of the seed of David according to the flesh;</p>
 <p><span class="verse-num">4</span>And declared to be the Son of God with power, according to the spirit of holiness, by the resurrection from the dead:</p>
@@ -316,6 +318,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -332,6 +335,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

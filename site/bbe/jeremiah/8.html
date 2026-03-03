@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -305,8 +306,9 @@
       <div class="ch-label">Chapter 8</div>
       <h2>Jeremiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">A</span>t that time, says the Lord, they will take the bones of the kings of Judah, and the bones of his rulers, and the bones of the priests, and the bones of the prophets, and the bones of the people of Jerusalem out of their resting-places:</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>A</span>t that time, says the Lord, they will take the bones of the kings of Judah, and the bones of his rulers, and the bones of the priests, and the bones of the prophets, and the bones of the people of Jerusalem out of their resting-places:</p>
 <p><span class="verse-num">2</span>And they will put them out before the sun and the moon and all the stars of heaven, whose lovers and servants they have been, after whom they have gone, to whom they have made prayers, and to whom they have given worship: they will not be put together or placed in the earth; they will be waste on the face of the earth.</p>
 <p><span class="verse-num">3</span>And death will be desired more than life by the rest of this evil family who are still living in all the places where I have sent them away, says the Lord of armies.</p>
 <p><span class="verse-num">4</span>Further, you are to say to them, This is what the Lord has said: Will those who are falling not be lifted up again? will he who has gone away not come back?</p>
@@ -342,6 +344,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -358,6 +361,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });

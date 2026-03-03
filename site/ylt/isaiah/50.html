@@ -8,6 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
 </head>
 <body>
+<div class="reading-progress"><div class="reading-progress-bar"></div></div>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -319,8 +320,9 @@
       <div class="ch-label">Chapter 50</div>
       <h2>Isaiah</h2>
     </div>
+    
     <div class="verse-text">
-      <p><span class="verse-num">1</span><span class="drop-cap">T</span>hus said Jehovah: `Where &lt;FI&gt;is&lt;Fi&gt; this--the bill of your mother&#x27;s divorce, Whom I sent away? Or to which of My creditors have I sold you? Lo, for your iniquities ye have been sold, And for your transgressions Hath your mother been sent away.</p>
+      <p><span class="drop-cap"><span class="verse-num">1</span>T</span>hus said Jehovah: `Where &lt;FI&gt;is&lt;Fi&gt; this--the bill of your mother&#x27;s divorce, Whom I sent away? Or to which of My creditors have I sold you? Lo, for your iniquities ye have been sold, And for your transgressions Hath your mother been sent away.</p>
 <p><span class="verse-num">2</span>Wherefore have I come, and there is no one? I called, and there is none answering, Hath My hand been at all short of redemption? And is there not in me power to deliver? Lo, by My rebuke I dry up a sea, I make rivers a wilderness, Their fish stinketh, for there is no water, And dieth with thirst.</p>
 <p><span class="verse-num">3</span>I clothe the heavens &lt;FI&gt;with&lt;Fi&gt; blackness, And sackcloth I make their covering.</p>
 <p><span class="verse-num">4</span>The Lord Jehovah hath given to me The tongue of taught ones, To know to aid the weary &lt;FI&gt;by&lt;Fi&gt; a word, He waketh morning by morning, He waketh for me an ear to hear as taught ones.</p>
@@ -345,6 +347,7 @@
 </footer>
 </div>
 </div>
+<button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var toggle = document.querySelector('.sidebar-toggle');
@@ -361,6 +364,25 @@ document.addEventListener('DOMContentLoaded', function() {
     sel.addEventListener('change', function() {
       var val = sel.value;
       if (val) window.location.href = val;
+    });
+  }
+  // Reading progress bar
+  var bar = document.querySelector('.reading-progress-bar');
+  var scrollBtn = document.querySelector('.scroll-top');
+  if (bar || scrollBtn) {
+    window.addEventListener('scroll', function() {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = pct + '%';
+      if (scrollBtn) {
+        if (h.scrollTop > 400) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+      }
+    });
+  }
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 });
