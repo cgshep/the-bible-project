@@ -6,9 +6,19 @@
   <title>Job 6 - ASV</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  var fs = localStorage.getItem('bible-fontsize');
+  if (fs) document.documentElement.style.fontSize = fs + 'px';
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<div class="font-controls"><button class="font-btn font-smaller" aria-label="Decrease font size" title="Smaller text">A&minus;</button><button class="font-btn font-larger" aria-label="Increase font size" title="Larger text">A+</button></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -331,9 +341,9 @@
 
     </div>
     <nav class="chapter-nav">
-      <div><a href="5.html">&larr; Chapter 5</a></div>
+      <div><a href="5.html">&larr; Chapter 5</a><div class="key-hint">&larr; key</div></div>
       <div><a href="index.html">All Chapters</a></div>
-      <div><a href="7.html">Chapter 7 &rarr;</a></div>
+      <div><a href="7.html">Chapter 7 &rarr;</a><div class="key-hint">&rarr; key</div></div>
     </nav>
   </main>
 <footer>
@@ -342,6 +352,7 @@
 </footer>
 </div>
 </div>
+<div class="verse-copied"></div>
 <button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -361,14 +372,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (val) window.location.href = val;
     });
   }
-  // Reading progress bar
+
+  // Reading progress bar & scroll-to-top
   var bar = document.querySelector('.reading-progress-bar');
   var scrollBtn = document.querySelector('.scroll-top');
   if (bar || scrollBtn) {
     window.addEventListener('scroll', function() {
       var h = document.documentElement;
       var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      if (bar) bar.style.width = pct + '%';
+      if (bar) bar.style.width = Math.min(pct, 100) + '%';
       if (scrollBtn) {
         if (h.scrollTop > 400) scrollBtn.classList.add('visible');
         else scrollBtn.classList.remove('visible');
@@ -380,6 +392,96 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
+    });
+  }
+
+  // Font size controls
+  var fontSmaller = document.querySelector('.font-smaller');
+  var fontLarger = document.querySelector('.font-larger');
+  if (fontSmaller && fontLarger) {
+    function setFontSize(size) {
+      size = Math.max(14, Math.min(24, size));
+      document.documentElement.style.fontSize = size + 'px';
+      localStorage.setItem('bible-fontsize', size);
+    }
+    function getCurrentSize() {
+      var s = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return Math.round(s);
+    }
+    fontSmaller.addEventListener('click', function() { setFontSize(getCurrentSize() - 1); });
+    fontLarger.addEventListener('click', function() { setFontSize(getCurrentSize() + 1); });
+  }
+
+  // Keyboard navigation (arrow keys for prev/next chapter)
+  var nav = document.querySelector('.chapter-nav');
+  if (nav) {
+    var links = nav.querySelectorAll('a');
+    var prevHref = null, nextHref = null;
+    links.forEach(function(a) {
+      var text = a.textContent;
+      if (text.indexOf('\u2190') !== -1 || text.indexOf('larr') !== -1) prevHref = a.href;
+      if (text.indexOf('\u2192') !== -1 || text.indexOf('rarr') !== -1) nextHref = a.href;
+    });
+    // Also try by position: first div = prev, last div = next
+    var divs = nav.children;
+    if (!prevHref && divs[0]) { var a = divs[0].querySelector('a'); if (a) prevHref = a.href; }
+    if (!nextHref && divs[2]) { var a = divs[2].querySelector('a'); if (a) nextHref = a.href; }
+    document.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft' && prevHref) { window.location.href = prevHref; }
+      if (e.key === 'ArrowRight' && nextHref) { window.location.href = nextHref; }
+    });
+  }
+
+  // Click verse number to copy verse text
+  var toast = document.querySelector('.verse-copied');
+  var toastTimer;
+  document.querySelectorAll('.verse-num').forEach(function(span) {
+    span.addEventListener('click', function(e) {
+      e.preventDefault();
+      var p = span.closest('p');
+      if (!p) return;
+      var text = p.textContent.trim();
+      // Get book and chapter from page title
+      var title = document.title.split(' - ')[0] || '';
+      var ref = title + ':' + span.textContent;
+      var full = ref + ' ' + text.replace(/^\d+/, '').trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(full);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = full;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      if (toast) {
+        toast.textContent = 'Copied: ' + ref;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2000);
+      }
+    });
+  });
 });
 </script>
 </body>
