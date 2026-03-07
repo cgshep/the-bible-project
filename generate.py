@@ -1208,6 +1208,112 @@ main {
   background: rgba(184, 134, 11, .06);
 }
 
+/* ── Clickable verse numbers ──────────────────────────────────────────── */
+
+.verse-num {
+  cursor: pointer;
+  transition: color .15s;
+}
+.verse-num:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.verse-copied {
+  position: fixed;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--parchment);
+  padding: .4rem 1rem;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  opacity: 0;
+  transition: all .3s;
+  z-index: 200;
+  pointer-events: none;
+  border-radius: 2px;
+}
+.verse-copied.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Font size controls ───────────────────────────────────────────────── */
+
+.font-controls {
+  position: fixed;
+  top: .8rem;
+  right: 3.6rem;
+  z-index: 100;
+  display: flex;
+  gap: 2px;
+}
+.font-btn {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--gold-faint);
+  width: 1.8rem;
+  height: 2.2rem;
+  cursor: pointer;
+  font-size: .72rem;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.font-btn:first-child { border-radius: 4px 0 0 4px; }
+.font-btn:last-child { border-radius: 0 4px 4px 0; }
+.font-btn:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* ── Selection color ──────────────────────────────────────────────────── */
+
+::selection {
+  background: var(--gold-faint);
+  color: var(--ink);
+}
+
+/* ── Keyboard nav hint ────────────────────────────────────────────────── */
+
+.key-hint {
+  display: none;
+  font-size: .55rem;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-top: .2rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .key-hint { display: block; }
+}
+
+/* ── Print styles ─────────────────────────────────────────────────────── */
+
+@media print {
+  .sidebar, .sidebar-toggle, .reading-progress, .scroll-top,
+  .theme-toggle, .font-controls, .chapter-nav, .verse-copied,
+  .key-hint { display: none !important; }
+  .content { margin-left: 0 !important; border: none !important; }
+  .page-wrap { display: block; }
+  body { font-size: 11pt; line-height: 1.6; color: #000; background: #fff; }
+  .content-header h1 { font-size: 18pt; }
+  .verse-text { max-width: 100%; }
+  .verse-text p { page-break-inside: avoid; }
+  .verse-text p:hover { background: none; }
+  .drop-cap { color: #000; }
+  .verse-num { color: #666; }
+  .book-image-wrap { page-break-inside: avoid; }
+  .book-image { max-height: 200px; border: 1px solid #ccc; box-shadow: none; }
+  footer { font-size: 8pt; }
+}
+
 /* ── Footer ────────────────────────────────────────────────────────────── */
 
 footer {
@@ -1254,6 +1360,8 @@ footer {
   .scroll-top { bottom: 1rem; right: 1rem; width: 2rem; height: 2rem; font-size: .8rem; }
   .book-image { max-height: 220px; }
   .theme-toggle { top: .5rem; right: .5rem; width: 1.8rem; height: 1.8rem; font-size: .85rem; }
+  .font-controls { top: .5rem; right: 2.8rem; }
+  .font-btn { width: 1.5rem; height: 1.8rem; font-size: .65rem; }
 }
 """
 
@@ -1974,6 +2082,35 @@ MASONIC_CSS = r"""
 .masonic-theme .verse-text p:hover {
   background: rgba(201, 168, 76, .04);
 }
+.masonic-theme .verse-copied {
+  background: #dbbe5e;
+  color: #0a1628;
+}
+.masonic-theme .font-btn {
+  background: #111e34;
+  color: #d4dae6;
+  border-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .font-btn:hover {
+  background: #c9a84c;
+  color: #0a1628;
+}
+.masonic-theme ::selection {
+  background: rgba(201, 168, 76, .3);
+  color: #d4dae6;
+}
+[data-theme="dark"] .verse-copied {
+  background: var(--gold);
+  color: #1a1a1a;
+}
+[data-theme="dark"] .font-btn {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--gold-faint);
+}
+[data-theme="dark"] ::selection {
+  background: rgba(201, 168, 76, .3);
+}
 """
 
 # ---------------------------------------------------------------------------
@@ -1984,6 +2121,8 @@ THEME_JS = r"""
 (function(){
   var saved = localStorage.getItem('bible-theme');
   if (saved) document.documentElement.setAttribute('data-theme', saved);
+  var fs = localStorage.getItem('bible-fontsize');
+  if (fs) document.documentElement.style.fontSize = fs + 'px';
 })();
 """
 
@@ -2005,14 +2144,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (val) window.location.href = val;
     });
   }
-  // Reading progress bar
+
+  // Reading progress bar & scroll-to-top
   var bar = document.querySelector('.reading-progress-bar');
   var scrollBtn = document.querySelector('.scroll-top');
   if (bar || scrollBtn) {
     window.addEventListener('scroll', function() {
       var h = document.documentElement;
       var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      if (bar) bar.style.width = pct + '%';
+      if (bar) bar.style.width = Math.min(pct, 100) + '%';
       if (scrollBtn) {
         if (h.scrollTop > 400) scrollBtn.classList.add('visible');
         else scrollBtn.classList.remove('visible');
@@ -2024,6 +2164,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
   // Dark mode toggle
   var themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
@@ -2043,6 +2184,76 @@ document.addEventListener('DOMContentLoaded', function() {
       updateIcon();
     });
   }
+
+  // Font size controls
+  var fontSmaller = document.querySelector('.font-smaller');
+  var fontLarger = document.querySelector('.font-larger');
+  if (fontSmaller && fontLarger) {
+    function setFontSize(size) {
+      size = Math.max(14, Math.min(24, size));
+      document.documentElement.style.fontSize = size + 'px';
+      localStorage.setItem('bible-fontsize', size);
+    }
+    function getCurrentSize() {
+      var s = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return Math.round(s);
+    }
+    fontSmaller.addEventListener('click', function() { setFontSize(getCurrentSize() - 1); });
+    fontLarger.addEventListener('click', function() { setFontSize(getCurrentSize() + 1); });
+  }
+
+  // Keyboard navigation (arrow keys for prev/next chapter)
+  var nav = document.querySelector('.chapter-nav');
+  if (nav) {
+    var links = nav.querySelectorAll('a');
+    var prevHref = null, nextHref = null;
+    links.forEach(function(a) {
+      var text = a.textContent;
+      if (text.indexOf('\u2190') !== -1 || text.indexOf('larr') !== -1) prevHref = a.href;
+      if (text.indexOf('\u2192') !== -1 || text.indexOf('rarr') !== -1) nextHref = a.href;
+    });
+    // Also try by position: first div = prev, last div = next
+    var divs = nav.children;
+    if (!prevHref && divs[0]) { var a = divs[0].querySelector('a'); if (a) prevHref = a.href; }
+    if (!nextHref && divs[2]) { var a = divs[2].querySelector('a'); if (a) nextHref = a.href; }
+    document.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft' && prevHref) { window.location.href = prevHref; }
+      if (e.key === 'ArrowRight' && nextHref) { window.location.href = nextHref; }
+    });
+  }
+
+  // Click verse number to copy verse text
+  var toast = document.querySelector('.verse-copied');
+  var toastTimer;
+  document.querySelectorAll('.verse-num').forEach(function(span) {
+    span.addEventListener('click', function(e) {
+      e.preventDefault();
+      var p = span.closest('p');
+      if (!p) return;
+      var text = p.textContent.trim();
+      // Get book and chapter from page title
+      var title = document.title.split(' - ')[0] || '';
+      var ref = title + ':' + span.textContent;
+      var full = ref + ' ' + text.replace(/^\d+/, '').trim();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(full);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = full;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+      if (toast) {
+        toast.textContent = 'Copied: ' + ref;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2000);
+      }
+    });
+  });
 });
 """
 
@@ -2178,6 +2389,7 @@ def page_shell(title, body_content, sidebar, depth=0, theme=None):
 </head>
 <body{body_cls}>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<div class="font-controls"><button class="font-btn font-smaller" aria-label="Decrease font size" title="Smaller text">A&minus;</button><button class="font-btn font-larger" aria-label="Increase font size" title="Larger text">A+</button></div>
 <button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 {sidebar}
@@ -2186,6 +2398,7 @@ def page_shell(title, body_content, sidebar, depth=0, theme=None):
 {masonic_footer}
 </div>
 </div>
+<div class="verse-copied"></div>
 <button class="scroll-top" aria-label="Scroll to top">&#x2191;</button>
 <script>{SIDEBAR_JS}</script>
 </body>
@@ -2513,9 +2726,9 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
       {verses_html}
     </div>
     <nav class="chapter-nav">
-      <div>{prev_link if prev_link else '<span class="placeholder"></span>'}</div>
+      <div>{prev_link if prev_link else '<span class="placeholder"></span>'}{('<div class="key-hint">&larr; key</div>' if prev_link else '')}</div>
       <div><a href="index.html">All Chapters</a></div>
-      <div>{next_link if next_link else '<span class="placeholder"></span>'}</div>
+      <div>{next_link if next_link else '<span class="placeholder"></span>'}{('<div class="key-hint">&rarr; key</div>' if next_link else '')}</div>
     </nav>
   </main>"""
 

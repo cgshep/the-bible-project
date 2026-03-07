@@ -443,3 +443,32 @@
 .masonic-theme .verse-text p:hover {
   background: rgba(201, 168, 76, .04);
 }
+.masonic-theme .verse-copied {
+  background: #dbbe5e;
+  color: #0a1628;
+}
+.masonic-theme .font-btn {
+  background: #111e34;
+  color: #d4dae6;
+  border-color: rgba(201, 168, 76, .2);
+}
+.masonic-theme .font-btn:hover {
+  background: #c9a84c;
+  color: #0a1628;
+}
+.masonic-theme ::selection {
+  background: rgba(201, 168, 76, .3);
+  color: #d4dae6;
+}
+[data-theme="dark"] .verse-copied {
+  background: var(--gold);
+  color: #1a1a1a;
+}
+[data-theme="dark"] .font-btn {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--gold-faint);
+}
+[data-theme="dark"] ::selection {
+  background: rgba(201, 168, 76, .3);
+}

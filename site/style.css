@@ -758,6 +758,112 @@ main {
   background: rgba(184, 134, 11, .06);
 }
 
+/* ── Clickable verse numbers ──────────────────────────────────────────── */
+
+.verse-num {
+  cursor: pointer;
+  transition: color .15s;
+}
+.verse-num:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.verse-copied {
+  position: fixed;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--parchment);
+  padding: .4rem 1rem;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  opacity: 0;
+  transition: all .3s;
+  z-index: 200;
+  pointer-events: none;
+  border-radius: 2px;
+}
+.verse-copied.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Font size controls ───────────────────────────────────────────────── */
+
+.font-controls {
+  position: fixed;
+  top: .8rem;
+  right: 3.6rem;
+  z-index: 100;
+  display: flex;
+  gap: 2px;
+}
+.font-btn {
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--gold-faint);
+  width: 1.8rem;
+  height: 2.2rem;
+  cursor: pointer;
+  font-size: .72rem;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.font-btn:first-child { border-radius: 4px 0 0 4px; }
+.font-btn:last-child { border-radius: 0 4px 4px 0; }
+.font-btn:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* ── Selection color ──────────────────────────────────────────────────── */
+
+::selection {
+  background: var(--gold-faint);
+  color: var(--ink);
+}
+
+/* ── Keyboard nav hint ────────────────────────────────────────────────── */
+
+.key-hint {
+  display: none;
+  font-size: .55rem;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-top: .2rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .key-hint { display: block; }
+}
+
+/* ── Print styles ─────────────────────────────────────────────────────── */
+
+@media print {
+  .sidebar, .sidebar-toggle, .reading-progress, .scroll-top,
+  .theme-toggle, .font-controls, .chapter-nav, .verse-copied,
+  .key-hint { display: none !important; }
+  .content { margin-left: 0 !important; border: none !important; }
+  .page-wrap { display: block; }
+  body { font-size: 11pt; line-height: 1.6; color: #000; background: #fff; }
+  .content-header h1 { font-size: 18pt; }
+  .verse-text { max-width: 100%; }
+  .verse-text p { page-break-inside: avoid; }
+  .verse-text p:hover { background: none; }
+  .drop-cap { color: #000; }
+  .verse-num { color: #666; }
+  .book-image-wrap { page-break-inside: avoid; }
+  .book-image { max-height: 200px; border: 1px solid #ccc; box-shadow: none; }
+  footer { font-size: 8pt; }
+}
+
 /* ── Footer ────────────────────────────────────────────────────────────── */
 
 footer {
@@ -804,4 +910,6 @@ footer {
   .scroll-top { bottom: 1rem; right: 1rem; width: 2rem; height: 2rem; font-size: .8rem; }
   .book-image { max-height: 220px; }
   .theme-toggle { top: .5rem; right: .5rem; width: 1.8rem; height: 1.8rem; font-size: .85rem; }
+  .font-controls { top: .5rem; right: 2.8rem; }
+  .font-btn { width: 1.5rem; height: 1.8rem; font-size: .65rem; }
 }
