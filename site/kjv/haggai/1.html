@@ -6,9 +6,16 @@
   <title>Haggai 1 - KJV</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -256,7 +263,7 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Haggai</h2>
     </div>
-    <div class="book-info"><div class="book-info-desc">A call to rebuild the Temple after the return from Babylonian exile.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Haggai" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">A call to rebuild the Temple after the return from Babylonian exile.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Haggai" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the second year of Darius the king, in the sixth month, in the first day of the month, came the word of the LORD by Haggai the prophet unto Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Josedech, the high priest, saying,</p>
 <p><span class="verse-num">2</span>Thus speaketh the LORD of hosts, saying, This people say, The time is not come, the time that the LORD’s house should be built.</p>
@@ -323,6 +330,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

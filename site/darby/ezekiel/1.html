@@ -6,9 +6,16 @@
   <title>Ezekiel 1 - Darby</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -302,7 +309,7 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Ezekiel</h2>
     </div>
-    <div class="book-info"><div class="book-info-desc">Visions from Babylonian exile — the chariot throne, the valley of dry bones, and the restored Temple.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezekiel" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">Visions from Babylonian exile — the chariot throne, the valley of dry bones, and the restored Temple.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezekiel" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>N</span>ow it came to pass in the thirtieth year, in the fourth [month], on the fifth of the month, as I was among the captives by the river Chebar, the heavens were opened, and I saw visions ofGod.</p>
 <p><span class="verse-num">2</span>On the fifth of the month, (it was the fifth year of king Jehoiachin&#x27;s captivity,)</p>
@@ -382,6 +389,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

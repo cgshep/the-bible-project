@@ -6,9 +6,16 @@
   <title>Ezra 1 - YLT</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -264,7 +271,7 @@
       <div class="ch-label">Chapter 1</div>
       <h2>Ezra</h2>
     </div>
-    <div class="book-info"><div class="book-info-desc">The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezra" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ezra" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd in the first year of Cyrus king of Persia, at the completion of the word of Jehovah from the mouth of Jeremiah, hath Jehovah waked up the spirit of Cyrus king of Persia, and he causeth an intimation to pass over into all his kingdom, and also in writing, saying,</p>
 <p><span class="verse-num">2</span>`Thus said Cyrus king of Persia, All kingdoms of the earth hath Jehovah, God of the heavens, given to me, and He hath laid a charge on me to build to Him a house in Jerusalem, that &lt;FI&gt;is&lt;Fi&gt; in Judah;</p>
@@ -327,6 +334,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

@@ -6,9 +6,16 @@
   <title>2 Chronicles 1 - Darby</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -290,7 +297,7 @@
       <div class="ch-label">Chapter 1</div>
       <h2>2 Chronicles</h2>
     </div>
-    <div class="book-info"><div class="book-info-desc">From Solomon&#x27;s Temple to the Babylonian exile and Cyrus&#x27; decree of return.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Chronicles" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">From Solomon&#x27;s Temple to the Babylonian exile and Cyrus&#x27; decree of return.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Chronicles" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>A</span>nd Solomon the son of David was strengthened in his kingdom, and Jehovah hisGod was with him and magnified him exceedingly.</p>
 <p><span class="verse-num">2</span>And Solomon spoke to all Israel, to the captains of thousands and of hundreds, and to the judges, and to all the princes of all Israel, the chief fathers;</p>
@@ -359,6 +366,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

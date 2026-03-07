@@ -6,9 +6,16 @@
   <title>2 John 1 - BBE</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -255,7 +262,7 @@
       <div class="ch-label">Chapter 1</div>
       <h2>2 John</h2>
     </div>
-    <div class="book-info"><div class="book-info-desc">A brief letter on truth, love, and discernment against deceivers.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Second_Epistle_of_John" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">A brief letter on truth, love, and discernment against deceivers.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Second_Epistle_of_John" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>I</span>, a ruler in the church, send word to the noble sister who is of God&#x27;s selection, and to her children, for whom I have true love; and not only I, but all who have knowledge of what is true;</p>
 <p><span class="verse-num">2</span>Because of this true knowledge which is in us, and will be with us for ever:</p>
@@ -320,6 +327,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

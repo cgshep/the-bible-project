@@ -6,9 +6,16 @@
   <title>1 Kings - KJV</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -273,10 +280,10 @@
   <div class="ornament">&mdash; &#x2726; &mdash;</div>
   <main>
     <div class="book-image-wrap">
-      <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg/640px-Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg" alt="The Visit of the Queen of Sheba to King Solomon by Edward Poynter" loading="lazy">
+      <img class="book-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg?width=640" alt="The Visit of the Queen of Sheba to King Solomon by Edward Poynter" loading="lazy">
       <div class="book-image-credit">Edward Poynter, 1890</div>
     </div>
-    <div class="book-info"><div class="book-info-desc">Solomon&#x27;s glory, the building of the Temple, the kingdom divided, and the prophet Elijah.</div><a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Kings" target="_blank" rel="noopener">Read on Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">Solomon&#x27;s glory, the building of the Temple, the kingdom divided, and the prophet Elijah.</div><a class="book-info-link" href="https://en.wikipedia.org/wiki/Books_of_Kings" target="_blank" rel="noopener">Read on Wikipedia &#x2197;</a></div>
     <div class="book-heading">
       <h2>1 Kings</h2>
       <div class="chapter-count">22 chapters</div>
@@ -348,6 +355,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

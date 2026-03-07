@@ -7,9 +7,16 @@
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../../masonic.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body class="masonic-theme">
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -307,7 +314,7 @@
 </svg></div>
   <main>
     
-    <div class="book-info"><div class="book-info-desc">The turbulent era of the judges — Deborah, Gideon, Samson — between the conquest and the monarchy.</div><a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Judges" target="_blank" rel="noopener">Read on Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">The turbulent era of the judges — Deborah, Gideon, Samson — between the conquest and the monarchy.</div><a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Judges" target="_blank" rel="noopener">Read on Wikipedia &#x2197;</a></div>
     <div class="book-heading">
       <h2>Judges</h2>
       <div class="chapter-count">21 chapters</div>
@@ -387,6 +394,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

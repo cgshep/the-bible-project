@@ -98,14 +98,14 @@ BOOK_WIKI = {
     "Genesis": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Genesis",
         "desc": "The book of origins — creation, the fall, the flood, and the patriarchs Abraham, Isaac, Jacob, and Joseph.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Michelangelo%2C_Creation_of_Adam_06.jpg/640px-Michelangelo%2C_Creation_of_Adam_06.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Michelangelo,_Creation_of_Adam_06.jpg?width=640",
         "image_alt": "The Creation of Adam by Michelangelo, Sistine Chapel ceiling",
         "image_credit": "Michelangelo, c. 1512",
     },
     "Exodus": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Exodus",
         "desc": "Israel's deliverance from Egypt, the giving of the Law at Sinai, and the construction of the Tabernacle.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Tissot_The_Crossing_of_the_Red_Sea.jpg/640px-Tissot_The_Crossing_of_the_Red_Sea.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tissot_The_Crossing_of_the_Red_Sea.jpg?width=640",
         "image_alt": "The Crossing of the Red Sea by James Tissot",
         "image_credit": "James Tissot, c. 1900",
     },
@@ -124,7 +124,7 @@ BOOK_WIKI = {
     "Joshua": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Joshua",
         "desc": "The conquest and division of Canaan under the leadership of Joshua.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg/640px-Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Joshua_passing_the_River_Jordan_with_the_Ark_of_the_Covenant_by_Benjamin_West.jpg?width=640",
         "image_alt": "Joshua Passing the River Jordan by Benjamin West",
         "image_credit": "Benjamin West, 1800",
     },
@@ -135,7 +135,7 @@ BOOK_WIKI = {
     "Ruth": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Ruth",
         "desc": "A story of loyalty and redemption — Ruth the Moabitess, great-grandmother of King David.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg/485px-Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg?width=485",
         "image_alt": "Ruth in the Field of Boaz by Julius Schnorr von Carolsfeld",
         "image_credit": "Julius Schnorr von Carolsfeld, 1828",
     },
@@ -150,7 +150,7 @@ BOOK_WIKI = {
     "1 Kings": {
         "url": "https://en.wikipedia.org/wiki/Books_of_Kings",
         "desc": "Solomon's glory, the building of the Temple, the kingdom divided, and the prophet Elijah.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg/640px-Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Visit_of_the_Queen_of_Sheba_to_King_Solomon.jpg?width=640",
         "image_alt": "The Visit of the Queen of Sheba to King Solomon by Edward Poynter",
         "image_credit": "Edward Poynter, 1890",
     },
@@ -181,14 +181,14 @@ BOOK_WIKI = {
     "Job": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Job",
         "desc": "The great poem of innocent suffering — Job's trials, his friends' debate, and God's answer from the whirlwind.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/L%C3%A9on_Bonnat_-_Job.jpg/458px-L%C3%A9on_Bonnat_-_Job.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/L%C3%A9on_Bonnat_-_Job.jpg?width=458",
         "image_alt": "Job by Léon Bonnat",
         "image_credit": "Léon Bonnat, 1880",
     },
     "Psalms": {
         "url": "https://en.wikipedia.org/wiki/Psalms",
         "desc": "The hymnbook of ancient Israel — 150 poems of praise, lament, thanksgiving, and wisdom.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg/465px-King_David_Playing_the_Harp_-_Gerard_van_Honthorst_%281622%29.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/King_David_Playing_the_Harp_-_Gerard_van_Honthorst_(1622).jpg?width=465",
         "image_alt": "King David Playing the Harp by Gerard van Honthorst",
         "image_credit": "Gerard van Honthorst, 1622",
     },
@@ -207,7 +207,7 @@ BOOK_WIKI = {
     "Isaiah": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Isaiah",
         "desc": "The greatest of the prophets — visions of judgment, the Suffering Servant, and a new creation.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Isaiah_%28Michelangelo%29.jpg/411px-Isaiah_%28Michelangelo%29.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Isaiah_(Michelangelo).jpg?width=411",
         "image_alt": "The Prophet Isaiah by Michelangelo, Sistine Chapel",
         "image_credit": "Michelangelo, 1509",
     },
@@ -226,7 +226,7 @@ BOOK_WIKI = {
     "Daniel": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Daniel",
         "desc": "Stories of faithfulness in exile and apocalyptic visions of kingdoms and the Son of Man.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg/640px-Peter_Paul_Rubens_-_Daniel_in_the_Lions%27_Den_-_WGA20199.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter_Paul_Rubens_-_Daniel_in_the_Lions'_Den_-_WGA20199.jpg?width=640",
         "image_alt": "Daniel in the Lions' Den by Peter Paul Rubens",
         "image_credit": "Peter Paul Rubens, c. 1615",
     },
@@ -249,7 +249,7 @@ BOOK_WIKI = {
     "Jonah": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Jonah",
         "desc": "The reluctant prophet, the great fish, and God's mercy extending even to Nineveh.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg/640px-Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pieter_Lastman_-_Jonah_and_the_Whale_-_Google_Art_Project.jpg?width=640",
         "image_alt": "Jonah and the Whale by Pieter Lastman",
         "image_credit": "Pieter Lastman, 1621",
     },
@@ -284,7 +284,7 @@ BOOK_WIKI = {
     "Matthew": {
         "url": "https://en.wikipedia.org/wiki/Gospel_of_Matthew",
         "desc": "The Gospel for the Jewish audience — Jesus as the promised Messiah, Son of David.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sermon_on_the_Mount_Fra_Angelico.jpg/640px-Sermon_on_the_Mount_Fra_Angelico.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sermon_on_the_Mount_Fra_Angelico.jpg?width=640",
         "image_alt": "Sermon on the Mount by Fra Angelico",
         "image_credit": "Fra Angelico, c. 1440",
     },
@@ -295,7 +295,7 @@ BOOK_WIKI = {
     "Luke": {
         "url": "https://en.wikipedia.org/wiki/Gospel_of_Luke",
         "desc": "The physician's careful account — Jesus as the compassionate saviour of all people.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg/640px-Giotto_-_Scrovegni_-_-17-_-_Nativity%2C_Birth_of_Jesus.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Giotto_-_Scrovegni_-_-17-_-_Nativity,_Birth_of_Jesus.jpg?width=640",
         "image_alt": "Nativity, Birth of Jesus by Giotto",
         "image_credit": "Giotto, c. 1305",
     },
@@ -394,7 +394,7 @@ BOOK_WIKI = {
     "Revelation": {
         "url": "https://en.wikipedia.org/wiki/Book_of_Revelation",
         "desc": "The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg/456px-Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg",
+        "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Flemish_Apocalypse_(detail_of_key_art)_-_BL_Add_MS_17333_f133r.jpg?width=456",
         "image_alt": "The Apocalypse, Flemish illuminated manuscript",
         "image_credit": "Flemish manuscript, c. 1400",
     },
@@ -472,6 +472,60 @@ CSS = r"""
   --wine-dark:  #4a1c23;
   --white:      #fffdf7;
   --shadow:     rgba(44, 24, 16, .08);
+}
+
+/* ── Dark mode ─────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --parchment:  #1a1a1a;
+  --cream:      #222;
+  --sidebar-bg: #111;
+  --sidebar-fg: #c8c0b0;
+  --sidebar-hi: #d4b063;
+  --gold:       #c9a84c;
+  --gold-light: #d4b063;
+  --gold-faint: rgba(201, 168, 76, .25);
+  --ink:        #d4d0c8;
+  --ink-light:  #a89e8c;
+  --ink-faint:  #7a7060;
+  --wine:       #b8545e;
+  --wine-dark:  #d4a060;
+  --white:      #242424;
+  --shadow:     rgba(0, 0, 0, .3);
+}
+[data-theme="dark"] .sidebar {
+  background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
+}
+[data-theme="dark"] .sidebar::-webkit-scrollbar-thumb { background: #444; }
+[data-theme="dark"] .version-select { background: rgba(255,255,255,.06); }
+[data-theme="dark"] .version-select option { background: #111; }
+[data-theme="dark"] .verse-text p:hover { background: rgba(201, 168, 76, .05); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --parchment:  #1a1a1a;
+    --cream:      #222;
+    --sidebar-bg: #111;
+    --sidebar-fg: #c8c0b0;
+    --sidebar-hi: #d4b063;
+    --gold:       #c9a84c;
+    --gold-light: #d4b063;
+    --gold-faint: rgba(201, 168, 76, .25);
+    --ink:        #d4d0c8;
+    --ink-light:  #a89e8c;
+    --ink-faint:  #7a7060;
+    --wine:       #b8545e;
+    --wine-dark:  #d4a060;
+    --white:      #242424;
+    --shadow:     rgba(0, 0, 0, .3);
+  }
+  :root:not([data-theme="light"]) .sidebar {
+    background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
+  }
+  :root:not([data-theme="light"]) .sidebar::-webkit-scrollbar-thumb { background: #444; }
+  :root:not([data-theme="light"]) .version-select { background: rgba(255,255,255,.06); }
+  :root:not([data-theme="light"]) .version-select option { background: #111; }
+  :root:not([data-theme="light"]) .verse-text p:hover { background: rgba(201, 168, 76, .05); }
 }
 
 html { font-size: 18px; scroll-behavior: smooth; }
@@ -689,14 +743,7 @@ body {
   margin-left: var(--sidebar-w);
   min-height: 100vh;
   position: relative;
-}
-.content::before {
-  content: '';
-  position: absolute;
-  top: 8px; right: 8px; bottom: 8px; left: 8px;
-  border: 2px solid var(--gold-faint);
-  pointer-events: none;
-  z-index: 50;
+  border-right: 2px solid var(--gold-faint);
 }
 
 .content-header {
@@ -760,6 +807,15 @@ main {
   letter-spacing: .6em;
   margin: 1.5rem 0;
   user-select: none;
+}
+.home-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  font-size: .82rem;
+  font-style: italic;
+  color: var(--ink-faint);
+  line-height: 1.8;
 }
 
 .version-grid {
@@ -1039,9 +1095,6 @@ main {
   color: var(--white);
   border-color: var(--wine);
 }
-.book-info-link::after {
-  content: ' \\2197';
-}
 .book-image-wrap {
   max-width: 36rem;
   margin: 0 auto 1.8rem;
@@ -1060,6 +1113,36 @@ main {
   font-style: italic;
   margin-top: .4rem;
   letter-spacing: .03em;
+}
+
+/* ── Dark mode toggle ─────────────────────────────────────────────────── */
+
+.theme-toggle {
+  position: fixed;
+  top: .8rem;
+  right: .8rem;
+  z-index: 100;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--gold-faint);
+  width: 2.2rem;
+  height: 2.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s;
+  font-family: inherit;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px var(--shadow);
+  line-height: 1;
+}
+.theme-toggle:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  transform: scale(1.1);
 }
 
 /* ── Reading progress bar ─────────────────────────────────────────────── */
@@ -1125,20 +1208,6 @@ main {
   background: rgba(184, 134, 11, .06);
 }
 
-/* ── Book card descriptions ───────────────────────────────────────────── */
-
-.book-card .book-desc {
-  font-size: .62rem;
-  color: var(--ink-faint);
-  font-style: italic;
-  margin-top: .2rem;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 /* ── Footer ────────────────────────────────────────────────────────────── */
 
 footer {
@@ -1174,8 +1243,7 @@ footer {
   .sidebar-close {
     display: block;
   }
-  .content { margin-left: 0; }
-  .content::before { left: 4px; top: 4px; right: 4px; bottom: 4px; }
+  .content { margin-left: 0; border-right: none; }
   .content-header h1 { font-size: 1.5rem; }
   .home-hero h1 { font-size: 1.8rem; }
   main { padding: 0 1rem 3rem; }
@@ -1185,6 +1253,7 @@ footer {
   .reading-progress { left: 0; }
   .scroll-top { bottom: 1rem; right: 1rem; width: 2rem; height: 2rem; font-size: .8rem; }
   .book-image { max-height: 220px; }
+  .theme-toggle { top: .5rem; right: .5rem; width: 1.8rem; height: 1.8rem; font-size: .85rem; }
 }
 """
 
@@ -1485,8 +1554,8 @@ MASONIC_CSS = r"""
 }
 
 /* Decorative border */
-.masonic-theme .content::before {
-  border-color: rgba(201, 168, 76, .3);
+.masonic-theme .content {
+  border-right-color: rgba(201, 168, 76, .3);
 }
 
 /* Sidebar */
@@ -1838,8 +1907,8 @@ MASONIC_CSS = r"""
 
 /* Responsive fixes for masonic theme */
 @media (max-width: 700px) {
-  .masonic-theme .content::before {
-    border-color: rgba(201, 168, 76, .2);
+  .masonic-theme .content {
+    border-right: none;
   }
   .masonic-annotation {
     margin-left: -.5rem;
@@ -1890,9 +1959,6 @@ MASONIC_CSS = r"""
 .masonic-theme .book-image-credit {
   color: #6b7a90;
 }
-.masonic-theme .book-card .book-desc {
-  color: #6b7a90;
-}
 .masonic-theme .reading-progress-bar {
   background: linear-gradient(90deg, #c9a84c, #dbbe5e);
 }
@@ -1913,6 +1979,13 @@ MASONIC_CSS = r"""
 # ---------------------------------------------------------------------------
 # Sidebar JS (for mobile toggle + version switcher)
 # ---------------------------------------------------------------------------
+
+THEME_JS = r"""
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+"""
 
 SIDEBAR_JS = r"""
 document.addEventListener('DOMContentLoaded', function() {
@@ -1949,6 +2022,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });
@@ -2082,9 +2174,11 @@ def page_shell(title, body_content, sidebar, depth=0, theme=None):
   <title>{esc(title)}</title>
   <link rel="stylesheet" href="{prefix}style.css">{extra_css}
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>{THEME_JS}</script>
 </head>
 <body{body_cls}>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 {sidebar}
 <div class="content">
@@ -2127,17 +2221,10 @@ def generate_home():
     <p class="subtitle">Select a Translation</p>
   </div>
   <div class="home-ornament">&mdash; &#x2726; &#x271D; &#x2726; &mdash;</div>
-  <div class="book-image-wrap">
-    <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg/412px-Gutenberg_Bible%2C_Lenox_Copy%2C_New_York_Public_Library%2C_2009._Pic_01.jpg" alt="The Gutenberg Bible, the first major book printed with movable type, c. 1455" loading="lazy">
-    <div class="book-image-credit">The Gutenberg Bible &middot; New York Public Library &middot; c. 1455</div>
-  </div>
-  <div class="book-info" style="max-width:42rem;margin-bottom:2rem">
-    <div class="book-info-desc">
-      Seven public-domain translations of the Holy Scriptures, spanning from the
-      eighteenth to the twentieth century, presented here for study, devotion, and
-      comparison.
-    </div>
-    <a class="book-info-link" href="https://en.wikipedia.org/wiki/Bible" target="_blank" rel="noopener">The Bible on Wikipedia</a>
+  <div class="home-intro">
+    Seven public-domain translations of the Holy Scriptures, spanning from the
+    eighteenth to the twentieth century, presented here for study, devotion, and
+    comparison.
   </div>
   <div class="version-grid">{cards}
   </div>
@@ -2155,9 +2242,12 @@ def generate_home():
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="masonic.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>{THEME_JS}</script>
 </head>
 <body>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 {body}
+<script>{SIDEBAR_JS}</script>
 </body>
 </html>"""
 
@@ -2172,12 +2262,10 @@ def generate_version_index(ver, books):
             continue
         n_ch = len(books[name]["chapters"])
         w = "chapter" if n_ch == 1 else "chapters"
-        wiki = BOOK_WIKI.get(name, {})
-        desc_html = f'\n        <div class="book-desc">{esc(wiki["desc"])}</div>' if wiki.get("desc") else ""
         ot_cards += f"""
       <a class="book-card" href="{slug(name)}/index.html">
         <div class="book-name">{esc(name)}</div>
-        <div class="book-meta">{n_ch} {w}</div>{desc_html}
+        <div class="book-meta">{n_ch} {w}</div>
       </a>"""
 
     nt_cards = ""
@@ -2186,12 +2274,10 @@ def generate_version_index(ver, books):
             continue
         n_ch = len(books[name]["chapters"])
         w = "chapter" if n_ch == 1 else "chapters"
-        wiki = BOOK_WIKI.get(name, {})
-        desc_html = f'\n        <div class="book-desc">{esc(wiki["desc"])}</div>' if wiki.get("desc") else ""
         nt_cards += f"""
       <a class="book-card" href="{slug(name)}/index.html">
         <div class="book-name">{esc(name)}</div>
-        <div class="book-meta">{n_ch} {w}</div>{desc_html}
+        <div class="book-meta">{n_ch} {w}</div>
       </a>"""
 
     sb = sidebar_html(ver, VERSIONS, books, depth=0)
@@ -2260,7 +2346,7 @@ def generate_book_page(ver, books, book_name):
         desc = wiki.get("desc", "")
         url = wiki.get("url", "")
         desc_part = f'<div class="book-info-desc">{esc(desc)}</div>' if desc else ""
-        link_part = f'<a class="book-info-link" href="{url}" target="_blank" rel="noopener">Read on Wikipedia</a>' if url else ""
+        link_part = f'<a class="book-info-link" href="{url}" target="_blank" rel="noopener">Read on Wikipedia &#x2197;</a>' if url else ""
         info_html = f'<div class="book-info">{desc_part}{link_part}</div>'
 
     image_html = ""
@@ -2406,7 +2492,7 @@ def generate_chapter_page(ver, books, book_name, chapter_index):
         if wiki.get("desc"):
             link_part = ""
             if wiki.get("url"):
-                link_part = f' <a class="book-info-link" href="{wiki["url"]}" target="_blank" rel="noopener">Wikipedia</a>'
+                link_part = f' <a class="book-info-link" href="{wiki["url"]}" target="_blank" rel="noopener">Wikipedia &#x2197;</a>'
             parts.append(f'<div class="book-info"><div class="book-info-desc">{esc(wiki["desc"])}</div>{link_part}</div>')
         first_ch_extras = "\n    ".join(parts)
 

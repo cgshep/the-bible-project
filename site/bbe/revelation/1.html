@@ -6,9 +6,16 @@
   <title>Revelation 1 - BBE</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -277,10 +284,10 @@
       <h2>Revelation</h2>
     </div>
     <div class="book-image-wrap">
-        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg/456px-Flemish_Apocalypse_%28detail_of_key_art%29_-_BL_Add_MS_17333_f133r.jpg" alt="The Apocalypse, Flemish illuminated manuscript" loading="lazy">
+        <img class="book-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Flemish_Apocalypse_(detail_of_key_art)_-_BL_Add_MS_17333_f133r.jpg?width=456" alt="The Apocalypse, Flemish illuminated manuscript" loading="lazy">
         <div class="book-image-credit">Flemish manuscript, c. 1400</div>
       </div>
-    <div class="book-info"><div class="book-info-desc">The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Revelation" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Revelation" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>T</span>he Revelation of Jesus Christ which God gave him so that his servants might have knowledge of the things which will quickly take place: and he sent and made it clear by his angel to his servant John;</p>
 <p><span class="verse-num">2</span>Who gave witness of the word of God, and of the witness of Jesus Christ, even of all the things which he saw.</p>
@@ -352,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

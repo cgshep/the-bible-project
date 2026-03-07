@@ -23,8 +23,8 @@
 }
 
 /* Decorative border */
-.masonic-theme .content::before {
-  border-color: rgba(201, 168, 76, .3);
+.masonic-theme .content {
+  border-right-color: rgba(201, 168, 76, .3);
 }
 
 /* Sidebar */
@@ -376,8 +376,8 @@
 
 /* Responsive fixes for masonic theme */
 @media (max-width: 700px) {
-  .masonic-theme .content::before {
-    border-color: rgba(201, 168, 76, .2);
+  .masonic-theme .content {
+    border-right: none;
   }
   .masonic-annotation {
     margin-left: -.5rem;
@@ -426,9 +426,6 @@
   border-color: rgba(201, 168, 76, .3);
 }
 .masonic-theme .book-image-credit {
-  color: #6b7a90;
-}
-.masonic-theme .book-card .book-desc {
   color: #6b7a90;
 }
 .masonic-theme .reading-progress-bar {

@@ -6,9 +6,16 @@
   <title>Ruth 1 - DRC</title>
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -259,10 +266,10 @@
       <h2>Ruth</h2>
     </div>
     <div class="book-image-wrap">
-        <img class="book-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg/485px-Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg" alt="Ruth in the Field of Boaz by Julius Schnorr von Carolsfeld" loading="lazy">
+        <img class="book-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Julius_Schnorr_von_Carolsfeld-_Ruth_im_Feld_des_Boaz.jpg?width=485" alt="Ruth in the Field of Boaz by Julius Schnorr von Carolsfeld" loading="lazy">
         <div class="book-image-credit">Julius Schnorr von Carolsfeld, 1828</div>
       </div>
-    <div class="book-info"><div class="book-info-desc">A story of loyalty and redemption — Ruth the Moabitess, great-grandmother of King David.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ruth" target="_blank" rel="noopener">Wikipedia</a></div>
+    <div class="book-info"><div class="book-info-desc">A story of loyalty and redemption — Ruth the Moabitess, great-grandmother of King David.</div> <a class="book-info-link" href="https://en.wikipedia.org/wiki/Book_of_Ruth" target="_blank" rel="noopener">Wikipedia &#x2197;</a></div>
     <div class="verse-text">
       <p><span class="drop-cap"><span class="verse-num">1</span>I</span>n the days of the judges, when the judges ruled, there came a famine in the land. And a certain man of Bethlehem Juda, went to sojourn in the land of Moab with his wife and his two sons.</p>
 <p><span class="verse-num">2</span>He was named Elimelech, and his wife Noemi: and his two sons, the one Mahalon, and the other Chelion, Ephrathites of Bethlehem Juda. And entering into the country of Moab, they abode there.</p>
@@ -336,6 +343,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });

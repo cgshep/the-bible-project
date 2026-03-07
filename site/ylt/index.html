@@ -6,9 +6,16 @@
   <title>The Holy Bible - YLT</title>
   <link rel="stylesheet" href="../style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x271D;</text></svg>">
+  <script>
+(function(){
+  var saved = localStorage.getItem('bible-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+</script>
 </head>
 <body>
 <div class="reading-progress"><div class="reading-progress-bar"></div></div>
+<button class="theme-toggle" aria-label="Toggle dark mode">&#x263D;</button>
 <div class="page-wrap">
 <button class="sidebar-toggle" aria-label="Open navigation">&#9776;</button>
 <aside class="sidebar">
@@ -255,197 +262,158 @@
       <a class="book-card" href="genesis/index.html">
         <div class="book-name">Genesis</div>
         <div class="book-meta">50 chapters</div>
-        <div class="book-desc">The book of origins — creation, the fall, the flood, and the patriarchs Abraham, Isaac, Jacob, and Joseph.</div>
       </a>
       <a class="book-card" href="exodus/index.html">
         <div class="book-name">Exodus</div>
         <div class="book-meta">40 chapters</div>
-        <div class="book-desc">Israel&#x27;s deliverance from Egypt, the giving of the Law at Sinai, and the construction of the Tabernacle.</div>
       </a>
       <a class="book-card" href="leviticus/index.html">
         <div class="book-name">Leviticus</div>
         <div class="book-meta">27 chapters</div>
-        <div class="book-desc">Laws of sacrifice, purity, and holiness given to the priestly tribe of Levi.</div>
       </a>
       <a class="book-card" href="numbers/index.html">
         <div class="book-name">Numbers</div>
         <div class="book-meta">36 chapters</div>
-        <div class="book-desc">The forty years of wandering in the wilderness, from Sinai to the plains of Moab.</div>
       </a>
       <a class="book-card" href="deuteronomy/index.html">
         <div class="book-name">Deuteronomy</div>
         <div class="book-meta">34 chapters</div>
-        <div class="book-desc">Moses&#x27; farewell speeches and the renewal of the covenant before entering the Promised Land.</div>
       </a>
       <a class="book-card" href="joshua/index.html">
         <div class="book-name">Joshua</div>
         <div class="book-meta">24 chapters</div>
-        <div class="book-desc">The conquest and division of Canaan under the leadership of Joshua.</div>
       </a>
       <a class="book-card" href="judges/index.html">
         <div class="book-name">Judges</div>
         <div class="book-meta">21 chapters</div>
-        <div class="book-desc">The turbulent era of the judges — Deborah, Gideon, Samson — between the conquest and the monarchy.</div>
       </a>
       <a class="book-card" href="ruth/index.html">
         <div class="book-name">Ruth</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">A story of loyalty and redemption — Ruth the Moabitess, great-grandmother of King David.</div>
       </a>
       <a class="book-card" href="1-samuel/index.html">
         <div class="book-name">1 Samuel</div>
         <div class="book-meta">31 chapters</div>
-        <div class="book-desc">From the prophet Samuel through Saul&#x27;s reign to the rise of David.</div>
       </a>
       <a class="book-card" href="2-samuel/index.html">
         <div class="book-name">2 Samuel</div>
         <div class="book-meta">24 chapters</div>
-        <div class="book-desc">The reign of King David — triumphs, sins, and the promise of an everlasting dynasty.</div>
       </a>
       <a class="book-card" href="1-kings/index.html">
         <div class="book-name">1 Kings</div>
         <div class="book-meta">22 chapters</div>
-        <div class="book-desc">Solomon&#x27;s glory, the building of the Temple, the kingdom divided, and the prophet Elijah.</div>
       </a>
       <a class="book-card" href="2-kings/index.html">
         <div class="book-name">2 Kings</div>
         <div class="book-meta">25 chapters</div>
-        <div class="book-desc">The divided kingdom&#x27;s decline, the prophet Elisha, and the fall of Israel and Judah.</div>
       </a>
       <a class="book-card" href="1-chronicles/index.html">
         <div class="book-name">1 Chronicles</div>
         <div class="book-meta">29 chapters</div>
-        <div class="book-desc">Israel&#x27;s history retold from Adam to David, with emphasis on worship and the Temple.</div>
       </a>
       <a class="book-card" href="2-chronicles/index.html">
         <div class="book-name">2 Chronicles</div>
         <div class="book-meta">36 chapters</div>
-        <div class="book-desc">From Solomon&#x27;s Temple to the Babylonian exile and Cyrus&#x27; decree of return.</div>
       </a>
       <a class="book-card" href="ezra/index.html">
         <div class="book-name">Ezra</div>
         <div class="book-meta">10 chapters</div>
-        <div class="book-desc">The return from Babylon and the rebuilding of the Temple under Zerubbabel and Ezra.</div>
       </a>
       <a class="book-card" href="nehemiah/index.html">
         <div class="book-name">Nehemiah</div>
         <div class="book-meta">13 chapters</div>
-        <div class="book-desc">Nehemiah rebuilds the walls of Jerusalem and restores the covenant community.</div>
       </a>
       <a class="book-card" href="esther/index.html">
         <div class="book-name">Esther</div>
         <div class="book-meta">10 chapters</div>
-        <div class="book-desc">Queen Esther saves the Jewish people from destruction in the Persian Empire.</div>
       </a>
       <a class="book-card" href="job/index.html">
         <div class="book-name">Job</div>
         <div class="book-meta">42 chapters</div>
-        <div class="book-desc">The great poem of innocent suffering — Job&#x27;s trials, his friends&#x27; debate, and God&#x27;s answer from the whirlwind.</div>
       </a>
       <a class="book-card" href="psalms/index.html">
         <div class="book-name">Psalms</div>
         <div class="book-meta">150 chapters</div>
-        <div class="book-desc">The hymnbook of ancient Israel — 150 poems of praise, lament, thanksgiving, and wisdom.</div>
       </a>
       <a class="book-card" href="proverbs/index.html">
         <div class="book-name">Proverbs</div>
         <div class="book-meta">31 chapters</div>
-        <div class="book-desc">Wisdom literature attributed to Solomon — practical counsel for righteous living.</div>
       </a>
       <a class="book-card" href="ecclesiastes/index.html">
         <div class="book-name">Ecclesiastes</div>
         <div class="book-meta">12 chapters</div>
-        <div class="book-desc">&#x27;Vanity of vanities&#x27; — the Preacher&#x27;s meditation on meaning, time, and the fear of God.</div>
       </a>
       <a class="book-card" href="song-of-solomon/index.html">
         <div class="book-name">Song of Solomon</div>
         <div class="book-meta">8 chapters</div>
-        <div class="book-desc">A lyric poem celebrating love between bride and bridegroom, read as allegory of divine love.</div>
       </a>
       <a class="book-card" href="isaiah/index.html">
         <div class="book-name">Isaiah</div>
         <div class="book-meta">66 chapters</div>
-        <div class="book-desc">The greatest of the prophets — visions of judgment, the Suffering Servant, and a new creation.</div>
       </a>
       <a class="book-card" href="jeremiah/index.html">
         <div class="book-name">Jeremiah</div>
         <div class="book-meta">52 chapters</div>
-        <div class="book-desc">The weeping prophet — warnings of exile, the promise of a new covenant, and Jerusalem&#x27;s fall.</div>
       </a>
       <a class="book-card" href="lamentations/index.html">
         <div class="book-name">Lamentations</div>
         <div class="book-meta">5 chapters</div>
-        <div class="book-desc">Five poems mourning the destruction of Jerusalem and the Temple in 586 BC.</div>
       </a>
       <a class="book-card" href="ezekiel/index.html">
         <div class="book-name">Ezekiel</div>
         <div class="book-meta">48 chapters</div>
-        <div class="book-desc">Visions from Babylonian exile — the chariot throne, the valley of dry bones, and the restored Temple.</div>
       </a>
       <a class="book-card" href="daniel/index.html">
         <div class="book-name">Daniel</div>
         <div class="book-meta">12 chapters</div>
-        <div class="book-desc">Stories of faithfulness in exile and apocalyptic visions of kingdoms and the Son of Man.</div>
       </a>
       <a class="book-card" href="hosea/index.html">
         <div class="book-name">Hosea</div>
         <div class="book-meta">14 chapters</div>
-        <div class="book-desc">God&#x27;s faithful love portrayed through Hosea&#x27;s marriage to the unfaithful Gomer.</div>
       </a>
       <a class="book-card" href="joel/index.html">
         <div class="book-name">Joel</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">A plague of locusts as prelude to the Day of the Lord, and the promise of the Spirit poured out.</div>
       </a>
       <a class="book-card" href="amos/index.html">
         <div class="book-name">Amos</div>
         <div class="book-meta">9 chapters</div>
-        <div class="book-desc">A shepherd-prophet denounces social injustice: &#x27;Let justice roll down like waters.&#x27;</div>
       </a>
       <a class="book-card" href="obadiah/index.html">
         <div class="book-name">Obadiah</div>
         <div class="book-meta">1 chapter</div>
-        <div class="book-desc">The shortest book in the Old Testament — a prophecy against Edom.</div>
       </a>
       <a class="book-card" href="jonah/index.html">
         <div class="book-name">Jonah</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">The reluctant prophet, the great fish, and God&#x27;s mercy extending even to Nineveh.</div>
       </a>
       <a class="book-card" href="micah/index.html">
         <div class="book-name">Micah</div>
         <div class="book-meta">7 chapters</div>
-        <div class="book-desc">Justice, mercy, and humility — &#x27;What doth the Lord require of thee?&#x27;</div>
       </a>
       <a class="book-card" href="nahum/index.html">
         <div class="book-name">Nahum</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">A prophecy of the fall of Nineveh, the great Assyrian capital.</div>
       </a>
       <a class="book-card" href="habakkuk/index.html">
         <div class="book-name">Habakkuk</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">A prophet&#x27;s dialogue with God about evil and justice — &#x27;the just shall live by faith.&#x27;</div>
       </a>
       <a class="book-card" href="zephaniah/index.html">
         <div class="book-name">Zephaniah</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">The Day of the Lord draws near — judgment and the promise of a humble remnant.</div>
       </a>
       <a class="book-card" href="haggai/index.html">
         <div class="book-name">Haggai</div>
         <div class="book-meta">2 chapters</div>
-        <div class="book-desc">A call to rebuild the Temple after the return from Babylonian exile.</div>
       </a>
       <a class="book-card" href="zechariah/index.html">
         <div class="book-name">Zechariah</div>
         <div class="book-meta">14 chapters</div>
-        <div class="book-desc">Night visions and messianic prophecies accompanying the rebuilding of the Temple.</div>
       </a>
       <a class="book-card" href="malachi/index.html">
         <div class="book-name">Malachi</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">The last Old Testament prophet — a call to faithfulness before the messenger of the covenant.</div>
       </a>
     </div>
     <div class="testament-title">The New Testament</div>
@@ -453,137 +421,110 @@
       <a class="book-card" href="matthew/index.html">
         <div class="book-name">Matthew</div>
         <div class="book-meta">28 chapters</div>
-        <div class="book-desc">The Gospel for the Jewish audience — Jesus as the promised Messiah, Son of David.</div>
       </a>
       <a class="book-card" href="mark/index.html">
         <div class="book-name">Mark</div>
         <div class="book-meta">16 chapters</div>
-        <div class="book-desc">The earliest Gospel — a swift, vivid portrait of Jesus as the suffering servant.</div>
       </a>
       <a class="book-card" href="luke/index.html">
         <div class="book-name">Luke</div>
         <div class="book-meta">24 chapters</div>
-        <div class="book-desc">The physician&#x27;s careful account — Jesus as the compassionate saviour of all people.</div>
       </a>
       <a class="book-card" href="john/index.html">
         <div class="book-name">John</div>
         <div class="book-meta">21 chapters</div>
-        <div class="book-desc">&#x27;In the beginning was the Word&#x27; — the theological Gospel of signs and discourses.</div>
       </a>
       <a class="book-card" href="acts/index.html">
         <div class="book-name">Acts</div>
         <div class="book-meta">28 chapters</div>
-        <div class="book-desc">The birth of the Church — from Pentecost in Jerusalem to Paul&#x27;s arrival in Rome.</div>
       </a>
       <a class="book-card" href="romans/index.html">
         <div class="book-name">Romans</div>
         <div class="book-meta">16 chapters</div>
-        <div class="book-desc">Paul&#x27;s magisterial exposition of the Gospel — justification by faith, life in the Spirit.</div>
       </a>
       <a class="book-card" href="1-corinthians/index.html">
         <div class="book-name">1 Corinthians</div>
         <div class="book-meta">16 chapters</div>
-        <div class="book-desc">Paul addresses divisions, ethics, worship, and the resurrection in the Corinthian church.</div>
       </a>
       <a class="book-card" href="2-corinthians/index.html">
         <div class="book-name">2 Corinthians</div>
         <div class="book-meta">13 chapters</div>
-        <div class="book-desc">Paul&#x27;s most personal letter — weakness, suffering, and the treasure in earthen vessels.</div>
       </a>
       <a class="book-card" href="galatians/index.html">
         <div class="book-name">Galatians</div>
         <div class="book-meta">6 chapters</div>
-        <div class="book-desc">Freedom in Christ — Paul&#x27;s passionate defence of justification by faith alone.</div>
       </a>
       <a class="book-card" href="ephesians/index.html">
         <div class="book-name">Ephesians</div>
         <div class="book-meta">6 chapters</div>
-        <div class="book-desc">The cosmic scope of God&#x27;s plan — the Church as the body of Christ, the armour of God.</div>
       </a>
       <a class="book-card" href="philippians/index.html">
         <div class="book-name">Philippians</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">A letter of joy from prison — &#x27;Rejoice in the Lord always.&#x27;</div>
       </a>
       <a class="book-card" href="colossians/index.html">
         <div class="book-name">Colossians</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">The supremacy of Christ — &#x27;in him all things hold together.&#x27;</div>
       </a>
       <a class="book-card" href="1-thessalonians/index.html">
         <div class="book-name">1 Thessalonians</div>
         <div class="book-meta">5 chapters</div>
-        <div class="book-desc">Encouragement to a young church and teaching on the Lord&#x27;s return.</div>
       </a>
       <a class="book-card" href="2-thessalonians/index.html">
         <div class="book-name">2 Thessalonians</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">Further teaching on the Day of the Lord and a call to steadfastness.</div>
       </a>
       <a class="book-card" href="1-timothy/index.html">
         <div class="book-name">1 Timothy</div>
         <div class="book-meta">6 chapters</div>
-        <div class="book-desc">Paul&#x27;s pastoral counsel to young Timothy on church order and sound doctrine.</div>
       </a>
       <a class="book-card" href="2-timothy/index.html">
         <div class="book-name">2 Timothy</div>
         <div class="book-meta">4 chapters</div>
-        <div class="book-desc">Paul&#x27;s final letter — &#x27;I have fought the good fight, I have finished the course.&#x27;</div>
       </a>
       <a class="book-card" href="titus/index.html">
         <div class="book-name">Titus</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">Instructions for church leadership and godly living on the island of Crete.</div>
       </a>
       <a class="book-card" href="philemon/index.html">
         <div class="book-name">Philemon</div>
         <div class="book-meta">1 chapter</div>
-        <div class="book-desc">A personal appeal for the runaway slave Onesimus — brotherhood in Christ.</div>
       </a>
       <a class="book-card" href="hebrews/index.html">
         <div class="book-name">Hebrews</div>
         <div class="book-meta">13 chapters</div>
-        <div class="book-desc">Christ as the great high priest — the superiority of the new covenant over the old.</div>
       </a>
       <a class="book-card" href="james/index.html">
         <div class="book-name">James</div>
         <div class="book-meta">5 chapters</div>
-        <div class="book-desc">Practical wisdom — &#x27;faith without works is dead.&#x27;</div>
       </a>
       <a class="book-card" href="1-peter/index.html">
         <div class="book-name">1 Peter</div>
         <div class="book-meta">5 chapters</div>
-        <div class="book-desc">Hope in suffering — &#x27;a living hope through the resurrection of Jesus Christ.&#x27;</div>
       </a>
       <a class="book-card" href="2-peter/index.html">
         <div class="book-name">2 Peter</div>
         <div class="book-meta">3 chapters</div>
-        <div class="book-desc">Warnings against false teachers and the certainty of the Lord&#x27;s return.</div>
       </a>
       <a class="book-card" href="1-john/index.html">
         <div class="book-name">1 John</div>
         <div class="book-meta">5 chapters</div>
-        <div class="book-desc">&#x27;God is light&#x27; and &#x27;God is love&#x27; — tests of true fellowship with God.</div>
       </a>
       <a class="book-card" href="2-john/index.html">
         <div class="book-name">2 John</div>
         <div class="book-meta">1 chapter</div>
-        <div class="book-desc">A brief letter on truth, love, and discernment against deceivers.</div>
       </a>
       <a class="book-card" href="3-john/index.html">
         <div class="book-name">3 John</div>
         <div class="book-meta">1 chapter</div>
-        <div class="book-desc">A personal note commending hospitality and warning against Diotrephes.</div>
       </a>
       <a class="book-card" href="jude/index.html">
         <div class="book-name">Jude</div>
         <div class="book-meta">1 chapter</div>
-        <div class="book-desc">An urgent appeal to &#x27;contend for the faith&#x27; against ungodly intruders.</div>
       </a>
       <a class="book-card" href="revelation/index.html">
         <div class="book-name">Revelation</div>
         <div class="book-meta">22 chapters</div>
-        <div class="book-desc">The apocalyptic vision of John — the Lamb, the seven seals, and the new Jerusalem.</div>
       </a>
     </div>
   </main>
@@ -629,6 +570,25 @@ document.addEventListener('DOMContentLoaded', function() {
   if (scrollBtn) {
     scrollBtn.addEventListener('click', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+  // Dark mode toggle
+  var themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    function updateIcon() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      themeBtn.textContent = isDark ? '\u2600' : '\u263D';
+      themeBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+    updateIcon();
+    themeBtn.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('bible-theme', next);
+      updateIcon();
     });
   }
 });
